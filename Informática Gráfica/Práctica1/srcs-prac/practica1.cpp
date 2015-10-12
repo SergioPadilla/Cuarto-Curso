@@ -10,8 +10,8 @@
 #include "practica1.hpp"
 
 unsigned objeto_activo = 0 ; // objeto activo: cubo (0), tetraedro (1), otros....
-Cubo cubo();
-Tetraedro tetraedro();
+Cubo cubo;
+Tetraedro tetraedro;
 
 // ---------------------------------------------------------------------
 // declaraciones de estructuras de datos....
@@ -25,7 +25,8 @@ Tetraedro tetraedro();
 
 void P1_Inicializar( int argc, char *argv[] )
 {
-
+  tetraedro = Tetraedro();
+  cubo = Cubo();
 }
 
 // ---------------------------------------------------------------------
@@ -66,27 +67,9 @@ void P1_DibujarObjetos( unsigned modo )
     cubo.visualizar(modo);
   else if(objeto_activo==1)
     tetraedro.visualizar(modo);
-    /*switch (modo) {
-      case 0:
-        glBegin(GL_POINTS);
-          glVertex3f(0,0,0);
-          glVertex3f(0,2,0);
-          glVertex3f(0,0,2);
-          glVertex3f(2,0,0);
-        glEnd();
-        break;
-      case 1:
-        glBegin(GL_LINE_LOOP);
-          glVertex3f(0,0,0);
-          glVertex3f(0,2,0);
-          glVertex3f(0,0,2);
-          glVertex3f(2,0,0);
-        glEnd();
-        break;
-    }*/
 }
 
-Cubo(){
+Cubo::Cubo(){
   nombre_obj = "Cubo";
   Tupla3f a(-2,-2,2), b(-2,-2,-2), c(2,-2,-2), d(2,-2,2), e(-2,2,2), f(-2,2,-2), g(2,2,-2), h(2,2,2);
   vertices.push_back(a);
@@ -113,7 +96,7 @@ Cubo(){
   caras.push_back(i12);
 }
 
-Tetraedro(){
+Tetraedro::Tetraedro(){
   nombre_obj = "Tetraedro";
 
 }

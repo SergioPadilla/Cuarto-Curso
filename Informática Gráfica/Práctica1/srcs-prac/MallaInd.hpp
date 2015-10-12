@@ -1,4 +1,3 @@
-#include "Objeto3D.hpp"
 #include <vector>
 #include <cctype>
 #include <string>
@@ -6,9 +5,8 @@
 #include <fstream>
 #include <cmath>
 #include "tuplasg.hpp"
-
 #include "aux.hpp"
-#include "practica1.hpp"
+#include "Objeto3D.hpp"
 
 class MallaInd : public Objeto3D
 {

@@ -1,13 +1,8 @@
 #ifndef OBJETO3D_HPP
 #define OBJETO3D_HPP
-#include <cctype>
+
 #include <string>
 #include <iostream>
-#include <fstream>
-#include <cmath>
-
-#include "aux.hpp"
-#include "practica1.hpp"
 
 using namespace std ;
 
