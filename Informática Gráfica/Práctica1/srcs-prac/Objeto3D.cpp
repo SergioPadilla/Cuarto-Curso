@@ -1,3 +1,5 @@
 #include "Objeto3D.hpp"
 
-using namespace std;
+string nombre(){
+  return nombre_obj;
+}
