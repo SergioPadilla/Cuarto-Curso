@@ -10,8 +10,8 @@
 #include "practica1.hpp"
 
 unsigned objeto_activo = 0 ; // objeto activo: cubo (0), tetraedro (1), otros....
-Cubo cubo;
-Tetraedro tetraedro;
+Cubo *cubo;
+Tetraedro *tetraedro;
 
 // ---------------------------------------------------------------------
 // declaraciones de estructuras de datos....
@@ -25,8 +25,8 @@ Tetraedro tetraedro;
 
 void P1_Inicializar( int argc, char *argv[] )
 {
-  tetraedro = Tetraedro();
-  cubo = Cubo();
+  tetraedro = new Tetraedro();
+  cubo = new Cubo();
 }
 
 // ---------------------------------------------------------------------
@@ -44,10 +44,10 @@ bool P1_FGE_PulsarTeclaNormal( unsigned char tecla )
   bool usa = true ; // true si al acabar de procesar el evento resulta que es necesario redibujar
   switch (toupper(tecla))
   {
-     case '0' :
+     case 'A' :
         objeto_activo = 0;
         break ;
-     case '1' :
+     case 'C' :
         objeto_activo = 1;
         break;
      default:
@@ -64,9 +64,9 @@ bool P1_FGE_PulsarTeclaNormal( unsigned char tecla )
 void P1_DibujarObjetos( unsigned modo )
 {
   if(objeto_activo==0)
-    cubo.visualizar(modo);
+    cubo->visualizar(modo);
   else if(objeto_activo==1)
-    tetraedro.visualizar(modo);
+    tetraedro->visualizar(modo);
 }
 
 Cubo::Cubo(){
@@ -80,8 +80,8 @@ Cubo::Cubo(){
   vertices.push_back(f);
   vertices.push_back(g);
   vertices.push_back(h);
-  Tupla3i i1(1,8,5), i2(1,4,8), i3(4,7,8), i4(4,3,7), i5(3,6,7), i6(3,2,6), i7(2,5,6), i8(2,1,5), i9(5,3,6), i10(3,7,6),
-            i11(1,3,2),i12(1,4,3);
+  Tupla3i i1(0,7,4), i2(0,3,7), i3(3,6,7), i4(3,2,6), i5(2,5,6), i6(2,1,5), i7(1,4,5), i8(1,0,4), i9(4,6,7), i10(4,6,5),
+            i11(0,2,1),i12(0,3,2);
   caras.push_back(i1);
   caras.push_back(i2);
   caras.push_back(i3);
@@ -98,5 +98,14 @@ Cubo::Cubo(){
 
 Tetraedro::Tetraedro(){
   nombre_obj = "Tetraedro";
-
+  Tupla3f a(0.866,0,-0.5), b(0,1.4142,0), c(0,0,1), d(-0.866,0,-0.5);
+  vertices.push_back(a);
+  vertices.push_back(b);
+  vertices.push_back(c);
+  vertices.push_back(d);
+  Tupla3i i1(0,1,2), i2(0,1,3), i3(0,2,3), i4(1,2,3);
+  caras.push_back(i1);
+  caras.push_back(i2);
+  caras.push_back(i3);
+  caras.push_back(i4);
 }
