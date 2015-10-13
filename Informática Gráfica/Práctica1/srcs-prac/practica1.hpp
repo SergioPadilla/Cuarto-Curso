@@ -29,4 +29,9 @@ class Cono : public MallaInd {
       Cono(); //Crea tablas del Cono y le da nombre
 };
 
+class Cilindro : public MallaInd {
+    public:
+      Cilindro(); //Crea tablas del Cono y le da nombre
+};
+
 #endif

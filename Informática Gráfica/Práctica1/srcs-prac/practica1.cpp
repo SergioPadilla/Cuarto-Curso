@@ -17,6 +17,7 @@ unsigned objeto_activo = 0 ; // objeto activo: cubo (0), tetraedro (1), otros...
 Cubo *cubo;
 Tetraedro *tetraedro;
 Cono *cono;
+Cilindro *cilindro;
 
 // ---------------------------------------------------------------------
 // Función para implementar en la práctica 1 para inicialización.
@@ -28,6 +29,7 @@ void P1_Inicializar( int argc, char *argv[] )
   tetraedro = new Tetraedro();
   cubo = new Cubo();
   cono = new Cono();
+  cilindro = new Cilindro();
 }
 
 // ---------------------------------------------------------------------
@@ -54,6 +56,9 @@ bool P1_FGE_PulsarTeclaNormal( unsigned char tecla )
     case 'D' :
         objeto_activo = 2;
         break;
+    case 'F' :
+        objeto_activo = 3;
+        break;
      default:
         usa = false ;
   }
@@ -73,6 +78,8 @@ void P1_DibujarObjetos( unsigned modo )
     tetraedro->visualizar(modo);
   else if(objeto_activo==2)
     cono->visualizar(modo);
+  else if(objeto_activo==3)
+    cilindro->visualizar(modo);
 }
 
 Cubo::Cubo(){
@@ -126,4 +133,18 @@ Cono::Cono(){
   for(int i=1; i < 100; i++)
     caras.push_back(Tupla3i(0,i,i+1));
   caras.push_back(Tupla3i(0,100,1));
+}
+
+Cilindro::Cilindro(){
+  nombre_obj = "Cilindro";
+  for(int i=0; i < 100; i++){
+    vertices.push_back(Tupla3f(cos(i*2*M_PI/100),1,sin(i*2*M_PI/100)));
+    vertices.push_back(Tupla3f(cos(i*2*M_PI/100),-1,sin(i*2*M_PI/100)));
+  }
+
+  for(int i=0; i < 198; i++){
+    caras.push_back(Tupla3i(i,i+1,i+2));
+  }
+  caras.push_back(Tupla3i(199,198,0));
+  caras.push_back(Tupla3i(1,199,0));
 }
