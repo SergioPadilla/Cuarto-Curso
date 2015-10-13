@@ -10,13 +10,13 @@
 #include "practica1.hpp"
 
 unsigned objeto_activo = 0 ; // objeto activo: cubo (0), tetraedro (1), otros....
-Cubo *cubo;
-Tetraedro *tetraedro;
 
 // ---------------------------------------------------------------------
 // declaraciones de estructuras de datos....
 
-
+Cubo *cubo;
+Tetraedro *tetraedro;
+Cono *cono;
 
 // ---------------------------------------------------------------------
 // Función para implementar en la práctica 1 para inicialización.
@@ -27,6 +27,7 @@ void P1_Inicializar( int argc, char *argv[] )
 {
   tetraedro = new Tetraedro();
   cubo = new Cubo();
+  cono = new Cono();
 }
 
 // ---------------------------------------------------------------------
@@ -47,8 +48,11 @@ bool P1_FGE_PulsarTeclaNormal( unsigned char tecla )
      case 'A' :
         objeto_activo = 0;
         break ;
-     case 'C' :
+     case 'S' :
         objeto_activo = 1;
+        break;
+    case 'D' :
+        objeto_activo = 2;
         break;
      default:
         usa = false ;
@@ -67,11 +71,13 @@ void P1_DibujarObjetos( unsigned modo )
     cubo->visualizar(modo);
   else if(objeto_activo==1)
     tetraedro->visualizar(modo);
+  else if(objeto_activo==2)
+    cono->visualizar(modo);
 }
 
 Cubo::Cubo(){
   nombre_obj = "Cubo";
-  Tupla3f a(-2,-2,2), b(-2,-2,-2), c(2,-2,-2), d(2,-2,2), e(-2,2,2), f(-2,2,-2), g(2,2,-2), h(2,2,2);
+  Tupla3f a(-1,-1,1), b(-1,-1,-1), c(1,-1,-1), d(1,-1,1), e(-1,1,1), f(-1,1,-1), g(1,1,-1), h(1,1,1);
   vertices.push_back(a);
   vertices.push_back(b);
   vertices.push_back(c);
@@ -108,4 +114,16 @@ Tetraedro::Tetraedro(){
   caras.push_back(i2);
   caras.push_back(i3);
   caras.push_back(i4);
+}
+
+Cono::Cono(){
+  nombre_obj = "Cono";
+  Tupla3f a(0,2,0);
+  vertices.push_back(a);
+  for(int i=0; i < 100; i++)
+    vertices.push_back(Tupla3f(cos(i*2*M_PI/100),0,sin(i*2*M_PI/100)));
+
+  for(int i=1; i < 100; i++)
+    caras.push_back(Tupla3i(0,i,i+1));
+  caras.push_back(Tupla3i(0,100,1));
 }

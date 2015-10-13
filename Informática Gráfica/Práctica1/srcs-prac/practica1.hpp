@@ -24,4 +24,9 @@ class Tetraedro : public MallaInd {
       Tetraedro(); //Crea tablas del Tetraedro y le da nombre
 };
 
+class Cono : public MallaInd {
+    public:
+      Cono(); //Crea tablas del Cono y le da nombre
+};
+
 #endif
