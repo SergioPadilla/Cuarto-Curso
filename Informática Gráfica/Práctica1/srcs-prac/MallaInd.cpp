@@ -34,9 +34,9 @@ void MallaInd::visualizar( unsigned modo_vis ){
         else
           impar.push_back(caras.at(i));
       }
-      glColor3f(0.4,0.5,0.2);
+      glColor3f(0,0,1);
       glDrawElements(GL_TRIANGLES,par.size()*3,GL_UNSIGNED_INT,&(par.front()));
-      glColor3f(0.1,0.3,0.2);
+      glColor3f(1,0,0);
       glDrawElements(GL_TRIANGLES,impar.size()*3,GL_UNSIGNED_INT,&(impar.front()));
       glDisableClientState(GL_VERTEX_ARRAY);
       break;

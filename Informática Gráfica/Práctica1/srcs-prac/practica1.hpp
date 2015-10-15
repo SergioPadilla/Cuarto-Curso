@@ -26,12 +26,12 @@ class Tetraedro : public MallaInd {
 
 class Cono : public MallaInd {
     public:
-      Cono(); //Crea tablas del Cono y le da nombre
+      Cono(int num); //Crea tablas del Cono y le da nombre
 };
 
 class Cilindro : public MallaInd {
     public:
-      Cilindro(); //Crea tablas del Cono y le da nombre
+      Cilindro(int num); //Crea tablas del Cono y le da nombre
 };
 
 #endif

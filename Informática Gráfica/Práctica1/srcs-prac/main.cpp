@@ -246,16 +246,16 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
       case '-' :
          frustum_factor_escala /= 1.05;
          break;
-      case '0':
+      case 'P':
         modo_vis = 0;
         break;
-      case '1':
+      case 'L':
         modo_vis = 1;
         break;
-      case '2':
+      case 'R':
         modo_vis = 2;
         break;
-      case '3':
+      case 'A':
         modo_vis = 3;
         break;
       default:

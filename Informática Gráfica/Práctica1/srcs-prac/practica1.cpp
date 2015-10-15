@@ -10,6 +10,7 @@
 #include "practica1.hpp"
 
 unsigned objeto_activo = 0 ; // objeto activo: cubo (0), tetraedro (1), otros....
+int hueco = 0; //Variable para dejar hueco el cilindro y el cono, 0(cerrado)
 
 // ---------------------------------------------------------------------
 // declaraciones de estructuras de datos....
@@ -28,8 +29,8 @@ void P1_Inicializar( int argc, char *argv[] )
 {
   tetraedro = new Tetraedro();
   cubo = new Cubo();
-  cono = new Cono();
-  cilindro = new Cilindro();
+  cono = new Cono(50);
+  cilindro = new Cilindro(50);
 }
 
 // ---------------------------------------------------------------------
@@ -47,17 +48,80 @@ bool P1_FGE_PulsarTeclaNormal( unsigned char tecla )
   bool usa = true ; // true si al acabar de procesar el evento resulta que es necesario redibujar
   switch (toupper(tecla))
   {
-     case 'A' :
+     case 'Z' :
         objeto_activo = 0;
         break ;
-     case 'S' :
+     case 'X' :
         objeto_activo = 1;
         break;
-    case 'D' :
+    case 'C' :
         objeto_activo = 2;
         break;
-    case 'F' :
+    case 'V' :
         objeto_activo = 3;
+        break;
+    case '1':
+        delete cono;
+        delete cilindro;
+        cono = new Cono(10);
+        cilindro = new Cilindro(10);
+        break;
+    case '2':
+        delete cono;
+        delete cilindro;
+        cono = new Cono(20);
+        cilindro = new Cilindro(20);
+        break;
+    case '3':
+        delete cono;
+        delete cilindro;
+        cono = new Cono(30);
+        cilindro = new Cilindro(30);
+        break;
+    case '4':
+        delete cono;
+        delete cilindro;
+        cono = new Cono(40);
+        cilindro = new Cilindro(40);
+        break;
+    case '5':
+        delete cono;
+        delete cilindro;
+        cono = new Cono(50);
+        cilindro = new Cilindro(50);
+        break;
+    case '6':
+        delete cono;
+        delete cilindro;
+        cono = new Cono(60);
+        cilindro = new Cilindro(60);
+        break;
+    case '7':
+        delete cono;
+        delete cilindro;
+        cono = new Cono(70);
+        cilindro = new Cilindro(70);
+        break;
+    case '8':
+        delete cono;
+        delete cilindro;
+        cono = new Cono(80);
+        cilindro = new Cilindro(80);
+        break;
+    case '9':
+        delete cono;
+        delete cilindro;
+        cono = new Cono(90);
+        cilindro = new Cilindro(90);
+        break;
+    case '0':
+        delete cono;
+        delete cilindro;
+        cono = new Cono(100);
+        cilindro = new Cilindro(100);
+        break;
+    case 'H':
+        hueco = (hueco+1)%2;
         break;
      default:
         usa = false ;
@@ -123,28 +187,56 @@ Tetraedro::Tetraedro(){
   caras.push_back(i4);
 }
 
-Cono::Cono(){
+Cono::Cono(int num){
   nombre_obj = "Cono";
+  int n = num;
   Tupla3f a(0,2,0);
   vertices.push_back(a);
-  for(int i=0; i < 100; i++)
-    vertices.push_back(Tupla3f(cos(i*2*M_PI/100),0,sin(i*2*M_PI/100)));
+  for(int i=0; i < n; i++)
+    vertices.push_back(Tupla3f(cos(i*2*M_PI/n),0,sin(i*2*M_PI/n)));
 
-  for(int i=1; i < 100; i++)
+  for(int i=1; i < n; i++)
     caras.push_back(Tupla3i(0,i,i+1));
-  caras.push_back(Tupla3i(0,100,1));
+  caras.push_back(Tupla3i(0,n,1));
+
+  if(hueco == 0){
+    //Tapa del cono
+    vertices.push_back(Tupla3f(0,0,0));
+    for(int i=1; i < n; i++)
+      caras.push_back(Tupla3i(n+1,i,i+1));
+    caras.push_back(Tupla3i(n+1,n,1));
+  }
 }
 
-Cilindro::Cilindro(){
+Cilindro::Cilindro(int num){
   nombre_obj = "Cilindro";
-  for(int i=0; i < 100; i++){
-    vertices.push_back(Tupla3f(cos(i*2*M_PI/100),1,sin(i*2*M_PI/100)));
-    vertices.push_back(Tupla3f(cos(i*2*M_PI/100),-1,sin(i*2*M_PI/100)));
+  int n = num;
+  // Vamos a hacer el tubo del cilindro
+  for(int i=0; i < n; i++){
+    vertices.push_back(Tupla3f(cos(i*2*M_PI/n),1,sin(i*2*M_PI/n)));
+    vertices.push_back(Tupla3f(cos(i*2*M_PI/n),-1,sin(i*2*M_PI/n)));
   }
 
-  for(int i=0; i < 198; i++){
+  for(int i=0; i < 2*n-2; i++){
     caras.push_back(Tupla3i(i,i+1,i+2));
   }
-  caras.push_back(Tupla3i(199,198,0));
-  caras.push_back(Tupla3i(1,199,0));
+  caras.push_back(Tupla3i(2*n-1,2*n-2,0));
+  caras.push_back(Tupla3i(1,2*n-1,0));
+
+  //Hasta aquí el tubo del Cilindro
+  if(hueco == 0){
+    //Ahora vamos a hacer las tapas del cilindro
+    vertices.push_back(Tupla3f(0,1,0));
+    vertices.push_back(Tupla3f(0,-1,0));
+
+    for(int i=0; i < 2*n-2; i=i+2){
+      caras.push_back(Tupla3i(i,i+2,2*n));
+    }
+    caras.push_back(Tupla3i(2*n-2,2*n,0));
+
+    for(int i=1; i < 2*n-1; i=i+2){
+      caras.push_back(Tupla3i(i,i+2,2*n+1));
+    }
+    caras.push_back(Tupla3i(2*n-1,2*n+1,1));
+  }
 }
