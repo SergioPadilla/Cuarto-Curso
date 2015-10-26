@@ -1,10 +1,10 @@
 #include "file_ply_stl.hpp"
 #include "MallaRevol.hpp"
 
-MallaRevol::MallaRevol(unsigned nperfiles ){
+MallaRevol::MallaRevol(const char * archivo, unsigned nperfiles ){
   vector <float> vertices_ply;
 
-  ply::read_vertices( "../plys/peon.ply", vertices_ply );
+  ply::read_vertices(archivo, vertices_ply);
 
   for(int i = 0; i < vertices_ply.size(); i+=3){
     vertices.push_back(Tupla3f(vertices_ply[i],vertices_ply[i+1],vertices_ply[i+2]));
@@ -26,6 +26,7 @@ MallaRevol::MallaRevol(unsigned nperfiles ){
 
   //cara de arriba
   vertices.push_back(Tupla3f(0,vertices_ply[vertices_ply.size()-2],0));
+  int ver = (nperfiles)*((vertices_ply.size()/3)-1);
   for(int i = 0; i < nperfiles; i++)
-    caras.push_back(Tupla3i(vertices.size()-1,vertices.size()-nperfiles-i,vertices.size()-nperfiles-((i+1)%nperfiles)));
+    caras.push_back(Tupla3i(vertices.size()-1,ver+i,ver+((i+1)%nperfiles)));
 }

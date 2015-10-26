@@ -13,11 +13,11 @@
 
 using namespace std;
 
- MallaPLY::MallaPLY(){
+ MallaPLY::MallaPLY(const char * archivo){
   vector<float> vertices_ply ; // coordenadas de vértices
   vector<int>   caras_ply ;    // índices de vértices de triángulos
 
-  ply::read( "../plys/beethoven.ply", vertices_ply, caras_ply );
+  ply::read(archivo, vertices_ply, caras_ply);
 
   for(int i = 0; i < vertices_ply.size(); i+=3)
      vertices.push_back(Tupla3f(vertices_ply[i],vertices_ply[i+1],vertices_ply[i+2]));

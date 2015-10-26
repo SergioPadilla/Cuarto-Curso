@@ -15,8 +15,16 @@ MallaRevol *revol = NULL;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void P2_Inicializar( int argc, char *argv[] ){
-  ply = new MallaPLY();
-  revol = new MallaRevol(1);
+  if(argc != 4){
+    cerr << "Uso: " << endl << "1: archivo ply" << endl << "2: perfil ply para objeto de revolución" << endl
+          << "3: número de perfiles para el objeto de revolución" << endl;
+    ply = new MallaPLY("../plys/beethoven.ply");
+    revol = new MallaRevol("../plys/peon.ply",10);
+  }
+  else{
+    ply = new MallaPLY(argv[1]);
+    revol = new MallaRevol(argv[2],atoi(argv[3]));
+  }
 }
 
 
@@ -30,22 +38,6 @@ bool P2_FGE_PulsarTeclaNormal( unsigned char tecla ){
     case 'O' :
        p2_objeto_activo = (p2_objeto_activo+1)%2;
        break;
-    case '1':
-       delete revol;
-       revol = new MallaRevol(3);
-       break;
-    case '2':
-       delete revol;
-       revol = new MallaRevol(4);
-       break;
-    case '3':
-       delete revol;
-       revol = new MallaRevol(5);
-       break;
-    case '4':
-      delete revol;
-      revol = new MallaRevol(6);
-      break;
     default:
        usa = false ;
   }
