@@ -32,11 +32,11 @@ bool P2_FGE_PulsarTeclaNormal( unsigned char tecla ){
        break;
     case '1':
        delete revol;
-       revol = new MallaRevol(10);
+       revol = new MallaRevol(3);
        break;
     case '2':
        delete revol;
-       revol = new MallaRevol(3);
+       revol = new MallaRevol(4);
        break;
     case '3':
        delete revol;
@@ -44,7 +44,7 @@ bool P2_FGE_PulsarTeclaNormal( unsigned char tecla ){
        break;
     case '4':
       delete revol;
-      revol = new MallaRevol(50);
+      revol = new MallaRevol(6);
       break;
     default:
        usa = false ;
