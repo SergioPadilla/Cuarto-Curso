@@ -9,7 +9,7 @@
 #include "tuplasg.hpp"
 #include "aux.hpp"
 #include "MallaInd.hpp"
-// clase mallas indexadas obtenidas de un archivo PLY
+
 class MallaRevol : public MallaInd
 {
    public:
