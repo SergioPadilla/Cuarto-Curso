@@ -1,0 +1,28 @@
+1.- SISTEMA OPERATIVO: MAC OS X EL CAPITAN versión 10.11
+2.- TECLAS:
+      - m/M: alterna entre puntos, lineas, relleno y ajedrez respectivamente
+      - o/O: alterna entre cuadrado, tetraedro, cono y cilindro respectivamente
+      - p/P: Cambia de práctica
+3.- EXTENSIONES:
+      Práctica 1
+        He realizado las extensiones del cono y el cilindro, ambos configurables.
+        Las configuraciones posibles son modificar el número de caras y poner ambos huecos o no:
+          - 1,2,3,4,5,6,7,8,9,0: alternan el número de caras entre 10,20,30,40,...100
+          - h: alterna entre las figuras huecas o tapadas. (Cuando se pulsa 'h' se modifica el parametro, pero no es visible hasta que no se pulse algún número '0-9' para generar la figura)
+              Ejemplo: En pantalla: cono 30 caras tapado
+                       Deseo: cono 30 caras hueco
+                       Teclas a pulsar: 'h' + '3'
+                       Visualización final: cono de 30 caras hueco.
+
+          Código donde se implementa:
+            1: Las clases cono y cilindro se encuentran en practica1.cpp al igual que cubo y tetraedro.
+            2: El parámetro de los constructores de las clases extensión es para fijar el número de caras que queremos (configurable)
+            3: Para las configuraciones del cono y del cilindro, he implementado más casos al pulsar teclas. (Código en: practica1.cpp, líneas 63-126)
+            4: El practica1.hpp están incluidas las cabeceras de las clases.
+
+      Práctica 2
+          He realizado la extensión de creación de objeto mediante barrido
+
+          Código donde se implementa:
+            1: Las clases mallabarrida.cpp y mallabarrida.hpp implementan el objeto barrido.
+            2: Por parámetro acepta el archivo ply desde donde lee los vertices del esquema inicial, el número de perfiles y el vector director de barrido.
