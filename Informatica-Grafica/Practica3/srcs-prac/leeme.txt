@@ -3,6 +3,9 @@
       - m/M: alterna entre puntos, lineas, relleno y ajedrez respectivamente
       - o/O: alterna entre cuadrado, tetraedro, cono y cilindro respectivamente
       - p/P: Cambia de práctica
+      - g/G: Cambia grado de libertad
+      - < : disminuye grado de libertad
+      - > : aumenta el grado de libertad
 3.- EXTENSIONES:
       Práctica 1
         He realizado las extensiones del cono y el cilindro, ambos configurables.
@@ -21,8 +24,11 @@
             4: El practica1.hpp están incluidas las cabeceras de las clases.
 
       Práctica 2
-          He realizado la extensión de creación de objeto mediante barrido
+        He realizado la extensión de creación de objeto mediante barrido
 
-          Código donde se implementa:
-            1: Las clases mallabarrida.cpp y mallabarrida.hpp implementan el objeto barrido.
-            2: Por parámetro acepta el archivo ply desde donde lee los vertices del esquema inicial, el número de perfiles y el vector director de barrido.
+        Código donde se implementa:
+          1: Las clases mallabarrida.cpp y mallabarrida.hpp implementan el objeto barrido.
+          2: Por parámetro acepta el archivo ply desde donde lee los vertices del esquema inicial, el número de perfiles y el vector director de barrido.
+
+      Práctica 3
+        No hay extensión
