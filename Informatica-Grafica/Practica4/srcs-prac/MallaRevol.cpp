@@ -29,4 +29,6 @@ MallaRevol::MallaRevol(const char * archivo, unsigned nperfiles ){
   int ver = (nperfiles)*((vertices_ply.size()/3)-1);
   for(int i = 0; i < nperfiles; i++)
     caras.push_back(Tupla3i(vertices.size()-1,ver+i,ver+((i+1)%nperfiles)));
+
+  calcularNormales();
 }

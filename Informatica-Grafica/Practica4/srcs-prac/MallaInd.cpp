@@ -42,3 +42,34 @@ void MallaInd::visualizar( unsigned modo_vis ){
       break;
   }
 }
+
+void MallaInd::calcularNormales(){
+  //Normales a las caras
+  for(int i = 0; i < caras.size(); i ++){
+    Tupla3f p = vertices.at(caras[i](0));
+    Tupla3f q = vertices.at(caras[i](1));
+    Tupla3f r = vertices.at(caras[i](2));
+
+    Tupla3f a = q-p;
+    Tupla3f b = r-p;
+
+    Tupla3f m = a.cross(b);
+    Tupla3f normal = m/(m.normalized());
+
+    normalesCaras.push_back(normal);
+  }
+
+  //Normales a los vertices
+  vector<Tupla3f> m;
+  for(int i = 0; i < vertices.size(); i ++)
+    m.push_back(Tupla3f(0,0,0));
+
+  for(int i = 0; i < caras.size(); i ++){
+    m[caras[i](0)] += normalesCaras[i];
+    m[caras[i](1)] += normalesCaras[i];
+    m[caras[i](2)] += normalesCaras[i];
+  }
+  
+  for(int i = 0; i < m.size(); i ++)
+    normalesVertices.push_back(m[i]/(m[i].normalized()));
+}
