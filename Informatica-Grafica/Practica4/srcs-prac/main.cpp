@@ -20,6 +20,7 @@
 #include "practica1.hpp"
 #include "practica2.hpp"
 #include "practica3.hpp"
+#include "practica4.hpp"
 
 // evita la necesidad de escribir std::
 using namespace std ;
@@ -184,6 +185,9 @@ void DibujarObjetos()
       case 3:
         P3_DibujarObjetos(modo_vis);
         break;
+      case 4:
+        P4_DibujarObjetos(modo_vis);
+        break;
       default :
          cout << "El valor de 'practica_actual' (" << practica_actual  << ") es incorrecto" << endl ;
          break ;
@@ -265,7 +269,7 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
         break;
       }
       case 'P':
-        practica_actual = practica_actual%3+1;
+        practica_actual = practica_actual%4+1;
         cerr << "Práctica actual: " << practica_actual << endl;
         break;
       default:
@@ -280,6 +284,9 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
                break;
             case 3:
               redibujar = P3_FGE_PulsarTeclaNormal( tecla );
+              break;
+            case 4:
+              redibujar = P4_FGE_PulsarTeclaNormal( tecla );
               break;
             default :
                redibujar = false ; // la tecla no es de la práctica activa (no es necesario redibujar)
@@ -399,7 +406,7 @@ void Inicializa_Vars( )
    camara_angulo_y = 0.0 ;
 
    // inicializar práctica actual y modo de visualización inicial
-   practica_actual = 3;
+   practica_actual = 4;
    modo_vis = 0 ;
 }
 
@@ -467,6 +474,7 @@ void Inicializar( int argc, char *argv[] )
    P1_Inicializar( argc, argv );
    P2_Inicializar( argc, argv );
    P3_Inicializar( argc, argv );
+   P4_Inicializar( argc, argv );
 }
 
 // *********************************************************************
