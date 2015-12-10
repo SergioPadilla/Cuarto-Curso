@@ -10,19 +10,15 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-static unsigned p3_grado_libertad_activo = 0;
-static int g1=0;
-static int g2=1;
-static int g3=0;
-static int tope1 = 360;
-static int tope2 = 5;
-static int tope3 = 7;
-static Figura * objeto = NULL;
+static int angulo_actual = 0; // 0-> alpha, 1->beta
+static int alpha;
+static int beta;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void P4_Inicializar( int argc, char *argv[] ){
-  objeto = new Figura(g1,g2,g3);
+  alpha = 0;
+  beta = 0;
 }
 
 
@@ -34,57 +30,35 @@ bool P4_FGE_PulsarTeclaNormal( unsigned char tecla ){
   switch (toupper(tecla))
   {
     case 'G' :
-       p3_grado_libertad_activo = p3_grado_libertad_activo%3+1;
-       if(p3_grado_libertad_activo == 1)
-          cerr << "Rotando base" << endl;
-       else if(p3_grado_libertad_activo == 2)
-          cerr << "Cambiando la altura del cilindro" << endl;
-       else if(p3_grado_libertad_activo == 3)
-          cerr << "Desplazando la pieza" << endl;
+       angulo_actual = (angulo_actual + 1) % 2;
+       if(angulo_actual == 0)
+          cerr << "Modificando ángulo alpha" << endl;
+       else if(angulo_actual == 1)
+          cerr << "Modificando ángulo beta" << endl;
        break;
     case '<':
-      switch (p3_grado_libertad_activo){
+      switch (angulo_actual){
+        case 0:
+          if(alpha > 0)
+            alpha -= 1;
+          break;
         case 1:
-          if(g1 > 0){
-            g1-=20;
-            objeto->fijarAlpha(g1);
-          }
-          break;
-        case 2:
-          if(g2 > 1){
-            g2--;
-            objeto->fijarh(g2);
-          }
-          break;
-        case 3:
-          if(g3 > 0){
-            g3--;
-            objeto->fijart(g3);
-          }
+          if(beta > 0)
+            beta -= 1;
           break;
       }
       break;
     case '>':
-      switch (p3_grado_libertad_activo){
-        case 1:
-          if(g1 < tope1){
-            g1+=20;
-            objeto->fijarAlpha(g1);
-          }
-          break;
-        case 2:
-          if(g2 < tope2){
-            g2++;
-            objeto->fijarh(g2);
-          }
-          break;
-        case 3:
-          if(g3 < tope3){
-            g3++;
-            objeto->fijart(g3);
-          }
-          break;
-      }
+    switch (angulo_actual){
+      case 0:
+        if(alpha < 360)
+          alpha += 1;
+        break;
+      case 1:
+        if(beta < 360)
+          beta += 1;
+        break;
+    }
       break;
     default:
        usa = false ;
@@ -96,5 +70,5 @@ bool P4_FGE_PulsarTeclaNormal( unsigned char tecla ){
 
 
 void P4_DibujarObjetos( unsigned modo ){
-  objeto->visualizar(modo);
+  //objeto->visualizar(modo);
 }

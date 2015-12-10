@@ -242,8 +242,7 @@ void FGE_CambioTamano( int nuevoAncho, int nuevoAlto )
 void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
 {
    bool redibujar = true ; // true si al acabar de procesar el evento resulta que es necesario redibujar
-   switch (toupper(tecla))
-   {
+   switch (toupper(tecla)){
       case 'Q' :
          exit( 0 );
          break ;
@@ -274,8 +273,7 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
         break;
       default:
          redibujar = false ;
-         switch( practica_actual )
-         {
+         switch(practica_actual){
             case 1 :
                redibujar = P1_FGE_PulsarTeclaNormal( tecla ); // true si es necesario redibujar
                break ;
@@ -291,7 +289,7 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
             default :
                redibujar = false ; // la tecla no es de la práctica activa (no es necesario redibujar)
          }
-         break ;
+         break;
    }
    using namespace std ;
    //cout << "tecla normal....." << frustum_factor_escala << endl ;
