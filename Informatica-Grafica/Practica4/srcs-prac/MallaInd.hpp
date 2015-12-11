@@ -11,16 +11,19 @@
 #include "aux.hpp"
 #include "Objeto3D.hpp"
 
-class MallaInd : public Objeto3D
-{
-   protected:
-      vector<Tupla3f> vertices;
-      vector<Tupla3i> caras;
-      vector<Tupla3f> normalesCaras;
-      vector<Tupla3f> normalesVertices;
-   public:
-     virtual void visualizar( unsigned modo_vis );
-     void calcularNormales();
-} ;
+class MallaInd : public Objeto3D{
+protected:
+  //vectores de vertices y caras
+  vector<Tupla3f> vertices;
+  vector<Tupla3i> caras;
+  //Vectores para las normales
+  vector<Tupla3f> normalesCaras;
+  vector<Tupla3f> normalesVertices;
+  //Vectores para las texturas
+  vector<Tupla2f> texturas;
+public:
+  virtual void visualizar( unsigned modo_vis );
+  void calcularNormales();
+};
 
 #endif

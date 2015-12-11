@@ -1,7 +1,7 @@
 #include "file_ply_stl.hpp"
 #include "MallaRevol.hpp"
 
-MallaRevol::MallaRevol(const char * archivo, unsigned nperfiles ){
+MallaRevol::MallaRevol(const char * archivo, unsigned nperfiles, bool textura){
   vector <float> vertices_ply;
 
   ply::read_vertices(archivo, vertices_ply);
@@ -31,4 +31,30 @@ MallaRevol::MallaRevol(const char * archivo, unsigned nperfiles ){
     caras.push_back(Tupla3i(vertices.size()-1,ver+i,ver+((i+1)%nperfiles)));
 
   calcularNormales();
+
+  if(textura){
+    int mvertices = vertices_ply.size()/3;
+
+    //Calculo posiciones de los vertices
+    vector<Tupla3f> p;
+    for(int i = 0; i < vertices_ply.size(); i+=3){
+      p.push_back(Tupla3f(vertices_ply[i],vertices_ply[i+1],vertices_ply[i+2]));
+    }
+
+    //Calculo distancias medias a lo largo del perfil
+    vector<float> d;
+    float di;
+    d.push_back(0);
+    for(int i = 1; i < mvertices; i++){
+      di = d[i-1] + sqrt((p[i]-p[i-1]).lengthSq());
+    }
+
+    //Calculo coordenadas X e Y de la textura
+    for(int i = 0; i < nperfiles; i++){
+      float s=(i/(nperfiles-1))+(i%(nperfiles-1));
+      for(int j = 0; j < mvertices; j++){
+        texturas.push_back(Tupla2f(s,(d[j]/d[mvertices-1])));
+      }
+    }
+  }
 }
