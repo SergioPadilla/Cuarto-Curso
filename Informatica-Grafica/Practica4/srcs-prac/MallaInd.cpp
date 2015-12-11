@@ -40,6 +40,12 @@ void MallaInd::visualizar( unsigned modo_vis ){
       glDrawElements(GL_TRIANGLES,impar.size()*3,GL_UNSIGNED_INT,&(impar.front()));
       glDisableClientState(GL_VERTEX_ARRAY);
       break;
+    case 4: //iluminación y sombreado plano
+
+      break;
+    case 5: //iluminación y sombreado de suave
+    
+      break;
   }
 }
 
