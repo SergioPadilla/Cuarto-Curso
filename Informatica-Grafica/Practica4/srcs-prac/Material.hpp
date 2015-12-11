@@ -1,5 +1,5 @@
-#ifndef MALLAIND_HPP
-#define MALLAIND_HPP
+#ifndef MATERIAL_HPP
+#define MATERIAL_HPP
 
 #include <vector>
 #include <cctype>
