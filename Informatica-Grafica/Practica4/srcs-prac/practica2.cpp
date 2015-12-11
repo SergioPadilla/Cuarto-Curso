@@ -26,7 +26,7 @@ void P2_Inicializar( int argc, char *argv[] ){
                                "6: coordenada x del vector director para el barrido" << endl <<
                                "7: coordenada y del vector director para el barrido" << endl <<
                                "8: coordenada z del vector director para el barrido" << endl;
-    ply = new MallaPLY("../plys/beethoven.ply");
+    ply = new MallaPLY("../plys/big_dodge.ply");
     revol = new MallaRevol("../plys/peon.ply",10);
     barrida = new MallaBarrida(0,0,1,5,"../plys/peon.ply");
   }

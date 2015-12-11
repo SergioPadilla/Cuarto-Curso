@@ -54,9 +54,8 @@ void MallaInd::calcularNormales(){
     Tupla3f b = r-p;
 
     Tupla3f m = a.cross(b);
-    Tupla3f normal = m/(m.normalized());
 
-    normalesCaras.push_back(normal);
+    normalesCaras.push_back(m.normalized());
   }
 
   //Normales a los vertices
@@ -65,11 +64,11 @@ void MallaInd::calcularNormales(){
     m.push_back(Tupla3f(0,0,0));
 
   for(int i = 0; i < caras.size(); i ++){
-    m[caras[i](0)] += normalesCaras[i];
-    m[caras[i](1)] += normalesCaras[i];
-    m[caras[i](2)] += normalesCaras[i];
+    m[caras[i](0)] = m[caras[i](0)] + normalesCaras[i];
+    m[caras[i](1)] = m[caras[i](1)] + normalesCaras[i];
+    m[caras[i](2)] = m[caras[i](2)] + normalesCaras[i];
   }
-  
+
   for(int i = 0; i < m.size(); i ++)
-    normalesVertices.push_back(m[i]/(m[i].normalized()));
+    normalesVertices.push_back(m[i].normalized());
 }
