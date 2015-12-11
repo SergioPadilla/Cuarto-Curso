@@ -254,7 +254,7 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
          break;
       case 'M':
       {
-        modo_vis = (modo_vis+1)%4;
+        modo_vis = (modo_vis+1)%6;
         string palabra;
         if(modo_vis == 0)
           palabra = "puntos";
@@ -264,6 +264,10 @@ void FGE_PulsarTeclaNormal( unsigned char tecla, int x_raton, int y_raton )
           palabra = "sólido";
         else if(modo_vis == 3)
           palabra = "ajedrez";
+        else if(modo_vis == 4)
+          palabra = "iluminación y sombreado plano";
+        else if(modo_vis == 5)
+          palabra = "iluminación y sombreado de suave";
         cerr << "Visualización del objeto en modo " << palabra << endl;
         break;
       }
