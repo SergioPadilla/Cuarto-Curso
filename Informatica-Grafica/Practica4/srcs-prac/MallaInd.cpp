@@ -41,10 +41,18 @@ void MallaInd::visualizar( unsigned modo_vis ){
       glDisableClientState(GL_VERTEX_ARRAY);
       break;
     case 4: //iluminación y sombreado plano
+      glEnable(GL_LIGHTING);
+      glShadeModel(GL_FLAT);
 
+
+      glDisable(GL_LIGHTING);
       break;
     case 5: //iluminación y sombreado de suave
-    
+      glEnable(GL_LIGHTING);
+      glShadeModel(GL_SMOOTH);
+
+
+      glDisable(GL_LIGHTING);
       break;
   }
 }
