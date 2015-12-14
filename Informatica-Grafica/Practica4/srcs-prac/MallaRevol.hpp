@@ -13,10 +13,6 @@
 class MallaRevol : public MallaInd
 {
    public:
-      // constructor
-      // se debe especificar: el nombre completo del archivo a leer
-      //                      el número de copias del perfil
-
       MallaRevol(const char * archivo, unsigned nperfiles, bool textura);
 };
 #endif
