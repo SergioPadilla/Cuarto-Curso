@@ -23,8 +23,10 @@ void NodoGrafoEscena::visualizar(unsigned cv){
   for( unsigned i = 0; i < entradas.size(); i++ )
     if( entradas[i].tipoE == 0 ) // si la entrada es sub-objeto:
       entradas[i].objeto->visualizar( cv ); // visualizarlo
-    else // si la entrada es transformación:
+    else  if(entradas[i].tipoE == 1)// si la entrada es transformación:
       glMultMatrixf( *(entradas[i].matriz) ); // componerla
+    else// si la entrada es un material, activar
+      entradas[i].material->activar();
 
   glMatrixMode( GL_MODELVIEW ); // operaremos sobre la modelview
   glPopMatrix();
