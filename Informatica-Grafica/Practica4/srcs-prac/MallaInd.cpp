@@ -44,6 +44,19 @@ void MallaInd::visualizar( unsigned modo_vis ){
       glEnable(GL_LIGHTING);
       glShadeModel(GL_FLAT);
 
+      glVertexPointer(3,GL_FLOAT,0,&(vertices.front()));
+      glTextCoordPointer(2,GL_FLOAT,0,&(texturas.front()));
+      glNormalPointer(GL_FLOAT,0,&(normalesVertices.front()));
+
+      glEnableClientState(GL_VERTEX_ARRAY);
+      glEnableClientState(GL_NORMAL_ARRAY);
+      glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+      glDrawElements(GL_TRIANGLES,caras.size()*3,GL_UNSIGNED_INT,&(caras.front()));
+
+      glDisableClientState(GL_VERTEX_ARRAY);
+      glDisableClientState(GL_NORMAL_ARRAY);
+      glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
       glDisable(GL_LIGHTING);
       break;
@@ -51,6 +64,19 @@ void MallaInd::visualizar( unsigned modo_vis ){
       glEnable(GL_LIGHTING);
       glShadeModel(GL_SMOOTH);
 
+      glVertexPointer(3,GL_FLOAT,0,&(vertices.front()));
+      glTextCoordPointer(2,GL_FLOAT,0,&(texturas.front()));
+      glNormalPointer(GL_FLOAT,0,&(normalesVertices.front()));
+
+      glEnableClientState(GL_VERTEX_ARRAY);
+      glEnableClientState(GL_NORMAL_ARRAY);
+      glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+      glDrawElements(GL_TRIANGLES,caras.size()*3,GL_UNSIGNED_INT,&(caras.front()));
+
+      glDisableClientState(GL_VERTEX_ARRAY);
+      glDisableClientState(GL_NORMAL_ARRAY);
+      glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
       glDisable(GL_LIGHTING);
       break;

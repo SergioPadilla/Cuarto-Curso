@@ -19,7 +19,7 @@ protected:
   //Vectores para las normales
   vector<Tupla3f> normalesCaras;
   vector<Tupla3f> normalesVertices;
-  //Vectores para las texturas
+  //Vector para las texturas
   vector<Tupla2f> texturas;
 public:
   virtual void visualizar( unsigned modo_vis );
