@@ -1,13 +1,18 @@
 #include "NodoGrafoEscena.hpp"
 
 EntradaNGE::EntradaNGE( Objeto3D * pObjeto ){
-  tipoE=0;
+  tipoE = 0;
   objeto = pObjeto;
 }
 
 EntradaNGE::EntradaNGE( const Matriz4f & pMatriz ){
-  tipoE=1;
+  tipoE = 1;
   matriz = new Matriz4f(pMatriz);
+}
+
+EntradaNGE(Material * pMaterial){
+  tipoE = 2;
+  material = pMaterial;
 }
 
 void NodoGrafoEscena::visualizar(unsigned cv){
@@ -31,11 +36,14 @@ void NodoGrafoEscena::agregar( EntradaNGE * entrada ){
 // construir una entrada y añadirla (al final)
 void NodoGrafoEscena::agregar( Objeto3D * pObjeto ){
   EntradaNGE nuevo = EntradaNGE(pObjeto);
-
   entradas.push_back(nuevo);
 }
 void NodoGrafoEscena::agregar( const Matriz4f & pMatriz ){
   EntradaNGE nuevo = EntradaNGE(pMatriz);
+  entradas.push_back(nuevo);
+}
 
+void NodoGrafoEscena::agregar(Material * pMaterial)){
+  EntradaNGE nuevo = EntradaNGE(pMaterial);
   entradas.push_back(nuevo);
 }
