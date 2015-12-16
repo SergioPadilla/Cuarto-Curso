@@ -11,8 +11,6 @@
 #include "aux.hpp"
 
 class FuenteDireccional : public FuenteLuz{
-private:
-  float alpha, beta;
 public:
   FuenteDireccional(float alpha_inicial, float beta_inicial);
   void variarAngulo(unsigned angulo, float incremento);  // angulo=0 --> variar alpha, angulo=1 --> variar beta

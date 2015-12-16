@@ -1,13 +1,13 @@
 #include "FuenteDireccional.hpp"
 
 FuenteDireccional::FuenteDireccional(float alpha_inicial, float beta_inicial){
-  alpha = alpha_inicial;
-  beta = beta_inicial;
+  longitud = alpha_inicial;
+  latitud = beta_inicial;
 }
 
 void FuenteDireccional::variarAngulo(unsigned angulo, float incremento){
   if(angulo == 0)
-    alpha = (alpha+incremento)%360;
+    longitud = (longitud+incremento)%360;
   else
-    beta = (beta+incremento)%360;
+    latitud = (latitud+incremento)%360;
 }
