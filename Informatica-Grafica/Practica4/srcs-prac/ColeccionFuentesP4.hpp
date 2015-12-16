@@ -11,8 +11,8 @@
 #include "aux.hpp"
 
 class ColeccionFuentesP4 : public ColeccionFL{
-  public:
-    ColeccionFuentesP4() ;
+public:
+  ColeccionFuentesP4() ;
 };
 
 #endif

@@ -11,8 +11,6 @@
 #include "aux.hpp"
 
 class FuentePosicional : public FuenteLuz{
-private:
-  Tupla3f pos;
 public:
   FuentePosicional(const Tupla3f & posicion);
 };
