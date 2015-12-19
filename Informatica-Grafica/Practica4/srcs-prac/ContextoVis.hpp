@@ -8,7 +8,7 @@
 class ContextoVis{
 public:
   unsigned modo_vis ; // modo de visualización (alambre, solido,...)
-  Material * MaterialActivo;
+  Material * materialActivo;
 };
 
 #endif

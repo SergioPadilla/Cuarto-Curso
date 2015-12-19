@@ -10,7 +10,7 @@ EntradaNGE::EntradaNGE( const Matriz4f & pMatriz ){
   matriz = new Matriz4f(pMatriz);
 }
 
-EntradaNGE(Material * pMaterial){
+EntradaNGE::EntradaNGE(Material * pMaterial){
   tipoE = 2;
   material = pMaterial;
 }
@@ -19,14 +19,26 @@ void NodoGrafoEscena::visualizar(ContextoVis cv){
   glMatrixMode( GL_MODELVIEW ); // operaremos sobre la modelview
   glPushMatrix(); // guarda modelview actual
 
+  Material * materialInicial = cv.materialActivo; //Guardamos copia del material activo al inicio
+
   // recorrer todas las entradas del array que hay en el nodo:
   for( unsigned i = 0; i < entradas.size(); i++ )
     if( entradas[i].tipoE == 0 ) // si la entrada es sub-objeto:
       entradas[i].objeto->visualizar( cv ); // visualizarlo
     else  if(entradas[i].tipoE == 1)// si la entrada es transformación:
       glMultMatrixf( *(entradas[i].matriz) ); // componerla
-    else// si la entrada es un material, activar
-      entradas[i].material->activar();
+    else{// si la entrada es un material, activar
+      if(entradas[i].material != cv.materialActivo){
+        cv.materialActivo = entradas[i].material;
+        entradas[i].material->activar();
+      }
+    }
+
+  if(materialActivoInicial != cv.materialActivo){  // si ha cambiado el material durante la vis. de este nodo:
+    cv.materialActivo = materialActivoInicial;    // restaurar el original en 'cv'
+    if(cv.materialActivo != NULL)               // si el original no era NULL
+      cv.materialActivo->activar();              //    reactivarlo
+  }
 
   glMatrixMode( GL_MODELVIEW ); // operaremos sobre la modelview
   glPopMatrix();
