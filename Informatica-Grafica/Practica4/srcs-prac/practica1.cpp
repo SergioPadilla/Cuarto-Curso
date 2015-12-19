@@ -10,6 +10,7 @@
 #include "practica1.hpp"
 #include "cilindro.hpp"
 #include "tetraedro.hpp"
+#include "ContextoVis.hpp"
 
 unsigned objeto_activo = 0; // objeto activo: cubo (0), tetraedro (1), otros....
 int hueco = 0; //Variable para dejar hueco el cilindro y el cono, 0(cerrado)
@@ -127,7 +128,7 @@ bool P1_FGE_PulsarTeclaNormal( unsigned char tecla )
 // modo: 0 - puntos, 1 - alambre, 2 - sólido, 3 - sólido ajedrez , >=4 otros....
 
 void P1_DibujarObjetos( unsigned modo ){
-  ContextoVis cv(modo, NULL);
+  ContextoVis cv(modo);
   if(objeto_activo==0)
     cubo->visualizar(cv);
   else if(objeto_activo==1)

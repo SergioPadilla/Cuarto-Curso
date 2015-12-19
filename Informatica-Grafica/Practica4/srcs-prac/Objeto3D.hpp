@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include "ContextoVis.hpp"
 
 using namespace std ;
 

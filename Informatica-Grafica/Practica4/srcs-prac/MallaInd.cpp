@@ -24,6 +24,7 @@ void MallaInd::visualizar(ContextoVis cv){
       glDisableClientState(GL_VERTEX_ARRAY);
       break;
     case 3: //ajedrez
+    {
       glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
       glEnableClientState(GL_VERTEX_ARRAY);
       glVertexPointer(3,GL_FLOAT,0,&(vertices.front()));
@@ -40,12 +41,13 @@ void MallaInd::visualizar(ContextoVis cv){
       glDrawElements(GL_TRIANGLES,impar.size()*3,GL_UNSIGNED_INT,&(impar.front()));
       glDisableClientState(GL_VERTEX_ARRAY);
       break;
+    }
     case 4: //iluminación y sombreado plano
       glEnable(GL_LIGHTING);
       glShadeModel(GL_FLAT);
 
       glVertexPointer(3,GL_FLOAT,0,&(vertices.front()));
-      glTextCoordPointer(2,GL_FLOAT,0,&(texturas.front()));
+      glTexCoordPointer(2,GL_FLOAT,0,&(texturas.front()));
       glNormalPointer(GL_FLOAT,0,&(normalesVertices.front()));
 
       glEnableClientState(GL_VERTEX_ARRAY);
@@ -65,7 +67,7 @@ void MallaInd::visualizar(ContextoVis cv){
       glShadeModel(GL_SMOOTH);
 
       glVertexPointer(3,GL_FLOAT,0,&(vertices.front()));
-      glTextCoordPointer(2,GL_FLOAT,0,&(texturas.front()));
+      glTexCoordPointer(2,GL_FLOAT,0,&(texturas.front()));
       glNormalPointer(GL_FLOAT,0,&(normalesVertices.front()));
 
       glEnableClientState(GL_VERTEX_ARRAY);

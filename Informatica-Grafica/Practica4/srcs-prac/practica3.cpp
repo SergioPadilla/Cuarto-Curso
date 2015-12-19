@@ -166,7 +166,7 @@ bool P3_FGE_PulsarTeclaNormal( unsigned char tecla ){
 
 
 void P3_DibujarObjetos( unsigned modo ){
-  ContextoVis cv(modo, NULL);
+  ContextoVis cv(modo);
   objeto->visualizar(cv);
 }
 

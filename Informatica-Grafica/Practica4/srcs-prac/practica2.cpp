@@ -27,12 +27,12 @@ void P2_Inicializar( int argc, char *argv[] ){
                                "7: coordenada y del vector director para el barrido" << endl <<
                                "8: coordenada z del vector director para el barrido" << endl;
     ply = new MallaPLY("../plys/big_dodge.ply");
-    revol = new MallaRevol("../plys/peon.ply",10);
+    revol = new MallaRevol("../plys/peon.ply",10,false);
     barrida = new MallaBarrida(0,0,1,5,"../plys/peon.ply");
   }
   else{
     ply = new MallaPLY(argv[1]);
-    revol = new MallaRevol(argv[2],atoi(argv[3]));
+    revol = new MallaRevol(argv[2],atoi(argv[3]),false);
     barrida = new MallaBarrida(atoi(argv[6]),atoi(argv[7]),atoi(argv[8]),atoi(argv[5]),argv[4]);
   }
 }
@@ -58,7 +58,7 @@ bool P2_FGE_PulsarTeclaNormal( unsigned char tecla ){
 
 
 void P2_DibujarObjetos( unsigned modo ){
-  ContextoVis cv(modo, NULL);
+  ContextoVis cv(modo);
   if(p2_objeto_activo == 0)
     ply->visualizar(cv);
   else if(p2_objeto_activo == 1)

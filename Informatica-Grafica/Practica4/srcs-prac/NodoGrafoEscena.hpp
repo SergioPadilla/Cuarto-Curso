@@ -32,7 +32,7 @@ class NodoGrafoEscena : public Objeto3D{
     // construir una entrada y añadirla (al final)
     void agregar(Objeto3D * pObjeto); // objeto
     void agregar(const Matriz4f & pMatriz); // matriz
-    void agregar(Material * pMaterial)); // añadir material al final
+    void agregar(Material * pMaterial); // añadir material al final
 };
 
 #endif

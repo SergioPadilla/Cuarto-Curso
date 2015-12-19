@@ -1,5 +1,5 @@
-#ifndef FUENTELUZ_HPP
-#define FUENTELUZ_HPP
+#ifndef COLECCIONFL_HPP
+#define COLECCIONFL_HPP
 
 #include <vector>
 #include <cctype>
@@ -9,6 +9,7 @@
 #include <cmath>
 #include "tuplasg.hpp"
 #include "aux.hpp"
+#include "FuenteLuz.hpp"
 
 class ColeccionFL{
 public:

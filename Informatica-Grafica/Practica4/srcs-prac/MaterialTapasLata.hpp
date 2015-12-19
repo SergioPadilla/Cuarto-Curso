@@ -9,6 +9,7 @@
 #include <cmath>
 #include "tuplasg.hpp"
 #include "aux.hpp"
+#include "MaterialEstandar.hpp"
 
 class MaterialTapasLata : public MaterialEstandar{
   public:

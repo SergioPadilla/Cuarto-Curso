@@ -9,6 +9,8 @@
 #include <cmath>
 #include "tuplasg.hpp"
 #include "aux.hpp"
+#include "Material.hpp"
+#include "Textura.hpp"
 
 class MaterialEstandar : public Material{
 public:

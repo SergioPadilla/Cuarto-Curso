@@ -34,8 +34,8 @@ void NodoGrafoEscena::visualizar(ContextoVis cv){
       }
     }
 
-  if(materialActivoInicial != cv.materialActivo){  // si ha cambiado el material durante la vis. de este nodo:
-    cv.materialActivo = materialActivoInicial;    // restaurar el original en 'cv'
+  if(materialInicial != cv.materialActivo){  // si ha cambiado el material durante la vis. de este nodo:
+    cv.materialActivo = materialInicial;    // restaurar el original en 'cv'
     if(cv.materialActivo != NULL)               // si el original no era NULL
       cv.materialActivo->activar();              //    reactivarlo
   }
@@ -57,7 +57,7 @@ void NodoGrafoEscena::agregar( const Matriz4f & pMatriz ){
   entradas.push_back(nuevo);
 }
 
-void NodoGrafoEscena::agregar(Material * pMaterial)){
+void NodoGrafoEscena::agregar(Material * pMaterial){
   EntradaNGE nuevo = EntradaNGE(pMaterial);
   entradas.push_back(nuevo);
 }
