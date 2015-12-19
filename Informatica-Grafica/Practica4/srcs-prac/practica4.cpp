@@ -15,6 +15,8 @@ static int angulo_actual = 0; // 0-> alpha, 1->beta
 static int alpha;
 static int beta;
 static Escena * escena = NULL;
+static FuenteDireccional * direc = NULL;
+static FuentePosicional * posi = NULL;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -22,6 +24,8 @@ void P4_Inicializar( int argc, char *argv[] ){
   alpha = 0;
   beta = 0;
   escena = new Escena();
+  direc = new FuenteDireccional(alpha, beta);
+  posi = new FuenteDireccional(Tupla3f(0,0,0));
 }
 
 
