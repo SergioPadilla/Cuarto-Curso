@@ -27,8 +27,7 @@ Cilindro *cilindro;
 // Se llama una vez al inicio, cuando ya se ha creado la ventana e
 // incializado OpenGL.
 
-void P1_Inicializar( int argc, char *argv[] )
-{
+void P1_Inicializar(int argc, char *argv[]){
   tetraedro = new Tetraedro();
   cubo = new Cubo();
   cono = new Cono(50);
@@ -127,16 +126,16 @@ bool P1_FGE_PulsarTeclaNormal( unsigned char tecla )
 // Función a implementar en la práctica 1  para dibujar los objetos
 // modo: 0 - puntos, 1 - alambre, 2 - sólido, 3 - sólido ajedrez , >=4 otros....
 
-void P1_DibujarObjetos( unsigned modo )
-{
+void P1_DibujarObjetos( unsigned modo ){
+  ContextoVis cv(modo, NULL);
   if(objeto_activo==0)
-    cubo->visualizar(modo);
+    cubo->visualizar(cv);
   else if(objeto_activo==1)
-    tetraedro->visualizar(modo);
+    tetraedro->visualizar(cv);
   else if(objeto_activo==2)
-    cono->visualizar(modo);
+    cono->visualizar(cv);
   else if(objeto_activo==3)
-    cilindro->visualizar(modo);
+    cilindro->visualizar(cv);
 }
 
 Cubo::Cubo(){

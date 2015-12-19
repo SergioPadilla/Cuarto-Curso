@@ -15,7 +15,7 @@ EntradaNGE(Material * pMaterial){
   material = pMaterial;
 }
 
-void NodoGrafoEscena::visualizar(unsigned cv){
+void NodoGrafoEscena::visualizar(ContextoVis cv){
   glMatrixMode( GL_MODELVIEW ); // operaremos sobre la modelview
   glPushMatrix(); // guarda modelview actual
 

@@ -26,7 +26,7 @@ class NodoGrafoEscena : public Objeto3D{
     std::vector<EntradaNGE> entradas; // vector de entradas
   public:
     // visualiza usando OpenGL
-    virtual void visualizar(unsigned cv);
+    virtual void visualizar(ContextoVis cv);
     // añadir una entrada (al final).
     void agregar(EntradaNGE * entrada); // genérica
     // construir una entrada y añadirla (al final)

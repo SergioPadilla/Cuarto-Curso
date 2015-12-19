@@ -1,7 +1,7 @@
 #include "MallaInd.hpp"
 
-void MallaInd::visualizar( unsigned modo_vis ){
-  switch (modo_vis) {
+void MallaInd::visualizar(ContextoVis cv){
+  switch (cv.modo_vis) {
     case 0: //puntos
       glEnableClientState(GL_VERTEX_ARRAY);
       glPolygonMode(GL_FRONT_AND_BACK,GL_POINT);

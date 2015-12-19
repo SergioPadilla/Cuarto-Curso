@@ -22,7 +22,7 @@ protected:
   //Vector para las texturas
   vector<Tupla2f> texturas;
 public:
-  virtual void visualizar( unsigned modo_vis );
+  virtual void visualizar(ContextoVis cv);
   void calcularNormales();
 };
 

@@ -58,10 +58,11 @@ bool P2_FGE_PulsarTeclaNormal( unsigned char tecla ){
 
 
 void P2_DibujarObjetos( unsigned modo ){
+  ContextoVis cv(modo, NULL);
   if(p2_objeto_activo == 0)
-    ply->visualizar(modo);
+    ply->visualizar(cv);
   else if(p2_objeto_activo == 1)
-    revol->visualizar(modo);
+    revol->visualizar(cv);
   else if(p2_objeto_activo == 2)
-    barrida->visualizar(modo);
+    barrida->visualizar(cv);
 }
