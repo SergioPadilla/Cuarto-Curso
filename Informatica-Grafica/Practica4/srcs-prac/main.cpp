@@ -390,6 +390,9 @@ void Inicializa_GLUT( int argc, char * argv[] )
 
    // establece función gestora del evento de pulsación de tecla especial:
    glutSpecialFunc( FGE_PulsarTeclaEspecial );
+
+   //Activa la función de fondo
+   glutIdleFunc(idle);
 }
 
 // ---------------------------------------------------------------------
