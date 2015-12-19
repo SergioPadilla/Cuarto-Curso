@@ -7,18 +7,21 @@
 #include "practica3.hpp"
 #include "base.hpp"
 #include "Figura.hpp"
+#include "Lata.hpp"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 static int angulo_actual = 0; // 0-> alpha, 1->beta
 static int alpha;
 static int beta;
+static Escena * escena = NULL;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void P4_Inicializar( int argc, char *argv[] ){
   alpha = 0;
   beta = 0;
+  escena = new Escena();
 }
 
 
@@ -70,5 +73,6 @@ bool P4_FGE_PulsarTeclaNormal( unsigned char tecla ){
 
 
 void P4_DibujarObjetos( unsigned modo ){
-  //objeto->visualizar(modo);
+  ContextoVis cv(modo);
+  escena->visualizar(cv);
 }
