@@ -165,21 +165,7 @@ Cubo::Cubo(){
   caras.push_back(i11);
   caras.push_back(i12);
 }
-/*
-Tetraedro::Tetraedro(){
-  nombre_obj = "Tetraedro";
-  Tupla3f a(0.866,0,-0.5), b(0,1.4142,0), c(0,0,1), d(-0.866,0,-0.5);
-  vertices.push_back(a);
-  vertices.push_back(b);
-  vertices.push_back(c);
-  vertices.push_back(d);
-  Tupla3i i1(0,1,2), i2(0,1,3), i3(0,2,3), i4(1,2,3);
-  caras.push_back(i1);
-  caras.push_back(i2);
-  caras.push_back(i3);
-  caras.push_back(i4);
-}
-*/
+
 Cono::Cono(int num){
   nombre_obj = "Cono";
   int n = num;
@@ -200,37 +186,3 @@ Cono::Cono(int num){
     caras.push_back(Tupla3i(n+1,n,1));
   }
 }
-/*
-Cilindro::Cilindro(int num){
-  nombre_obj = "Cilindro";
-  int n = num;
-  // Vamos a hacer el tubo del cilindro
-  for(int i=0; i < n; i++){
-    vertices.push_back(Tupla3f(cos(i*2*M_PI/n),1,sin(i*2*M_PI/n)));
-    vertices.push_back(Tupla3f(cos(i*2*M_PI/n),-1,sin(i*2*M_PI/n)));
-  }
-
-  for(int i=0; i < 2*n-2; i++){
-    caras.push_back(Tupla3i(i,i+1,i+2));
-  }
-  caras.push_back(Tupla3i(2*n-1,2*n-2,0));
-  caras.push_back(Tupla3i(1,2*n-1,0));
-
-  //Hasta aquí el tubo del Cilindro
-  if(hueco == 0){
-    //Ahora vamos a hacer las tapas del cilindro
-    vertices.push_back(Tupla3f(0,1,0));
-    vertices.push_back(Tupla3f(0,-1,0));
-
-    for(int i=0; i < 2*n-2; i=i+2){
-      caras.push_back(Tupla3i(i,i+2,2*n));
-    }
-    caras.push_back(Tupla3i(2*n-2,2*n,0));
-
-    for(int i=1; i < 2*n-1; i=i+2){
-      caras.push_back(Tupla3i(i,i+2,2*n+1));
-    }
-    caras.push_back(Tupla3i(2*n-1,2*n+1,1));
-  }
-}
-*/

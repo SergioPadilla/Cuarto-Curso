@@ -18,20 +18,10 @@ class Cubo : public MallaInd {
     public:
       Cubo(); //Crea tablas del cubo y le da nombre
 };
-/*
-class Tetraedro : public MallaInd {
-    public:
-      Tetraedro(); //Crea tablas del Tetraedro y le da nombre
-};
-*/
+
 class Cono : public MallaInd {
     public:
       Cono(int num); //Crea tablas del Cono y le da nombre
 };
-/*
-class Cilindro : public MallaInd {
-    public:
-      Cilindro(int num); //Crea tablas del Cilindro y le da nombre
-};
-*/
+
 #endif
