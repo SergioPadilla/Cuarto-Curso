@@ -8,6 +8,9 @@
 #include "base.hpp"
 #include "Figura.hpp"
 #include "Lata.hpp"
+#include "Escena.hpp"
+#include "FuenteDireccional.hpp"
+#include "FuentePosicional.hpp"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -25,7 +28,7 @@ void P4_Inicializar( int argc, char *argv[] ){
   beta = 0;
   escena = new Escena();
   direc = new FuenteDireccional(alpha, beta);
-  posi = new FuenteDireccional(Tupla3f(0,0,0));
+  posi = new FuentePosicional(Tupla3f(0,0,0));
 }
 
 

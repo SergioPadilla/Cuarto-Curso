@@ -9,6 +9,7 @@
 #include <cmath>
 #include "tuplasg.hpp"
 #include "aux.hpp"
+#include "FuenteLuz.hpp"
 
 class FuentePosicional : public FuenteLuz{
 public:

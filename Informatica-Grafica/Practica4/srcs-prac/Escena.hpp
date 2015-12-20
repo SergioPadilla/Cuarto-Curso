@@ -3,6 +3,9 @@
 
 #include "NodoGrafoEscena.hpp"
 #include "Lata.hpp"
+#include "MaterialPeonNegro.hpp"
+#include "MaterialPeonBlanco.hpp"
+#include "MaterialPeonMadera.hpp"
 
 class Escena : public NodoGrafoEscena{
 public:
