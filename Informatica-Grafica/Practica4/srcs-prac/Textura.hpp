@@ -10,7 +10,6 @@
 #include "tuplasg.hpp"
 #include "aux.hpp"
 #include "jpg_imagen.hpp"
-#include "jpg_jinclude.h"
 
 class Textura{
 public:
