@@ -88,7 +88,7 @@ calcularNormales();*/
 	}
 	caras.push_back(Tupla3i(npuntos-1,ult+1,(nperfiles-1)*npuntos+npuntos-1));
 
-	calcularNormales();
+  calcularNormales();
 
   /*for(int i = 0; i < vertices_ply.size(); i+=3){
     vertices.push_back(Tupla3f(vertices_ply[i],vertices_ply[i+1],vertices_ply[i+2]));
@@ -131,11 +131,11 @@ calcularNormales();*/
     d.push_back(0);
     for(int i = 1; i < mvertices; i++){
       di = d[i-1] + sqrt((p[i]-p[i-1]).lengthSq());
+      d.push_back(di);
     }
-
     //Calculo coordenadas X e Y de la textura
     for(int i = 0; i < nperfiles; i++){
-      float s=(i/(nperfiles-1))+(i%(nperfiles-1));
+      float s=(i/(nperfiles-1.0));
       for(int j = 0; j < mvertices; j++){
         texturas.push_back(Tupla2f(s,(d[j]/d[mvertices-1])));
       }
