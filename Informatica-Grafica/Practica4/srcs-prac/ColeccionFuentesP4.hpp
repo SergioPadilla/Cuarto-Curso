@@ -12,7 +12,7 @@
 
 class ColeccionFuentesP4 : public ColeccionFL{
 public:
-  ColeccionFuentesP4() ;
+  ColeccionFuentesP4();
 };
 
 #endif

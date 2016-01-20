@@ -10,8 +10,15 @@ void Textura::activar(){
   glEnable(GL_TEXTURE_2D);
   glGenTextures(1, &id_text);
   glBindTexture(GL_TEXTURE_2D, id_text); //activa textura id_text
-  gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, img->tamX(), img->tamY(), GL_RGB, GL_UNSIGNED_BYTE, img->leerPixels());
+  //gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, img->tamX(), img->tamY(), GL_RGB, GL_UNSIGNED_BYTE, img->leerPixels());
   glLightModeli(GL_LIGHT_MODEL_COLOR_CONTROL, GL_SEPARATE_SPECULAR_COLOR);
+
+
+  glTexImage2D(GL_TEXTURE_2D,0,3,img->tamX(),img->tamY(),0,GL_RGB,GL_UNSIGNED_BYTE,img->leerPixels());
+  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+  glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
 
   if(mgct != 0){
     glEnable(GL_TEXTURE_GEN_S); //Para generar las cc.tt. en cada pixel

@@ -95,7 +95,9 @@ void MallaInd::calcularNormales(){
     Tupla3f a = q-p;
     Tupla3f b = r-q;
 
-    Tupla3f m(a(0)*b(0),a(1)*b(1),a(2)*b(2)); //a.cross(b);
+    Tupla3f m(a(1)*b(2)-a(2)*b(1),
+              a(2)*b(0)-a(0)*b(2),
+              a(0)*b(1)-a(1)*b(0));
 
     normalesCaras.push_back(m.normalized());
   }
@@ -106,9 +108,9 @@ void MallaInd::calcularNormales(){
     m.push_back(Tupla3f(0,0,0));
 
   for(int i = 0; i < normalesCaras.size(); i ++){
-    m[caras[i](0)] = m[caras[i](0)] + normalesCaras[i];
-    m[caras[i](1)] = m[caras[i](1)] + normalesCaras[i];
-    m[caras[i](2)] = m[caras[i](2)] + normalesCaras[i];
+    m[caras[i][0]] = m[caras[i][0]] + normalesCaras[i];
+    m[caras[i][1]] = m[caras[i][1]] + normalesCaras[i];
+    m[caras[i][2]] = m[caras[i][2]] + normalesCaras[i];
   }
 
   for(int i = 0; i < m.size(); i ++)

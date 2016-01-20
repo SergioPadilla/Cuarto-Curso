@@ -14,5 +14,6 @@ class MallaRevol : public MallaInd
 {
    public:
       MallaRevol(const char * archivo, unsigned nperfiles, bool textura);
+      Tupla3f girosobrey(Tupla3f punto,double angulo);
 };
 #endif

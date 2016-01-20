@@ -1,12 +1,56 @@
 #include "file_ply_stl.hpp"
 #include "MallaRevol.hpp"
 
+Tupla3f MallaRevol::girosobrey(Tupla3f punto,double angulo){
+  return Tupla3f(punto[0]*cos(angulo)+punto[2]*sin(angulo),
+                  punto[1],
+                  punto[2]*cos(angulo)-punto[0]*sin(angulo));
+}
+
 MallaRevol::MallaRevol(const char * archivo, unsigned nperfiles, bool textura){
   vector <float> vertices_ply;
 
   ply::read_vertices(archivo, vertices_ply);
 
-  for(int i = 0; i < vertices_ply.size(); i+=3){
+//IVAN
+  for(int i=0;i<vertices_ply.size()/3;i++){
+		vertices.push_back(Tupla3f(vertices_ply[3*i],
+                              vertices_ply[3*i+1],
+                              vertices_ply[3*i+2]));
+	}
+	int npuntos= vertices.size();
+	for(int j=1;j<nperfiles;j++){
+		for(int i=0;i<npuntos;i++){
+			vertices.push_back(girosobrey(vertices[i],2*M_PI*j/nperfiles));
+		}
+	}
+	vertices.push_back(Tupla3f(0,vertices[0][1],0));
+	vertices.push_back(Tupla3f(0,vertices[npuntos-1][1],0));
+
+	for(int j=0;j<nperfiles-1;j++){
+		for(int i=0;i<npuntos-1;i++){
+			caras.push_back(Tupla3i(j*npuntos+i,(j+1)*npuntos+i,(j+1)*npuntos+i+1));
+			caras.push_back(Tupla3i(j*npuntos+i,(j+1)*npuntos+i+1,j*npuntos+i+1));
+		}
+	}
+	for(int i=0;i<npuntos-1;i++){
+		caras.push_back(Tupla3i((nperfiles-1)*npuntos+i,i,i+1));
+		caras.push_back(Tupla3i((nperfiles-1)*npuntos+i,i+1,(nperfiles-1)*npuntos+i+1));
+	}
+	int ult=nperfiles*npuntos;
+	for(int j=0;j<nperfiles-1;j++){
+		caras.push_back(Tupla3i(j*npuntos,ult,(j+1)*npuntos));
+	}
+	caras.push_back(Tupla3i(0,(nperfiles-1)*npuntos,ult));
+
+	for(int j=0;j<nperfiles-1;j++){
+		caras.push_back(Tupla3i(j*npuntos+npuntos-1,(j+1)*npuntos+npuntos-1,ult+1));
+	}
+	caras.push_back(Tupla3i(npuntos-1,ult+1,(nperfiles-1)*npuntos+npuntos-1));
+
+	calcularNormales();
+
+  /*for(int i = 0; i < vertices_ply.size(); i+=3){
     vertices.push_back(Tupla3f(vertices_ply[i],vertices_ply[i+1],vertices_ply[i+2]));
     for(int j = 1; j < nperfiles; j++)
       vertices.push_back(Tupla3f(vertices_ply[i]*cos(2*M_PI*j/nperfiles),vertices_ply[i+1],vertices_ply[i]*sin(2*M_PI*j/nperfiles)));
@@ -30,7 +74,7 @@ MallaRevol::MallaRevol(const char * archivo, unsigned nperfiles, bool textura){
   for(int i = 0; i < nperfiles; i++)
     caras.push_back(Tupla3i(vertices.size()-1,ver+i,ver+((i+1)%nperfiles)));
 
-  calcularNormales();
+  //calcularNormales();*/
 
   if(textura){
     int mvertices = vertices_ply.size()/3;

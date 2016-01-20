@@ -11,6 +11,7 @@
 #include "Escena.hpp"
 #include "FuenteDireccional.hpp"
 #include "FuentePosicional.hpp"
+#include "ColeccionFL.hpp"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -19,7 +20,7 @@ static int alpha;
 static int beta;
 static Escena * escena = NULL;
 //static FuenteDireccional * direc = NULL;
-//static FuentePosicional * posi = NULL;
+static ColeccionFL * colecFuentes = NULL;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -28,7 +29,10 @@ void P4_Inicializar( int argc, char *argv[] ){
   beta = 0;
   escena = new Escena();
   //direc = new FuenteDireccional(alpha, beta);
-  //posi = new FuentePosicional(Tupla3f(0,0,0));
+  FuentePosicional * posi = new FuentePosicional(Tupla3f(10,0,0));
+  colecFuentes = new ColeccionFL();
+  colecFuentes->fuentes.push_back(posi);
+  colecFuentes->activar();
 }
 
 
