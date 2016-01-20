@@ -11,6 +11,6 @@ void MaterialEstandar::activar(){
     glDisable(GL_TEXTURE_2D);
   }
   else{
-
+    textura->activar();
   }
 }

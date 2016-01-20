@@ -99,7 +99,7 @@ void MallaInd::calcularNormales(){
               a(2)*b(0)-a(0)*b(2),
               a(0)*b(1)-a(1)*b(0));
 
-    normalesCaras.push_back(m.normalized());
+    normalesCaras.push_back(m); //m.normalized()
   }
 
   //Normales a los vertices
@@ -113,6 +113,8 @@ void MallaInd::calcularNormales(){
     m[caras[i][2]] = m[caras[i][2]] + normalesCaras[i];
   }
 
-  for(int i = 0; i < m.size(); i ++)
+  for(int i = 0; i < m.size(); i ++){
+    cerr << endl << m[i] << endl;
     normalesVertices.push_back(m[i].normalized());
+  }
 }
