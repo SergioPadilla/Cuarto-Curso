@@ -99,7 +99,7 @@ void MallaInd::calcularNormales(){
               a(2)*b(0)-a(0)*b(2),
               a(0)*b(1)-a(1)*b(0));
 
-    if(m[0] == 0 || m[1] == 0 || m[2] == 0)
+    if(m[0] == 0 && m[1] == 0 && m[2] == 0)
       normalesCaras.push_back(Tupla3f(0,0,0));
     else
       normalesCaras.push_back(m.normalized());
@@ -117,7 +117,7 @@ void MallaInd::calcularNormales(){
   }
 
   for(int i = 0; i < m.size(); i ++){
-    if(m[i][0] == 0 || m[i][1] == 0 || m[i][2] == 0)
+    if(m[i][0] == 0 && m[i][1] == 0 && m[i][2] == 0)
       normalesVertices.push_back(Tupla3f(0,0,0));
     else
       normalesVertices.push_back(m[i].normalized());

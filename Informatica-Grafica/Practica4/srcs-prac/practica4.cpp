@@ -24,7 +24,7 @@ static ColeccionFL * colecFuentes = NULL;
 void P4_Inicializar( int argc, char *argv[] ){
   escena = new Escena();
   FuenteDireccional * direc = new FuenteDireccional(0, 0);
-  FuentePosicional * posi = new FuentePosicional(Tupla3f(8,2,3));
+  FuentePosicional * posi = new FuentePosicional(Tupla3f(10,0,0));
   colecFuentes = new ColeccionFL();
   colecFuentes->fuentes.push_back(posi);
   colecFuentes->fuentes.push_back(direc);
