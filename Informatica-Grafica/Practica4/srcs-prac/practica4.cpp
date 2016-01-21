@@ -16,28 +16,22 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 static int angulo_actual = 0; // 0-> alpha, 1->beta
-static int alpha;
-static int beta;
 static Escena * escena = NULL;
-//static FuenteDireccional * direc = NULL;
 static ColeccionFL * colecFuentes = NULL;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void P4_Inicializar( int argc, char *argv[] ){
-  alpha = 0;
-  beta = 0;
   escena = new Escena();
-  //direc = new FuenteDireccional(alpha, beta);
+  FuenteDireccional * direc = new FuenteDireccional(0, 0);
   FuentePosicional * posi = new FuentePosicional(Tupla3f(10,0,0));
   colecFuentes = new ColeccionFL();
   colecFuentes->fuentes.push_back(posi);
+  colecFuentes->fuentes.push_back(direc);
   colecFuentes->activar();
 }
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 bool P4_FGE_PulsarTeclaNormal( unsigned char tecla ){
   bool usa = true ; // true si al acabar de procesar el evento resulta que es necesario redibujar
@@ -51,28 +45,12 @@ bool P4_FGE_PulsarTeclaNormal( unsigned char tecla ){
           cerr << "Modificando ángulo beta" << endl;
        break;
     case '<':
-      switch (angulo_actual){
-        case 0:
-          if(alpha > 0)
-            alpha -= 1;
-          break;
-        case 1:
-          if(beta > 0)
-            beta -= 1;
-          break;
-      }
+      ((FuenteDireccional*)colecFuentes->fuentes.at(1))->variarAngulo(angulo_actual,-10);
+      colecFuentes->activar();
       break;
     case '>':
-    switch (angulo_actual){
-      case 0:
-        if(alpha < 360)
-          alpha += 1;
-        break;
-      case 1:
-        if(beta < 360)
-          beta += 1;
-        break;
-    }
+      ((FuenteDireccional*)colecFuentes->fuentes.at(1))->variarAngulo(angulo_actual,10);
+      colecFuentes->activar();
       break;
     default:
        usa = false ;
@@ -81,7 +59,6 @@ bool P4_FGE_PulsarTeclaNormal( unsigned char tecla ){
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 void P4_DibujarObjetos( unsigned modo ){
   ContextoVis cv(modo);
