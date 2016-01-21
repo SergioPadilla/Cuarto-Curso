@@ -47,19 +47,26 @@ void MallaInd::visualizar(ContextoVis cv){
       glShadeModel(GL_FLAT);
 
       glVertexPointer(3,GL_FLOAT,0,&(vertices.front()));
-      glTexCoordPointer(2,GL_FLOAT,0,&(texturas.front()));
-      glNormalPointer(GL_FLOAT,0,&(normalesVertices.front()));
-
       glEnableClientState(GL_VERTEX_ARRAY);
-      glEnableClientState(GL_NORMAL_ARRAY);
-      glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+      if(!normalesVertices.empty()){
+        glNormalPointer(GL_FLOAT,0,&(normalesVertices.front()));
+        glEnableClientState(GL_NORMAL_ARRAY);
+      }
+
+      if(!texturas.empty()){
+        glTexCoordPointer(2,GL_FLOAT,0,&(texturas.front()));
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+      }
 
       glDrawElements(GL_TRIANGLES,caras.size()*3,GL_UNSIGNED_INT,&(caras.front()));
 
       glDisableClientState(GL_VERTEX_ARRAY);
-      glDisableClientState(GL_NORMAL_ARRAY);
-      glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
+      if(!texturas.empty())
+        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+      if(!normalesVertices.empty())
+        glDisableClientState(GL_NORMAL_ARRAY);
       glDisable(GL_LIGHTING);
       break;
     case 5: //iluminación y sombreado de suave
@@ -67,18 +74,25 @@ void MallaInd::visualizar(ContextoVis cv){
       glShadeModel(GL_SMOOTH);
 
       glVertexPointer(3,GL_FLOAT,0,&(vertices.front()));
-      glTexCoordPointer(2,GL_FLOAT,0,&(texturas.front()));
-      glNormalPointer(GL_FLOAT,0,&(normalesVertices.front()));
-
       glEnableClientState(GL_VERTEX_ARRAY);
-      glEnableClientState(GL_NORMAL_ARRAY);
-      glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+      if(!normalesVertices.empty()){
+        glNormalPointer(GL_FLOAT,0,&(normalesVertices.front()));
+        glEnableClientState(GL_NORMAL_ARRAY);
+      }
+      if(!texturas.empty()){
+        glTexCoordPointer(2,GL_FLOAT,0,&(texturas.front()));
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+      }
 
       glDrawElements(GL_TRIANGLES,caras.size()*3,GL_UNSIGNED_INT,&(caras.front()));
 
       glDisableClientState(GL_VERTEX_ARRAY);
-      glDisableClientState(GL_NORMAL_ARRAY);
-      glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+      if(!texturas.empty())
+        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+      if(!normalesVertices.empty())
+        glDisableClientState(GL_NORMAL_ARRAY);
 
       glDisable(GL_LIGHTING);
       break;

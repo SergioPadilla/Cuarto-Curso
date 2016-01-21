@@ -1,14 +1,16 @@
 1.- SISTEMA OPERATIVO: MAC OS X EL CAPITAN versión 10.11
+
 2.- TECLAS:
       - m/M: alterna entre puntos, lineas, relleno y ajedrez respectivamente
       - o/O: alterna entre cuadrado, tetraedro, cono y cilindro respectivamente
       - p/P: Cambia de práctica
-      - g/G: Cambia grado de libertad
-      - <: disminuye grado de libertad
-      - >: aumenta el grado de libertad
+      - g/G: Cambia grado de libertad (Practica 3) o Cambia ángulo (Practica 4)
+      - <: disminuye grado de libertad (Practica 3) o angulo (Practica4)
+      - >: aumenta el grado de libertad (Practica 3) o angulo (Practica4)
       - v: disminuye la velocidad del grado de libertad
       - v: aumenta la velocidad del grado de libertad
       - c/C: Anula la velocidad del grado de libertad
+
 3.- EXTENSIONES:
       Práctica 1
         He realizado las extensiones del cono y el cilindro, ambos configurables.
@@ -37,3 +39,6 @@
         He implementado la funcionalidad necesaria en practica3.cpp para controlar las velocidades para automatizar el proceso. He implementado la función "idle" que modifica los grados de libertad aumentando o disminuyendo en la velocidad actual para cada grado de libertad
 
         Todo el código de la extensión se encuentra en "practica3.cpp"
+
+      Práctica 4
+        
