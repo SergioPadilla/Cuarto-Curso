@@ -19,7 +19,7 @@ Textura::Textura(const std::string & archivoJPG, unsigned n){
 void Textura::activar(){
   glEnable(GL_TEXTURE_2D);
 
-  glTexImage2D(GL_TEXTURE_2D,0,3,img->tamX(),img->tamY(),0,GL_RGB,GL_UNSIGNED_BYTE,img->leerPixels());
+  glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,img->tamX(),img->tamY(),0,GL_RGB,GL_UNSIGNED_BYTE,img->leerPixels());
   glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
   glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
   glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);

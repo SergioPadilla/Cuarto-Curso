@@ -7,6 +7,7 @@
 #include "MaterialPeonBlanco.hpp"
 #include "MaterialPeonMadera.hpp"
 #include "MallaPly.hpp"
+#include "aux.hpp"
 
 class Escena : public NodoGrafoEscena{
 public:

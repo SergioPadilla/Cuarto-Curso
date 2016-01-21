@@ -5,6 +5,7 @@
 #include "MaterialLata.hpp"
 #include "MaterialTapasLata.hpp"
 #include "MallaRevol.hpp"
+#include "aux.hpp"
 
 class Lata : public NodoGrafoEscena{
 public:
