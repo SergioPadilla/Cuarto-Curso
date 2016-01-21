@@ -2,7 +2,7 @@
 
 Textura::Textura(const std::string & archivoJPG, unsigned n){
   img = new jpg::Imagen(archivoJPG);
-  if(n<0 || n>2)
+  if(n>2)
     mgct = 0;
   else
     mgct = n;
