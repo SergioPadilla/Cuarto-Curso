@@ -19,7 +19,7 @@ public:
   float cs[4],ct[4]; // coeficientes para generación de coords. de textura
 
   void activar();    // activa textura en el cauce fijo de OpenGL
-  Textura(const std::string & archivoJPG); // crea un textura a partir de un archivo
+  Textura(const std::string & archivoJPG, unsigned n); // crea un textura a partir de un archivo
 };
 
 #endif
