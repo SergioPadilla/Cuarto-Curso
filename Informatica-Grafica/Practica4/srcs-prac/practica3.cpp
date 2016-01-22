@@ -7,6 +7,8 @@
 #include "practica3.hpp"
 #include "base.hpp"
 #include "Figura.hpp"
+#include "ColeccionFL.hpp"
+#include "FuentePosicional.hpp"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,11 +29,16 @@ static double topev3 = 0.25;
 static bool max1 = false;
 static bool max2 = false;
 static bool max3 = false;
+static ColeccionFL * colecFuentes = NULL;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void P3_Inicializar( int argc, char *argv[] ){
   objeto = new Figura(g1,g2,g3);
+  FuentePosicional * posi = new FuentePosicional(Tupla3f(4,2,0));
+  colecFuentes = new ColeccionFL();
+  colecFuentes->fuentes.push_back(posi);
+  colecFuentes->activar();
 }
 
 

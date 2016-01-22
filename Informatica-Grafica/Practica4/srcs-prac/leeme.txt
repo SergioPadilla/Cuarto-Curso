@@ -41,4 +41,5 @@
         Todo el código de la extensión se encuentra en "practica3.cpp"
 
       Práctica 4
-        
+        Añadidas texturas a la estructura de la Práctica 3. El código puede verse en el archivo "Figura.cpp"
+        Añadida fuente de luz posicional a la práctica 3. El código puede verse en el archivo "practica3.cpp"

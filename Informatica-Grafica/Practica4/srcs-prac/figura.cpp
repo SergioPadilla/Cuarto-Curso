@@ -23,7 +23,7 @@ Figura::Figura(float alpha1, float h1, float t){
   agregar(MAT_Rotacion(alpha1,0,1,0));
   agregar(new MaterialPeonNegro());
   agregar(new Brazo1(h1));
-  agregar(new MaterialPeonBlanco());
+  agregar(new MaterialPeonNegro());
   agregar(new Estructura(h1));
   agregar(new MaterialPeonMadera());
   agregar(new Brazo2(h1,t));
