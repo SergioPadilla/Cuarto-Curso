@@ -6,6 +6,9 @@
 #include "base.hpp"
 #include "brazo2.hpp"
 #include "brazo1.hpp"
+#include "MaterialPeonNegro.hpp"
+#include "MaterialPeonBlanco.hpp"
+#include "MaterialPeonMadera.hpp"
 
 class Figura : public NodoGrafoEscena{
 protected:
