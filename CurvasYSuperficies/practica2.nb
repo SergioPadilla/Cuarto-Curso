@@ -1,0 +1,1369 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     48589,       1360]
+NotebookOptionsPosition[     45354,       1270]
+NotebookOutlinePosition[     45775,       1288]
+CellTagsIndexPosition[     45732,       1285]
+WindowFrame->Normal
+ContainsDynamic->False*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Practica 2: Curvas en el espacio
+Nombre del alumno/a: \
+\>", "Text",
+ CellChangeTimes->{
+  3.466225718322692*^9, {3.497684996817934*^9, 3.497685001263026*^9}, {
+   3.503995059315007*^9, 3.503995066171505*^9}, {3.530272615981089*^9, 
+   3.530272622319972*^9}, {3.6670419109442463`*^9, 3.66704191827969*^9}},
+ FontFamily->"Arial",
+ FontSize->36,
+ FontWeight->"Bold",
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell[TextData[{
+ StyleBox["\nObjetivo:",
+  FontFamily->"Book Antiqua",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox[" Utilizar ",
+  FontFamily->"Book Antiqua"],
+ StyleBox["Mathematica",
+  FontFamily->"Book Antiqua",
+  FontSlant->"Italic"],
+ StyleBox[" para dibujar curvas en el espacio, calcular triedros de Frenet, \
+curvaturas y torsiones, y para obtener curvas con curvatura y torsi\[OAcute]n \
+prefijadas.\n",
+  FontFamily->"Book Antiqua"]
+}], "Text",
+ CellChangeTimes->{
+  3.402647547896994*^9, {3.46622495327811*^9, 3.4662249563868093`*^9}, 
+   3.466225716692334*^9, 3.4662258787149963`*^9, {3.497685021048259*^9, 
+   3.497685089903783*^9}, {3.503995071702599*^9, 3.503995117045022*^9}, 
+   3.5302726367139263`*^9, {3.6670419053230553`*^9, 3.66704190811312*^9}},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["Definici\[OAcute]n de curvas: ",
+  FontFamily->"Book Antiqua",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["Veamos c\[OAcute]mo se define una curva parametrizada de par\
+\[AAcute]metro t en el espacio.",
+  FontFamily->"Book Antiqua"]
+}], "Text",
+ CellChangeTimes->{{3.402647549164977*^9, 3.402647564933282*^9}, {
+   3.4662249689387093`*^9, 3.46622497180265*^9}, 3.4662257393882093`*^9, {
+   3.497685114712023*^9, 3.4976852311682673`*^9}, {3.497686188370019*^9, 
+   3.497686199857581*^9}, {3.4976862399306717`*^9, 3.497686241466229*^9}, {
+   3.4976889731357317`*^9, 3.49768897520774*^9}, {3.503995135565897*^9, 
+   3.503995140448223*^9}, {3.504267719784432*^9, 3.504267734422174*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["\nEjemplos:",
+ FontFamily->"Book Antiqua",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{
+  3.402647550580462*^9, {3.4662257489463043`*^9, 3.4662257503144093`*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"gamma", "[", "t_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"3", " ", "t"}], "-", 
+      RowBox[{"t", "^", "3"}]}], ",", 
+     RowBox[{"3", " ", 
+      RowBox[{"t", "^", "2"}]}], ",", 
+     RowBox[{
+      RowBox[{"3", " ", "t"}], "+", 
+      RowBox[{"t", "^", "3"}]}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{3.504266834000472*^9, 3.50426762491334*^9},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"elipse", "[", "t_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     RowBox[{"2", " ", 
+      RowBox[{"Cos", "[", "t", "]"}]}], ",", 
+     RowBox[{"5", " ", 
+      RowBox[{"Sin", "[", "t", "]"}]}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.503995190036459*^9, 3.50399520340805*^9}, {
+   3.5039952491127462`*^9, 3.5039952501033773`*^9}, 3.504266890453306*^9, {
+   3.504267747682336*^9, 3.504267751135149*^9}, 3.5042691550058928`*^9},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"logespiral", "[", "t_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"E", "^", 
+       RowBox[{"(", 
+        RowBox[{"0.08", " ", "t"}], ")"}]}], "  ", 
+      RowBox[{"Cos", "[", "t", "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"E", "^", 
+       RowBox[{"(", 
+        RowBox[{"0.08", " ", "t"}], ")"}]}], "  ", 
+      RowBox[{"Sin", "[", "t", "]"}]}], ",", "t"}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{
+  3.472398227465526*^9, {3.503995197664822*^9, 3.50399521317305*^9}, {
+   3.504266808020116*^9, 3.504266839048502*^9}, {3.504266995557674*^9, 
+   3.5042670247343683`*^9}, {3.504267097382474*^9, 3.504267102020046*^9}, {
+   3.504267190829258*^9, 3.504267193458437*^9}, {3.504267300175758*^9, 
+   3.504267306013232*^9}, {3.504267349519471*^9, 3.504267383721466*^9}, {
+   3.504267432107978*^9, 3.504267434297871*^9}, {3.504267487979924*^9, 
+   3.504267573456335*^9}},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["\nRepresentaci\[OAcute]n gr\[AAcute]fica de curvas parametrizadas \
+en el espacio:\n\n",
+  FontFamily->"Bookman Old Style",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["ParametricPlot3D\n",
+  FontFamily->"Book Antiqua",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["ParametricPlot3D[{x[t], y[t], z[t]}, {t, tmin, tmax}]", "MR",
+  FontFamily->"Book Antiqua"],
+ StyleBox[" dibuja la curva (x(t), y(t), z(t)) parametrizada en t, desde tmin \
+hasta tmax. ",
+  FontFamily->"Book Antiqua"]
+}], "Text",
+ CellChangeTimes->{
+  3.402647511593728*^9, {3.466225804421226*^9, 3.466225813650358*^9}, {
+   3.4976862998665457`*^9, 3.4976863212748337`*^9}, {3.4976864068619423`*^9, 
+   3.4976864266679983`*^9}, {3.497686785949049*^9, 3.497686788601644*^9}, 
+   3.4976878896729593`*^9, {3.497689017640357*^9, 3.4976890228245068`*^9}, {
+   3.50399521896637*^9, 3.5039952207864857`*^9}, {3.503995271696883*^9, 
+   3.503995283470851*^9}, {3.503995363573534*^9, 3.5039953705237722`*^9}, {
+   3.503995422060713*^9, 3.5039956014704723`*^9}, {3.504267762558659*^9, 
+   3.5042677637823763`*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"ParametricPlot3D", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"gamma", "[", "t", "]"}], "//", "Evaluate"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", 
+      RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "]"}],
+  FontSize->16]], "Input",
+ CellChangeTimes->{{3.466428690404089*^9, 3.466428697027089*^9}, {
+   3.503995660429944*^9, 3.503995670791892*^9}, {3.503995745396925*^9, 
+   3.503995766983519*^9}, {3.5042669036811733`*^9, 3.504266948984991*^9}, 
+   3.504267776969017*^9, {3.530272193390491*^9, 3.530272207054658*^9}, {
+   3.667042169058494*^9, 3.667042213478414*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"ParametricPlot3D", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"elipse", "[", "t", "]"}], "//", "Evaluate"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "0", ",", 
+      RowBox[{"2", "^", "Pi"}]}], "}"}]}], "]"}],
+  FontSize->16]], "Input",
+ CellChangeTimes->{{3.466428690404089*^9, 3.466428697027089*^9}, {
+   3.497690309255562*^9, 3.497690318510832*^9}, 3.5039956651336193`*^9, {
+   3.5039957800074797`*^9, 3.503995780598485*^9}, 3.50426695736301*^9, 
+   3.504269160248715*^9}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"ParametricPlot3D", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"logespiral", "[", "t", "]"}], "//", "Evaluate"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "0", ",", 
+      RowBox[{"10", "Pi"}]}], "}"}], ",", 
+    RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], ",", 
+    RowBox[{"Ticks", "\[Rule]", "None"}], ",", 
+    RowBox[{"PlotPoints", "\[Rule]", "50"}]}], "]"}],
+  FontSize->16]], "Input",
+ CellChangeTimes->{{3.466428690404089*^9, 3.466428697027089*^9}, {
+   3.497690309255562*^9, 3.497690318510832*^9}, 3.503995699406394*^9, {
+   3.5039957854905853`*^9, 3.5039957858625793`*^9}, {3.504266963541058*^9, 
+   3.5042669773213577`*^9}, {3.504267149640039*^9, 3.5042671571744556`*^9}, {
+   3.504267205172413*^9, 3.5042672241715593`*^9}, {3.50426732104012*^9, 
+   3.5042673273521214`*^9}, {3.5042673574104147`*^9, 3.50426736607271*^9}, {
+   3.504267401721867*^9, 3.5042674135298843`*^9}, {3.504267555431329*^9, 
+   3.504267641944509*^9}}],
+
+Cell[TextData[{
+ StyleBox["\nShow",
+  FontFamily->"Book Antiqua",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["\nShow[lista de gr\[AAcute]ficos, opciones] muestra uno o varios \
+gr\[AAcute]ficos, usando las opciones especificadas.",
+  FontFamily->"Book Antiqua"]
+}], "Text",
+ CellChangeTimes->{
+  3.4026475005233097`*^9, {3.5043370970347443`*^9, 3.504337112879622*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"graf1", "=", 
+  RowBox[{"ParametricPlot3D", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Cos", "[", "t", "]"}], ",", 
+      RowBox[{"Sin", "[", "t", "]"}], ",", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "/", "2"}], ")"}], "t"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", 
+      RowBox[{
+       RowBox[{"-", "2"}], "Pi"}], ",", 
+      RowBox[{"2", "Pi"}]}], "}"}], ",", " ", 
+    RowBox[{"AspectRatio", "\[Rule]", "Automatic"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{
+  3.4026464146107197`*^9, {3.497686692701486*^9, 3.4976866938706427`*^9}, {
+   3.5039958546846037`*^9, 3.503995874108851*^9}, {3.503996028333517*^9, 
+   3.50399603326091*^9}, {3.503996225254616*^9, 3.50399622774962*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"graf2", "=", 
+  RowBox[{"ParametricPlot3D", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Cos", "[", "t", "]"}], ",", "0", ",", 
+      RowBox[{"Sin", "[", 
+       RowBox[{"2", "t"}], "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "0", ",", 
+      RowBox[{"2", " ", "Pi"}]}], "}"}], ",", " ", 
+    RowBox[{"AspectRatio", "\[Rule]", "Automatic"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{
+  3.4026464146107197`*^9, {3.497686692701486*^9, 3.4976866938706427`*^9}, {
+   3.503995888085129*^9, 3.503995924286255*^9}, {3.50399597033531*^9, 
+   3.503995994977312*^9}, {3.5039960376006308`*^9, 3.5039960387911263`*^9}, {
+   3.503996084742564*^9, 3.503996119314077*^9}, {3.503996203603406*^9, 
+   3.5039962120693274`*^9}, {3.504267660744272*^9, 3.5042676673044453`*^9}, {
+   3.6670435904182673`*^9, 3.6670435916724567`*^9}},
+ FontSize->16],
+
+Cell["\<\
+Show[graf1,graf2,Boxed->False,Axes->False,ViewPoint->{1,0.5,1}]\
+\>", "Input",
+ PageWidth->Infinity,
+ CellChangeTimes->{
+  3.402647503066968*^9, {3.497686607800475*^9, 3.4976866079663057`*^9}, {
+   3.497689107691394*^9, 3.4976891101611843`*^9}, {3.50399604377824*^9, 
+   3.503996044513064*^9}, {3.504288488577705*^9, 3.504288517440016*^9}, {
+   3.504335090301689*^9, 3.504335124672969*^9}, {3.6670422687601852`*^9, 
+   3.6670422975092163`*^9}},
+ AspectRatioFixed->True,
+ FontSize->16,
+ Background->RGBColor[1, 1, 0]],
+
+Cell[TextData[{
+ StyleBox["\n\n",
+  FontFamily->"Book Antiqua",
+  FontColor->RGBColor[0, 0, 1]],
+ StyleBox["Algunos ejemplos de curvas en el espacio famosas:\n",
+  FontFamily->"Bookman Old Style",
+  FontColor->RGBColor[1, 0, 0]]
+}], "Text",
+ CellChangeTimes->{
+  3.4026474905945463`*^9, {3.497686721631914*^9, 3.497686795161429*^9}, 
+   3.49768734388249*^9, 3.497687884248534*^9, {3.497690175196857*^9, 
+   3.497690179866969*^9}, {3.5039961324318132`*^9, 3.5039961368308773`*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["H\[EAcute]lices circulares de eje vertical.",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{
+  3.466225037370646*^9, 3.466225084196167*^9, {3.497686804705141*^9, 
+   3.497686807521002*^9}, {3.4976870875887613`*^9, 3.49768709658889*^9}, {
+   3.504268059775065*^9, 3.504268067871044*^9}, {3.6670423207585*^9, 
+   3.667042323453233*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"helice", "[", 
+     RowBox[{"a_", ",", "b_"}], "]"}], "[", "t_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"a", " ", 
+      RowBox[{"Cos", "[", "t", "]"}]}], ",", 
+     RowBox[{"a", " ", 
+      RowBox[{"Sin", "[", "t", "]"}]}], ",", 
+     RowBox[{"b", " ", "t"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{
+  3.497686817603959*^9, {3.497687102091515*^9, 3.497687134246887*^9}, {
+   3.5042679219330463`*^9, 3.504267954224481*^9}, {3.5042680081953287`*^9, 
+   3.504268009161792*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"helice", "[", 
+      RowBox[{"1", ",", "0.2"}], "]"}], "[", "t", "]"}], "//", "Evaluate"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"6", " ", "Pi"}]}], "}"}], ",", 
+   RowBox[{"PlotPoints", "\[Rule]", "200"}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", " ", "Pi"}], "}"}]}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.402646407050783*^9, {3.4976871478253107`*^9, 3.497687199871763*^9}, {
+   3.5042679425363693`*^9, 3.504267965763711*^9}, {3.5042680115215*^9, 
+   3.504268012448668*^9}, {3.504335145395733*^9, 3.504335152377068*^9}, {
+   3.667042334774994*^9, 3.667042348950921*^9}, {3.667042379807021*^9, 
+   3.6670423876148243`*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["\nH\[EAcute]lices generalizadas sobre curvas planas.",
+ 
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{
+  3.466225037370646*^9, 3.466225084196167*^9, {3.497686804705141*^9, 
+   3.497686807521002*^9}, 3.497687362680669*^9, {3.497689184306656*^9, 
+   3.49768921248295*^9}, {3.504268050135404*^9, 3.504268081879281*^9}, {
+   3.504268163415823*^9, 3.504268214888659*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"helical", "[", 
+     RowBox[{"alpha_", ",", "c_"}], "]"}], "[", "t_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"alpha", "[", "t", "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ",", 
+     RowBox[{
+      RowBox[{"alpha", "[", "t", "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}], ",", 
+     RowBox[{"c", " ", "t"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{
+  3.497686817603959*^9, {3.5042680429868517`*^9, 3.504268047328568*^9}, {
+   3.504268188737617*^9, 3.50426819672151*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"alpha", "[", "t_", "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Cos", "[", "t", "]"}], ",", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"2", "t"}], "]"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{
+  3.497686817603959*^9, {3.5042680429868517`*^9, 3.504268047328568*^9}, {
+   3.5042681489766407`*^9, 3.5042681555126753`*^9}, {3.504268220161899*^9, 
+   3.50426823822681*^9}, {3.504268314519742*^9, 3.504268448657888*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"helical", "[", 
+      RowBox[{"alpha", ",", 
+       RowBox[{"1", "/", "2"}]}], "]"}], "[", "t", "]"}], "//", "Evaluate"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", 
+     RowBox[{
+      RowBox[{"-", "2"}], "Pi"}], ",", 
+     RowBox[{"2", "Pi"}]}], "}"}], ",", 
+   RowBox[{"PlotPoints", "\[Rule]", "200"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.402646407050783*^9, {3.5042680946201553`*^9, 3.504268110189192*^9}, {
+   3.5042682529559717`*^9, 3.504268300802227*^9}, {3.504268334032843*^9, 
+   3.504268334982336*^9}, {3.5042684144195747`*^9, 3.504268414621397*^9}, {
+   3.504268456306772*^9, 3.504268481555993*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["\nCurvas de Viviani.",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{
+  3.466225099259802*^9, 3.4976873685126657`*^9, {3.4976892330433598`*^9, 
+   3.4976892391955442`*^9}, {3.5042685470774803`*^9, 3.504268553332633*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"viviani", "[", "a_", "]"}], "[", "t_", "]"}], ":=", 
+   RowBox[{"a", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"1", "+", 
+       RowBox[{"Cos", "[", "t", "]"}]}], ",", 
+      RowBox[{"Sin", "[", "t", "]"}], ",", 
+      RowBox[{"2", 
+       RowBox[{"Sin", "[", 
+        RowBox[{"t", "/", "2"}], "]"}]}]}], "}"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.504268558262658*^9, 3.5042685653267117`*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"viviani", "[", "1", "]"}], "[", "t", "]"}], ",", 
+      RowBox[{
+       RowBox[{"viviani", "[", "3", "]"}], "[", "t", "]"}]}], "}"}], "//", 
+    "Evaluate"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "Pi"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.504268558262658*^9, 3.5042685653267117`*^9}, {
+  3.504268649546665*^9, 3.5042687450411453`*^9}, {3.504268775618688*^9, 
+  3.504268807355296*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"viviani", "[", "1", "]"}], "[", "t", "]"}], ",", 
+      RowBox[{
+       RowBox[{"viviani", "[", "3", "]"}], "[", "t", "]"}]}], "}"}], "//", 
+    "Evaluate"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "Pi"}]}], "}"}], ",", 
+   RowBox[{"Boxed", "\[Rule]", "False"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"ViewPoint", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"10", ",", "3", ",", "1"}], "}"}]}], ",", 
+   RowBox[{"Axes", "\[Rule]", "False"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.504268558262658*^9, 3.5042685653267117`*^9}, {
+  3.504268649546665*^9, 3.5042687450411453`*^9}, {3.504268775618688*^9, 
+  3.50426878724308*^9}, {3.504415299991023*^9, 3.504415382718992*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["\nEjercicios:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{3.402647465928598*^9, 3.402647625824304*^9},
+ FontSize->16,
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell[TextData[{
+ "1. Representa sobre un mismo gr\[AAcute]fico una familia formada por 3 h\
+\[EAcute]lices circulares con distinto par\[AAcute]metro a y el mismo par\
+\[AAcute]metro b.\n2. Representa sobre un mismo gr\[AAcute]fico una familia \
+formada por 3 h\[EAcute]lices circulares con el mismo par\[AAcute]metro a y \
+distinto par\[AAcute]metro b.\n3. Define y representa gr\[AAcute]ficamente \
+las curvas (1+cos(t),sen(t),cosh(t)) y (",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["t", "3"], TraditionalForm]]],
+ "/3,2t,",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["t", "2"], TraditionalForm]]],
+ ")."
+}], "Text",
+ CellChangeTimes->{
+  3.402647625824707*^9, {3.402647665231577*^9, 3.4026477069147043`*^9}, {
+   3.497687659672462*^9, 3.497687718504466*^9}, {3.497688029221936*^9, 
+   3.4976880413305063`*^9}, {3.5042690006319*^9, 3.50426914744458*^9}, {
+   3.5042692576895523`*^9, 3.5042693202271967`*^9}, {3.504269363739278*^9, 
+   3.5042694384755287`*^9}, {3.504288587122899*^9, 3.5042885906830587`*^9}, {
+   3.504335345487248*^9, 3.504335377459836*^9}, {3.5043372032535677`*^9, 
+   3.5043372040668583`*^9}, {3.53025702077304*^9, 3.530257082807805*^9}, {
+   3.530257199314188*^9, 3.530257228232254*^9}, {3.667042490592101*^9, 
+   3.667042599811784*^9}},
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontWeight->"Plain",
+ FontVariations->{"CompatibilityType"->0}],
+
+Cell[TextData[{
+ StyleBox["\n",
+  FontFamily->"Palatino Linotype"],
+ StyleBox["Longitud de arco, triedro de Frenet, curvatura y torsi\[OAcute]n \
+de una curva en el espacio:\n",
+  FontFamily->"Bookman Old Style",
+  FontColor->RGBColor[1, 0, 0]]
+}], "Text",
+ CellChangeTimes->{
+  3.466224978066474*^9, {3.497685322977364*^9, 3.4976853463700542`*^9}, {
+   3.497686246794191*^9, 3.497686249394003*^9}, {3.497687793032154*^9, 
+   3.497687873320232*^9}, {3.50426896131364*^9, 3.504268982929984*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Longitud del arco de curva comprendido en un \
+intervalo [a,b].",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.497685352617385*^9, 3.497685356985371*^9}, {
+  3.497685453493808*^9, 3.497685461602322*^9}, {3.4976855155253267`*^9, 
+  3.4976855415472937`*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"derivadalongitud", "[", "alpha_", "]"}], "[", "t_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Sqrt", "[", 
+    RowBox[{"Simplify", "[", 
+     RowBox[{
+      RowBox[{"D", "[", 
+       RowBox[{
+        RowBox[{"alpha", "[", "u", "]"}], ",", "u"}], "]"}], ".", 
+      RowBox[{"D", "[", 
+       RowBox[{
+        RowBox[{"alpha", "[", "u", "]"}], ",", "u"}], "]"}]}], "]"}], "]"}], 
+   " ", "/.", 
+   RowBox[{"u", "\[Rule]", "t"}]}]}]], "Input",
+ CellChangeTimes->{
+  3.504269471576737*^9, {3.50433725996271*^9, 3.504337265128779*^9}},
+ FontSize->16,
+ Background->RGBColor[1, 1, 0]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"longitud", "[", 
+     RowBox[{"a_", ",", "b_"}], "]"}], "[", "alpha_", "]"}], ":=", 
+   RowBox[{"Integrate", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"derivadalongitud", "[", "alpha", "]"}], "[", "t", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "a", ",", "b"}], "}"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.504337273177929*^9, 3.504337288367447*^9}},
+ FontSize->16,
+ Background->RGBColor[1, 1, 0]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"longitud", "[", 
+   RowBox[{"0", ",", "1"}], "]"}], "[", "gamma", "]"}]], "Input",
+ CellChangeTimes->{
+  3.5042695786420307`*^9, {3.504337293610282*^9, 3.504337297822476*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"longitud", "[", 
+   RowBox[{"0", ",", 
+    RowBox[{"2", "Pi"}]}], "]"}], "[", "elipse", "]"}]], "Input",
+ CellChangeTimes->{
+  3.504269591555585*^9, {3.504337301410247*^9, 3.504337305030037*^9}, {
+   3.5302723197270823`*^9, 3.530272322390003*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"N", "[", "%", "]"}]], "Input",
+ CellChangeTimes->{{3.497685570172202*^9, 3.497685575541132*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["\nValor num\[EAcute]rico de la longitud del arco de \
+curva comprendido en un intervalo [a,b].",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{
+  3.466224987906354*^9, {3.497685605011759*^9, 3.497685627470402*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"longitudn", "[", 
+    RowBox[{"a_", ",", "b_"}], "]"}], "[", "alpha_", "]"}], ":=", 
+  RowBox[{"NIntegrate", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"derivadalongitud", "[", "alpha", "]"}], "[", "t", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "a", ",", "b"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.504337314022949*^9, 3.5043373273575983`*^9}},
+ FontSize->16,
+ Background->RGBColor[1, 1, 0]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"longitudn", "[", 
+   RowBox[{"0", ",", "1"}], "]"}], "[", "gamma", "]"}]], "Input",
+ CellChangeTimes->{
+  3.50426972910106*^9, {3.504337334393394*^9, 3.504337337668346*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"longitudn", "[", 
+   RowBox[{"0", ",", 
+    RowBox[{"2", "Pi"}]}], "]"}], "[", "elipse", "]"}]], "Input",
+ CellChangeTimes->{
+  3.504269743216859*^9, {3.504337342226205*^9, 3.504337345707893*^9}, {
+   3.530272334820216*^9, 3.5302723366509447`*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["\nVector tangente unitario de una curva regular.",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{
+  3.466224990874361*^9, {3.497685653095748*^9, 3.49768565720413*^9}, {
+   3.497687914051752*^9, 3.497687915536284*^9}, {3.504269785094496*^9, 
+   3.5042697866910954`*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"tangente", "[", "alpha_", "]"}], "[", "t_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{"alpha", "[", "u", "]"}], ",", "u"}], "]"}], "/", 
+    RowBox[{"Sqrt", "[", 
+     RowBox[{
+      RowBox[{"D", "[", 
+       RowBox[{
+        RowBox[{"alpha", "[", "u", "]"}], ",", "u"}], "]"}], ".", 
+      RowBox[{"D", "[", 
+       RowBox[{
+        RowBox[{"alpha", "[", "u", "]"}], ",", "u"}], "]"}]}], "]"}]}], " ", "/.",
+    " ", 
+   RowBox[{"u", "\[Rule]", "t"}]}]}]], "Input",
+ CellChangeTimes->{{3.504269806882268*^9, 3.504269815197207*^9}, {
+   3.504335522223077*^9, 3.504335544076314*^9}, {3.504335574364492*^9, 
+   3.504335581434196*^9}, 3.5043358989137487`*^9},
+ FontSize->16,
+ Background->RGBColor[1, 1, 0]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"tangente", "[", "gamma", "]"}], "[", "t", "]"}]], "Input",
+ CellChangeTimes->{3.5043354876056423`*^9, 3.504335901474586*^9},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"tangente", "[", "gamma", "]"}], "[", "t", "]"}], "//", 
+   "Simplify"}], "//", "PowerExpand"}]], "Input",
+ CellChangeTimes->{{3.466423646295689*^9, 3.466423647621689*^9}, 
+   3.504335498889947*^9, 3.504335904258545*^9},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"tangente", "[", "elipse", "]"}], "[", "t", "]"}], "//", 
+  "Simplify"}]], "Input",
+ CellChangeTimes->{
+  3.5043355052551928`*^9, {3.5043355573727427`*^9, 3.50433556225861*^9}, 
+   3.504335907178337*^9},
+ FontSize->16],
+
+Cell[TextData[StyleBox["\nVector binormal de una curva regular (en los puntos \
+en los que tenga sentido).",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{
+  3.466225636378593*^9, {3.466225782626253*^9, 3.466225783882312*^9}, {
+   3.4976857168560057`*^9, 3.497685743828786*^9}, {3.4976879257443027`*^9, 
+   3.4976879265125217`*^9}, {3.5043356241670237`*^9, 3.5043356496212797`*^9}},
+ 
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"binormal", "[", "alpha_", "]"}], "[", "t_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Cross", "[", 
+     RowBox[{
+      RowBox[{"D", "[", 
+       RowBox[{
+        RowBox[{"alpha", "[", "u", "]"}], ",", "u"}], "]"}], ",", 
+      RowBox[{"D", "[", 
+       RowBox[{
+        RowBox[{"alpha", "[", "u", "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"u", ",", "2"}], "}"}]}], "]"}]}], "]"}], "/", 
+    RowBox[{"Sqrt", "[", 
+     RowBox[{
+      RowBox[{"Cross", "[", 
+       RowBox[{
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"alpha", "[", "u", "]"}], ",", "u"}], "]"}], ",", 
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"alpha", "[", "u", "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"u", ",", "2"}], "}"}]}], "]"}]}], "]"}], ".", 
+      RowBox[{"Cross", "[", 
+       RowBox[{
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"alpha", "[", "u", "]"}], ",", "u"}], "]"}], ",", 
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"alpha", "[", "u", "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"u", ",", "2"}], "}"}]}], "]"}]}], "]"}]}], "]"}]}], " ", "/.",
+    " ", 
+   RowBox[{"u", "\[Rule]", "t"}]}]}]], "Input",
+ CellChangeTimes->{{3.504335679778777*^9, 3.504335759610731*^9}},
+ FontSize->16,
+ Background->RGBColor[1, 1, 0]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"binormal", "[", "gamma", "]"}], "[", "t", "]"}]], "Input",
+ CellChangeTimes->{{3.4976857937744837`*^9, 3.497685793909855*^9}, {
+  3.5043357731995983`*^9, 3.504335775367237*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"binormal", "[", "gamma", "]"}], "[", "t", "]"}], "//", 
+   "Simplify"}], "//", "PowerExpand"}]], "Input",
+ CellChangeTimes->{{3.497685796378997*^9, 3.497685796486125*^9}, {
+  3.504335780448717*^9, 3.504335782799007*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"binormal", "[", "elipse", "]"}], "[", "t", "]"}], "//", 
+  "FullSimplify"}]], "Input",
+ CellChangeTimes->{{3.4976857987838707`*^9, 3.497685798894417*^9}, {
+  3.504335788024241*^9, 3.5043358031418047`*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["\nVector normal de una curva regular (en los puntos \
+en los que tenga sentido).",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{
+  3.466225636378593*^9, {3.466225782626253*^9, 3.466225783882312*^9}, {
+   3.4976857168560057`*^9, 3.497685743828786*^9}, {3.4976879257443027`*^9, 
+   3.4976879265125217`*^9}, {3.5043356241670237`*^9, 
+   3.5043356496212797`*^9}, {3.504335832701496*^9, 3.504335832899531*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"normal", "[", "alpha_", "]"}], "[", "t_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Cross", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"binormal", "[", "alpha", "]"}], "[", "t", "]"}], ",", 
+     RowBox[{
+      RowBox[{"tangente", "[", "alpha", "]"}], "[", "t", "]"}]}], "]"}], " ", 
+   "/.", " ", 
+   RowBox[{"u", "\[Rule]", "t"}]}]}]], "Input",
+ CellChangeTimes->{{3.504335679778777*^9, 3.504335759610731*^9}, {
+  3.5043358381576033`*^9, 3.504335894529451*^9}},
+ FontSize->16,
+ Background->RGBColor[1, 1, 0]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"normal", "[", "gamma", "]"}], "[", "t", "]"}]], "Input",
+ CellChangeTimes->{{3.4976857937744837`*^9, 3.497685793909855*^9}, {
+  3.5043357731995983`*^9, 3.504335775367237*^9}, {3.504335917198701*^9, 
+  3.5043359174477177`*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"normal", "[", "gamma", "]"}], "[", "t", "]"}], "//", 
+   "Simplify"}], "//", "PowerExpand"}]], "Input",
+ CellChangeTimes->{{3.497685796378997*^9, 3.497685796486125*^9}, {
+  3.504335780448717*^9, 3.504335782799007*^9}, {3.504335924199143*^9, 
+  3.504335924375489*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"normal", "[", "elipse", "]"}], "[", "t", "]"}], "//", 
+  "FullSimplify"}]], "Input",
+ CellChangeTimes->{{3.4976857987838707`*^9, 3.497685798894417*^9}, {
+  3.504335788024241*^9, 3.5043358031418047`*^9}, {3.504335930914606*^9, 
+  3.50433593107899*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["\nCurvatura de una curva regular en el espacio.",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.472398959579166*^9, 3.472398962992738*^9}, {
+   3.47244804066929*^9, 3.4724480416987743`*^9}, 3.497685824167753*^9, {
+   3.504335961342675*^9, 3.504335977012295*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"curvatura", "[", "alpha_", "]"}], "[", "t_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Sqrt", "[", 
+     RowBox[{
+      RowBox[{"Cross", "[", 
+       RowBox[{
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"alpha", "[", "u", "]"}], ",", "u"}], "]"}], ",", 
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"alpha", "[", "u", "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"u", ",", "2"}], "}"}]}], "]"}]}], "]"}], ".", 
+      RowBox[{"Cross", "[", 
+       RowBox[{
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"alpha", "[", "u", "]"}], ",", "u"}], "]"}], ",", 
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"alpha", "[", "u", "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"u", ",", "2"}], "}"}]}], "]"}]}], "]"}]}], "]"}], "/", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"D", "[", 
+        RowBox[{
+         RowBox[{"alpha", "[", "u", "]"}], ",", "u"}], "]"}], ".", 
+       RowBox[{"D", "[", 
+        RowBox[{
+         RowBox[{"alpha", "[", "u", "]"}], ",", "u"}], "]"}]}], ")"}], "^", 
+     RowBox[{"(", 
+      RowBox[{"3", "/", "2"}], ")"}]}]}], " ", "/.", " ", 
+   RowBox[{"u", "\[Rule]", "t"}]}]}]], "Input",
+ CellChangeTimes->{
+  3.472447979827896*^9, 3.49768583680155*^9, {3.5043359895197783`*^9, 
+   3.504335992364802*^9}, {3.504336031180368*^9, 3.5043361058313293`*^9}, {
+   3.504336169036211*^9, 3.504336184773593*^9}, {3.50433623291291*^9, 
+   3.504336254662683*^9}},
+ FontSize->16,
+ Background->RGBColor[1, 1, 0]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"curvatura", "[", "gamma", "]"}], "[", "t", "]"}], "//", 
+   "Simplify"}], " ", "//", "PowerExpand"}]], "Input",
+ CellChangeTimes->{
+  3.472447979828113*^9, {3.497685856493512*^9, 3.4976858888411016`*^9}, {
+   3.504336109528919*^9, 3.504336114813405*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"curvatura", "[", "elipse", "]"}], "[", "t", "]"}], "//", 
+  "FullSimplify", " "}]], "Input",
+ CellChangeTimes->{
+  3.472447979828113*^9, {3.497685856493512*^9, 3.497685920983508*^9}, {
+   3.504336126945251*^9, 3.504336131284482*^9}, {3.504337427324671*^9, 
+   3.504337440438903*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["\nTorsi\[OAcute]n de una curva regular en el espacio \
+(en los puntos donde la curvatura es positiva).",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.472398959579166*^9, 3.472398962992738*^9}, {
+   3.47244804066929*^9, 3.4724480416987743`*^9}, 3.497685824167753*^9, {
+   3.504335961342675*^9, 3.504335977012295*^9}, {3.5043363468500757`*^9, 
+   3.504336363255423*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"torsion", "[", "alpha_", "]"}], "[", "t_", "]"}], ":=", 
+  RowBox[{
+  "introducir", " ", "en", " ", "Mathematica", " ", "la", " ", 
+   "f\[OAcute]rmula", " ", "de", " ", "la", " ", "torsi\[OAcute]n", " ", 
+   "vista", " ", "en", " ", "clase", " ", 
+   RowBox[{"(", "ejercicio", ")"}]}]}]], "Input",
+ CellChangeTimes->{
+  3.472447979827896*^9, 3.49768583680155*^9, {3.5043359895197783`*^9, 
+   3.504335992364802*^9}, {3.504336031180368*^9, 3.5043361058313293`*^9}, {
+   3.504336169036211*^9, 3.504336184773593*^9}, {3.50433623291291*^9, 
+   3.504336254662683*^9}, {3.504336366025511*^9, 3.5043364323244953`*^9}, {
+   3.667042718970331*^9, 3.667042785746664*^9}},
+ FontSize->16,
+ Background->RGBColor[1, 1, 0]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"torsion", "[", "gamma", "]"}], "[", "t", "]"}], "//", 
+   "Simplify"}], " ", "//", "PowerExpand"}]], "Input",
+ CellChangeTimes->{
+  3.472447979828113*^9, {3.497685856493512*^9, 3.4976858888411016`*^9}, {
+   3.504336109528919*^9, 3.504336114813405*^9}, {3.504336388291563*^9, 
+   3.504336391566618*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"torsion", "[", "elipse", "]"}], "[", "t", "]"}], "//", "Simplify",
+   " "}]], "Input",
+ CellChangeTimes->{
+  3.472447979828113*^9, {3.497685856493512*^9, 3.497685920983508*^9}, {
+   3.504336126945251*^9, 3.504336131284482*^9}, {3.504336393924984*^9, 
+   3.504336396910357*^9}, {3.504337421974925*^9, 3.5043374228957644`*^9}},
+ FontSize->16],
+
+Cell[TextData[{
+ "\n",
+ StyleBox["Ejercicios:",
+  FontFamily->"Book Antiqua"]
+}], "Text",
+ CellChangeTimes->{
+  3.4026474540892487`*^9, {3.466226136465724*^9, 3.466226139858204*^9}, {
+   3.497687985249189*^9, 3.497687986657263*^9}, {3.504336473004524*^9, 
+   3.5043364764092493`*^9}},
+ FontSize->16,
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell[TextData[{
+ "4. Calcula expresiones simplificadas para el triedro de Frenet, la \
+curvatura y la torsi\[OAcute]n de las h\[EAcute]lices circulares, las curvas \
+de Viviani, y la curva logespiral definida al comienzo de la \
+pr\[AAcute]ctica. \n5. Para las curvas definidas en el ejercicio 3, calcula \
+la longitud de los arcos en el intervalo [-Pi,Pi]. ",
+ StyleBox["Calcula tambi\[EAcute]n su triedro de Frenet, su curvatura y su \
+torsi\[OAcute]n. Representa en un mismo gr\[AAcute]fico la traza de una de \
+las dos curvas junto con su recta af\[IAcute]n normal en el instante t=0. ",
+  FontFamily->"Book Antiqua"]
+}], "Text",
+ CellChangeTimes->{{3.4662255345145407`*^9, 3.466225535986721*^9}, {
+   3.466226150474234*^9, 3.466226160986574*^9}, 3.497687965011495*^9, {
+   3.497688137400256*^9, 3.497688403671989*^9}, {3.4976895127923813`*^9, 
+   3.497689533425398*^9}, {3.504336478163645*^9, 3.504336571756193*^9}, {
+   3.50433663872287*^9, 3.504336814367646*^9}, {3.504338372526511*^9, 
+   3.50433837369284*^9}, {3.504338405901074*^9, 3.504338528940732*^9}, {
+   3.50433868439104*^9, 3.504338685612492*^9}, {3.504415400670251*^9, 
+   3.504415438506487*^9}, {3.5044155383346148`*^9, 3.5044155815463552`*^9}, {
+   3.5044157653058023`*^9, 3.504415796566058*^9}, {3.53025735208363*^9, 
+   3.530257420190061*^9}, {3.66704281818062*^9, 3.667042880177141*^9}},
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontWeight->"Plain",
+ FontVariations->{"CompatibilityType"->0}],
+
+Cell[TextData[StyleBox["\nDeterminaci\[OAcute]n de una curva en el espacio a \
+partir de su curvatura y su torsi\[OAcute]n:",
+ FontFamily->"Book Antiqua",
+ FontColor->RGBColor[1, 0, 0]]], "Text",
+ CellChangeTimes->{
+  3.402647456465366*^9, {3.504270205171167*^9, 3.5042702115616693`*^9}, 
+   3.504288612540903*^9},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["Recuerda el enunciado del teorema fundamental para curvas en el \
+espacio. La demostraci\[OAcute]n est\[AAcute] basada en la existencia y \
+unicidad de soluci\[OAcute]n de un sistema de ecuaciones diferenciales \
+ordinarias de primer orden. Dicho sistema puede resolverse con ",
+  FontFamily->"Book Antiqua"],
+ StyleBox["Mathematica",
+  FontFamily->"Book Antiqua",
+  FontSlant->"Italic"],
+ StyleBox[" para dibujar curvas en el espacio que tengan una curvatura y una \
+torsi\[OAcute]n prefijadas. Para ello utilizaremos comandos de resoluci\
+\[OAcute]n num\[EAcute]rica de ecuaciones diferenciales. Veamos un ejemplo:\n\
+",
+  FontFamily->"Book Antiqua"]
+}], "Text",
+ CellChangeTimes->{{3.4976884661963177`*^9, 3.497688671059916*^9}, {
+  3.504270046262623*^9, 3.5042701574238157`*^9}, {3.5042702196833277`*^9, 
+  3.5042702249164*^9}, {3.504336880030843*^9, 3.5043368812120533`*^9}, {
+  3.667042904948084*^9, 3.667042908208602*^9}},
+ FontSize->16],
+
+Cell["\<\
+Curva con curvatura k(s) = 3 y torsi\[OAcute]n t(s) = 1 (obviamente debe \
+obtenerse una h\[EAcute]lice circular):\
+\>", "Text",
+ CellChangeTimes->{{3.4723996884801273`*^9, 3.472399692847352*^9}, {
+  3.472449851301713*^9, 3.472449859146867*^9}, {3.530257610397932*^9, 
+  3.53025761517173*^9}, {3.6670429267624063`*^9, 3.667042936992449*^9}},
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontWeight->"Plain",
+ FontVariations->{"CompatibilityType"->0}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"k", "[", "s_", "]"}], ":=", "3"}], ";", 
+  RowBox[{
+   RowBox[{"t", "[", "s_", "]"}], ":=", "1"}]}]], "Input",
+ CellChangeTimes->{{3.504288311602007*^9, 3.504288354803933*^9}, {
+  3.5043308290319443`*^9, 3.504330835025054*^9}, {3.504338539458712*^9, 
+  3.504338579442575*^9}, {3.530257617218849*^9, 3.530257621116283*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"curva", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"x", "'"}], "[", "s", "]"}], "\[Equal]", 
+        RowBox[{"t1", "[", "s", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"y", "'"}], "[", "s", "]"}], "\[Equal]", 
+        RowBox[{"t2", "[", "s", "]"}]}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"z", "'"}], "[", "s", "]"}], "\[Equal]", 
+        RowBox[{"t3", "[", "s", "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"t1", "'"}], "[", "s", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{"k", "[", "s", "]"}], 
+         RowBox[{"n1", "[", "s", "]"}]}]}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"t2", "'"}], "[", "s", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{"k", "[", "s", "]"}], 
+         RowBox[{"n2", "[", "s", "]"}]}]}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"t3", "'"}], "[", "s", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{"k", "[", "s", "]"}], 
+         RowBox[{"n3", "[", "s", "]"}]}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"n1", "'"}], "[", "s", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           RowBox[{"k", "[", "s", "]"}]}], 
+          RowBox[{"t1", "[", "s", "]"}]}], "-", 
+         RowBox[{
+          RowBox[{"t", "[", "s", "]"}], 
+          RowBox[{"b1", "[", "s", "]"}]}]}]}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"n2", "'"}], "[", "s", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           RowBox[{"k", "[", "s", "]"}]}], 
+          RowBox[{"t2", "[", "s", "]"}]}], "-", 
+         RowBox[{
+          RowBox[{"t", "[", "s", "]"}], " ", 
+          RowBox[{"b2", "[", "s", "]"}]}]}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"n3", "'"}], "[", "s", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           RowBox[{"k", "[", "s", "]"}]}], " ", 
+          RowBox[{"t3", "[", "s", "]"}]}], "-", 
+         RowBox[{
+          RowBox[{"t", "[", "s", "]"}], " ", 
+          RowBox[{"b3", "[", "s", "]"}]}]}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"b1", "'"}], "[", "s", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{"t", "[", "s", "]"}], " ", 
+         RowBox[{"n1", "[", "s", "]"}]}]}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"b2", "'"}], "[", "s", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{"t", "[", "s", "]"}], " ", 
+         RowBox[{"n2", "[", "s", "]"}]}]}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"b3", "'"}], "[", "s", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{"t", "[", "s", "]"}], " ", 
+         RowBox[{"n3", "[", "s", "]"}]}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"x", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"y", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"z", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"t1", "[", "0", "]"}], "\[Equal]", "1"}], ",", 
+       RowBox[{
+        RowBox[{"t2", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"t3", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"n1", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"n2", "[", "0", "]"}], "\[Equal]", "1"}], ",", 
+       RowBox[{
+        RowBox[{"n3", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"b1", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"b2", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+       RowBox[{
+        RowBox[{"b3", "[", "0", "]"}], "\[Equal]", "1"}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+      "x", ",", "y", ",", "z", ",", "t1", ",", "t2", ",", "t3", ",", "n1", 
+       ",", "n2", ",", "n3", ",", "b1", ",", "b2", ",", "b3"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"s", ",", 
+       RowBox[{"-", "10"}], ",", "10"}], "}"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.4724504317690973`*^9, 3.472450445784054*^9}, {
+  3.504336894216412*^9, 3.504336902999743*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"Evaluate", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"x", "[", "s", "]"}], ",", 
+       RowBox[{"y", "[", "s", "]"}], ",", 
+       RowBox[{"z", "[", "s", "]"}]}], "}"}], "/.", "curva"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"s", ",", 
+     RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+   RowBox[{"ViewPoint", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "1", ",", "1"}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], ",", 
+   RowBox[{"PlotPoints", "\[Rule]", "100"}]}], "]"}]], "Input",
+ CellChangeTimes->{3.472449874358597*^9, 3.50433698593604*^9},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Ejercicio:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{3.472449885779574*^9},
+ FontSize->16,
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell["\<\
+6. Determina y representa las curvas en el espacio que tienen las siguientes \
+curvaturas y torsiones:
+\t(a).   k(s) = s+1; t(s) = 0 .5
+\t(b).   k(s) = s; t(s) = sen(s)
+\t(c).   k(s) =  cos(s); t(s) = sen(s) \t\
+\>", "Text",
+ CellChangeTimes->{{3.47239974269524*^9, 3.4723998009258413`*^9}, 
+   3.472399929999411*^9, {3.47244990128399*^9, 3.472449909995002*^9}, {
+   3.504270274165771*^9, 3.5042703108204803`*^9}, {3.504288378100219*^9, 
+   3.504288384699988*^9}, 3.504336835982481*^9, {3.530257429230844*^9, 
+   3.530257429621622*^9}, {3.530257492156003*^9, 3.530257505273522*^9}},
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontWeight->"Plain",
+ FontVariations->{"CompatibilityType"->0}],
+
+Cell[TextData[StyleBox["\nInstrucciones al terminar la pr\[AAcute]ctica:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{
+  3.472449885779574*^9, {3.530272458081758*^9, 3.530272525109302*^9}},
+ FontSize->16,
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell["\<\
+1. Graba la pr\[AAcute]ctica y no olvides escribir tu nombre en el espacio \
+reservado para ello al principio de la pr\[AAcute]ctica.
+2. Aseg\[UAcute]rate de que has realizado todos los ejercicios y de que todas \
+las celdas se evaluan sin problemas.
+3. Borra las celdas de salida: busca el comando Delete All Output en alguna \
+de las pesta\[NTilde]as del men\[UAcute] superior (Cell o Notebook). Graba.\
+\[LineSeparator]\[LineSeparator]
+
+\t\
+\>", "Text",
+ CellChangeTimes->{{3.47239974269524*^9, 3.4723998009258413`*^9}, 
+   3.472399929999411*^9, {3.47244990128399*^9, 3.472449909995002*^9}, {
+   3.504270274165771*^9, 3.5042703108204803`*^9}, {3.504288378100219*^9, 
+   3.504288384699988*^9}, 3.504336835982481*^9, {3.530257429230844*^9, 
+   3.530257429621622*^9}, {3.530257492156003*^9, 3.530257505273522*^9}, {
+   3.530272543780018*^9, 3.530272605843875*^9}, {3.5302726447231417`*^9, 
+   3.5302728872423887`*^9}, {3.6670432422235928`*^9, 3.667043268005351*^9}, {
+   3.6670433892331123`*^9, 3.667043441385969*^9}, 3.667043475722834*^9, 
+   3.667043533844707*^9},
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontWeight->"Plain",
+ FontVariations->{"CompatibilityType"->0}]
+},
+WindowToolbars->"EditBar",
+WindowSize->{1390, 808},
+WindowMargins->{{-2, Automatic}, {Automatic, 41}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+FrontEndVersion->"6.0 for Mac OS X x86 (32-bit) (April 20, 2007)",
+StyleDefinitions->"Classroom.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[568, 21, 405, 11, 107, "Text"],
+Cell[976, 34, 781, 19, 94, "Text"],
+Cell[1760, 55, 724, 14, 28, "Text"],
+Cell[2487, 71, 217, 5, 61, "Text"],
+Cell[2707, 78, 452, 15, 48, "Input"],
+Cell[3162, 95, 512, 13, 48, "Input"],
+Cell[3677, 110, 961, 24, 48, "Input"],
+Cell[4641, 136, 1108, 23, 160, "Text"],
+Cell[5752, 161, 609, 14, 48, "Input"],
+Cell[6364, 177, 519, 13, 48, "Input"],
+Cell[6886, 192, 982, 20, 48, "Input"],
+Cell[7871, 214, 383, 10, 94, "Text"],
+Cell[8257, 226, 778, 21, 48, "Input"],
+Cell[9038, 249, 888, 20, 48, "Input"],
+Cell[9929, 271, 526, 12, 48, "Input"],
+Cell[10458, 285, 495, 12, 127, "Text"],
+Cell[10956, 299, 385, 7, 28, "Text"],
+Cell[11344, 308, 576, 17, 48, "Input"],
+Cell[11923, 327, 1044, 29, 48, "Input"],
+Cell[12970, 358, 418, 8, 61, "Text"],
+Cell[13391, 368, 596, 18, 48, "Input"],
+Cell[13990, 388, 496, 13, 48, "Input"],
+Cell[14489, 403, 738, 20, 48, "Input"],
+Cell[15230, 425, 271, 5, 61, "Text"],
+Cell[15504, 432, 480, 15, 48, "Input"],
+Cell[15987, 449, 586, 17, 48, "Input"],
+Cell[16576, 468, 859, 22, 69, "Input"],
+Cell[17438, 492, 188, 4, 61, "Text"],
+Cell[17629, 498, 1371, 29, 94, "Text"],
+Cell[19003, 529, 509, 12, 94, "Text"],
+Cell[19515, 543, 311, 6, 28, "Text"],
+Cell[19829, 551, 619, 19, 48, "Input"],
+Cell[20451, 572, 487, 14, 48, "Input"],
+Cell[20941, 588, 225, 6, 48, "Input"],
+Cell[21169, 596, 297, 8, 48, "Input"],
+Cell[21469, 606, 135, 3, 48, "Input"],
+Cell[21607, 611, 265, 5, 61, "Text"],
+Cell[21875, 618, 464, 13, 48, "Input"],
+Cell[22342, 633, 223, 6, 48, "Input"],
+Cell[22568, 641, 298, 8, 48, "Input"],
+Cell[22869, 651, 320, 6, 61, "Text"],
+Cell[23192, 659, 796, 23, 48, "Input"],
+Cell[23991, 684, 174, 4, 48, "Input"],
+Cell[24168, 690, 294, 8, 48, "Input"],
+Cell[24465, 700, 264, 8, 48, "Input"],
+Cell[24732, 710, 411, 8, 61, "Text"],
+Cell[25146, 720, 1369, 42, 89, "Input"],
+Cell[26518, 764, 227, 5, 48, "Input"],
+Cell[26748, 771, 295, 8, 48, "Input"],
+Cell[27046, 781, 267, 7, 48, "Input"],
+Cell[27316, 790, 457, 8, 61, "Text"],
+Cell[27776, 800, 556, 16, 48, "Input"],
+Cell[28335, 818, 276, 6, 48, "Input"],
+Cell[28614, 826, 342, 9, 48, "Input"],
+Cell[28959, 837, 313, 8, 48, "Input"],
+Cell[29275, 847, 316, 5, 61, "Text"],
+Cell[29594, 854, 1611, 47, 69, "Input"],
+Cell[31208, 903, 329, 9, 48, "Input"],
+Cell[31540, 914, 345, 9, 48, "Input"],
+Cell[31888, 925, 423, 7, 61, "Text"],
+Cell[32314, 934, 755, 16, 48, "Input"],
+Cell[33072, 952, 377, 10, 48, "Input"],
+Cell[33452, 964, 387, 9, 48, "Input"],
+Cell[33842, 975, 330, 10, 59, "Text"],
+Cell[34175, 987, 1469, 24, 103, "Text"],
+Cell[35647, 1013, 329, 7, 61, "Text"],
+Cell[35979, 1022, 971, 19, 103, "Text"],
+Cell[36953, 1043, 460, 10, 28, "Text"],
+Cell[37416, 1055, 384, 9, 48, "Input"],
+Cell[37803, 1066, 4512, 126, 249, "Input"],
+Cell[42318, 1194, 721, 19, 69, "Input"],
+Cell[43042, 1215, 163, 4, 28, "Text"],
+Cell[43208, 1221, 701, 15, 127, "Text"],
+Cell[43912, 1238, 250, 5, 61, "Text"],
+Cell[44165, 1245, 1185, 23, 202, "Text"]
+}
+]
+*)
+
+(* End of internal cache information *)
