@@ -4,48 +4,64 @@
  * as a guideline for developing your own functions.
  */
 
-#include "operaciones_aritmeticas.h"
+#include "dir.h"
+
+int *
+print_1_svc(char *arg1,  struct svc_req *rqstp)
+{
+	static int  result;
+
+	/*
+	 * insert server code here
+	 */
+
+	return &result;
+}
 
 int *
 suma_1_svc(int arg1, int arg2,  struct svc_req *rqstp)
 {
-
 	static int  result;
 
+	/*
+	 * insert server code here
+	 */
 	result = arg1 + arg2;
-
-	return(&result);
+	return &result;
 }
 
 int *
 resta_1_svc(int arg1, int arg2,  struct svc_req *rqstp)
 {
-
 	static int  result;
 
+	/*
+	 * insert server code here
+	 */
 	result = arg1 - arg2;
-
-	return(&result);
+	return &result;
 }
 
 int *
 multiplicacion_1_svc(int arg1, int arg2,  struct svc_req *rqstp)
 {
-
 	static int  result;
 
+	/*
+	 * insert server code here
+	 */
 	result = arg1 * arg2;
-
-	return(&result);
+	return &result;
 }
 
 int *
 division_1_svc(int arg1, int arg2,  struct svc_req *rqstp)
 {
-
 	static int  result;
 
+	/*
+	 * insert server code here
+	 */
 	result = arg1 / arg2;
-
-	return(&result);
+	return &result;
 }
