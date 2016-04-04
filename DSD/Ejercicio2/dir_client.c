@@ -6,21 +6,21 @@
 
 #include "dir.h"
 
-void InterpretarResultadoInserccion(const estado *e){
+void PrintInserccion(const estado *e){
 	switch(*e){
 		case 0:
-			printf("Insercción correcta\n");
+			printf("Correcto\n");
 			break;
 		case 1:
 			printf("Insercción con reemplazo\n");
 			break;
 		case 2:
-			printf("Error en la insercción\n");
+			printf("Error\n");
 			break;
 	}
 }
 
-void InterpretarResultadoBorrado(const estado *e){
+void PrintBorrado(const estado *e){
 	switch(*e){
 		case 0:
 			printf("Elemento correctamente eliminado\n");
@@ -31,20 +31,20 @@ void InterpretarResultadoBorrado(const estado *e){
 	}
 }
 
-void InterpretarResultadoObtener(const resultado_obtener *res){
-	if((*res).e == OK)
+void PrintObtener(const resultado_obtener *res){
+	if((*res).e == Correcto)
 		printf("El valor es: %s\n",(*res).resultado_obtener_u.v1);
 	else
 		printf("No se encuentra ningun resultado para los parametros indicados\n");
 }
 
-void InterpretarResultadoEnumerar(const resultado_enumerar *res){
-	if((*res).e == OK){
+void PrintEnumerar(const resultado_enumerar *res){
+	if((*res).e == Correcto){
 		printf("------Lista------\n");
 		diccionarios *d_aux = (*res).resultado_enumerar_u.c;
-		while(d_aux->l != NULL)
-		{
-			printf("Clave: %s ; Valor: %s \n", d_aux->l->a.c,d_aux->l->a.v);
+
+		while(d_aux->l != NULL){
+			printf("%s: %s \n", d_aux->l->a.c, d_aux->l->a.v);
 			d_aux->l = d_aux->l->sig;
 		}
 	}
@@ -98,7 +98,7 @@ dirprog_1(char *host)
 #endif	 /* DEBUG */
 }
 
-void dirprog_1(char *host)
+void start(char *host)
 {
 	CLIENT *clnt;
 	clnt = clnt_create (host, DIRPROG, DIRVER, "udp");
@@ -107,49 +107,53 @@ void dirprog_1(char *host)
 		exit (1);
 	}
 
-	int select,id;
-	char c[10];
-	char v[10];
-	estado  *estado1;
+	int option;
+	int id;
+	char clave[10];
+	char valor[10];
+	estado  *estado;
 	resultado_obtener  *consulta;
 	resultado_enumerar  *listar;
-	while(1)
-	{
+
+	while(1){
 		printf("\n¿Qué operación desea hacer?:\n");
 		printf("Añadir --> 0\n");
 		printf("Consultar --> 1\n");
 		printf("Borrar --> 2\n");
 		printf("Enumerar --> 3\n");
-		scanf("%i",&select);
+		scanf("%i",&option);
 
-		if(select == 0){
-			printf("ID:\n");
+		if(option == 0){
+			printf("\nID: ");
 			scanf("%i",&id);
-			printf("Introduce la clave:\n");
-			scanf("%10s",c);
-			printf("Introduce el valor:\n");
-			scanf("%10s",v);
-			estado1 = ponerasociacion_1(id, c, v, clnt);
-			InterpretarResultadoInserccion(estado1);
-		else if(select == 1)
-			printf("ID:\n");
+			printf("\nClave: ");
+			scanf("%10s",clave);
+			printf("\nIntroduce el valor: ");
+			scanf("%10s",valor);
+			estado = ponerasociacion_1(id, clave, valor, clnt);
+			PrintInserccion(estado1);
+		}
+		else if(option == 1){
+			printf("\nID: ");
 			scanf("%i",&id);
-			printf("Introduce la clave:\n");
-			scanf("%10s",c);
-			consulta = obtenerasociacion_1(id,c,clnt);
-			InterpretarResultadoObtener(consulta);
-		else if(select == 2)
-			printf("ID:\n");
+			printf("\nClave: ");
+			scanf("%10s",clave);
+			consulta = obtenerasociacion_1(id, clave, clnt);
+			PrintObtener(consulta);
+		}
+		else if(option == 2){
+			printf("\nID:\n");
 			scanf("%i",&id);
-			printf("Introduce la clave:\n");
-			scanf("%10s",c);
-			estado1 = borrarasociacion_1(id,c,clnt);
-			InterpretarResultadoBorrado(estado1);
-		else if(select == 3)
-			printf("ID:\n");
+			printf("\nClave: ");
+			scanf("%10s",clave);
+			estado = borrarasociacion_1(id, clave, clnt);
+			PrintBorrado(estado1);
+		}
+		else if(option == 3){
+			printf("\nID: ");
 			scanf("%i",&id);	
 			listar = enumerar_1(id, clnt);
-			InterpretarResultadoEnumerar(listar);
+			PrintEnumerar(listar);
 		}
 	}
 }
@@ -163,7 +167,8 @@ main (int argc, char *argv[])
 		printf ("usage: %s server_host\n", argv[0]);
 		exit (1);
 	}
+	
 	host = argv[1];
-	dirprog_1 (host);
+	start (host);
 	exit (0);
 }

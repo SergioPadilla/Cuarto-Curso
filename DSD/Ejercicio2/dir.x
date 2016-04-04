@@ -4,8 +4,8 @@ typedef string clave<10>;
 typedef string valor<10>;
 
 enum estado{
-	OK = 0,
-	Sustitucion = 1,
+	Correcto = 0,
+	Sustituido = 1,
 	NoEncontrado = 2
 };
 
