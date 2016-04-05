@@ -40,9 +40,9 @@ xdr_asociacion (XDR *xdrs, asociacion *objp)
 {
 	register int32_t *buf;
 
-	 if (!xdr_clave (xdrs, &objp->c))
+	 if (!xdr_clave (xdrs, &objp->key))
 		 return FALSE;
-	 if (!xdr_valor (xdrs, &objp->v))
+	 if (!xdr_valor (xdrs, &objp->value))
 		 return FALSE;
 	return TRUE;
 }
@@ -54,7 +54,7 @@ xdr_lista (XDR *xdrs, lista *objp)
 
 	 if (!xdr_asociacion (xdrs, &objp->a))
 		 return FALSE;
-	 if (!xdr_pointer (xdrs, (char **)&objp->sig, sizeof (lista), (xdrproc_t) xdr_lista))
+	 if (!xdr_pointer (xdrs, (char **)&objp->next, sizeof (lista), (xdrproc_t) xdr_lista))
 		 return FALSE;
 	return TRUE;
 }
@@ -66,9 +66,9 @@ xdr_diccionarios (XDR *xdrs, diccionarios *objp)
 
 	 if (!xdr_int (xdrs, &objp->id))
 		 return FALSE;
-	 if (!xdr_pointer (xdrs, (char **)&objp->l, sizeof (lista), (xdrproc_t) xdr_lista))
+	 if (!xdr_pointer (xdrs, (char **)&objp->list, sizeof (lista), (xdrproc_t) xdr_lista))
 		 return FALSE;
-	 if (!xdr_pointer (xdrs, (char **)&objp->sig, sizeof (diccionarios), (xdrproc_t) xdr_diccionarios))
+	 if (!xdr_pointer (xdrs, (char **)&objp->next, sizeof (diccionarios), (xdrproc_t) xdr_diccionarios))
 		 return FALSE;
 	return TRUE;
 }

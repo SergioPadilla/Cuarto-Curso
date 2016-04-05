@@ -22,7 +22,7 @@ OBJECTS_SVC = $(SOURCES_SVC.c:%.c=%.o) $(TARGETS_SVC.c:%.c=%.o)
 
 CFLAGS += -g 
 LDLIBS += -lnsl
-RPCGENFLAGS = 
+RPCGENFLAGS = -N
 
 # Targets 
 

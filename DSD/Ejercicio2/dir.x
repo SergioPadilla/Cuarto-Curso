@@ -10,19 +10,19 @@ enum estado{
 };
 
 struct asociacion{
-	clave c;
-	valor v;
+	clave key;
+	valor value;
 };
 
 struct lista{
 	asociacion a;
-	lista* sig;
+	lista* next;
 };
 
 struct diccionarios{
 	int id;
-	lista* l;
-	diccionarios* sig;	
+	lista* list;
+	diccionarios* next;	
 };
 
 union resultado_obtener 

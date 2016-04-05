@@ -8,62 +8,60 @@
 
 typedef enum { false, true } bool;
 
-diccionarios* dic = NULL;
+diccionarios* dict = NULL;
 
 estado *
 ponerasociacion_1_svc(int arg1, clave arg2, valor arg3,  struct svc_req *rqstp){
 	static estado  result;
-	if(dic == NULL){
-		//Creamos diccionario
+	if(dict == NULL){
 		diccionarios* d = (diccionarios*) malloc(sizeof(diccionarios));
 		d->id = arg1;
-		d->sig = NULL;
-		lista* l = (lista*) malloc(sizeof(lista));
-		l->a.c = strdup(arg2);
-		l->a.v = strdup(arg3);
-		l->sig = NULL;
-		d->l = l;
-		dic = d;
+		d->next = NULL;
+		lista* list = (lista*) malloc(sizeof(lista));
+		list->a.key = strdup(arg2);
+		list->a.value = strdup(arg3);
+		list->next = NULL;
+		d->list = list;
+		dict = d;
 		result = Correcto;
 		return &result;
 	}
 	else{
-		diccionarios* aux_dic = dic;
-		while(aux_dic != NULL){	
-			if(aux_dic->id == arg1){//Si existe
-				lista* aux_lista = aux_dic->l;
+		diccionarios* dict2 = dict;
+		while(dict2 != NULL){	
+			if(dict2->id == arg1){
+				lista* aux_lista = dict2->list;
 				while(aux_lista != NULL){
-					if(strcmp (aux_lista->a.c,arg2)==0){
-						aux_lista->a.c = strdup(arg2);
-						aux_lista->a.v = strdup(arg3);
+					if(strcmp (aux_lista->a.key,arg2)==0){
+						aux_lista->a.key = strdup(arg2);
+						aux_lista->a.value = strdup(arg3);
 						result = Sustituido;
 						return &result;
-					}else if(aux_lista->sig != NULL)
-						aux_lista = aux_lista->sig;
+					}else if(aux_lista->next != NULL)
+						aux_lista = aux_lista->next;
 					else{
-						lista* l = (lista*) malloc(sizeof(lista));
-						l->a.c = strdup(arg2);
-						l->a.v = strdup(arg3);
-						l->sig = NULL;
-						aux_lista->sig = l;
+						lista* list = (lista*) malloc(sizeof(lista));
+						list->a.key = strdup(arg2);
+						list->a.value = strdup(arg3);
+						list->next = NULL;
+						aux_lista->next = list;
 						result = Correcto;
 						return &result;
 					}
 				}
 			}
-			else if(aux_dic->sig != NULL)
-				aux_dic = aux_dic->sig;
+			else if(dict2->next != NULL)
+				dict2 = dict2->next;
 			else{
-				//Creamos diccionario y lo enlazamos
 				diccionarios* d = (diccionarios*) malloc(sizeof(diccionarios));
 				d->id = arg1;
-				d->sig = NULL;
-				lista* l = (lista*) malloc(sizeof(lista));
-				l->a.c = strdup(arg2);
-				l->a.v = strdup(arg3);
-				l->sig = NULL;
-				d->l = l;
-				aux_dic->sig = d;
+				d->next = NULL;
+				lista* list = (lista*) malloc(sizeof(lista));
+				list->a.key = strdup(arg2);
+				list->a.value = strdup(arg3);
+				list->next = NULL;
+				d->list = list;
+				dict2->next = d;
 				result = Correcto;
 				return &result;
 			}	
@@ -76,24 +74,24 @@ obtenerasociacion_1_svc(int arg1, clave arg2,  struct svc_req *rqstp)
 {
 	static resultado_obtener  result;
 
-	diccionarios* aux_dic = dic;
-	while(aux_dic != NULL){	
-		if(aux_dic->id == arg1){
-			lista* aux_lista = aux_dic->l;
+	diccionarios* dict2 = dict;
+	while(dict2 != NULL){	
+		if(dict2->id == arg1){
+			lista* aux_lista = dict2->list;
 			while(aux_lista != NULL){
-				if(strcmp (aux_lista->a.c,arg2)==0){
+				if(strcmp (aux_lista->a.key,arg2)==0){
 					result.e = Correcto;
-					result.resultado_obtener_u.v1 = strdup(aux_lista->a.v);
+					result.resultado_obtener_u.v1 = strdup(aux_lista->a.value);
 					return &result;
 				}
 				else
-					aux_lista = aux_lista->sig;
+					aux_lista = aux_lista->next;
 			}
 			result.e = NoEncontrado;
 			return &result;	
 		}
-		else//Si no, avanzamos en la lista
-			aux_dic = aux_dic->sig;
+		else
+			dict2 = dict2->next;
 	}
 	result.e = NoEncontrado;
 	return &result;		
@@ -104,70 +102,65 @@ borrarasociacion_1_svc(int arg1, clave arg2,  struct svc_req *rqstp)
 {
 	static estado  result;
 
-	if(dic == NULL){
+	if(dict == NULL){
 		result = NoEncontrado;
 		return &result;
 	}
 	else{
-		int posicion_dic = 0, posicion_list = 0;
-		bool primer_dic = true, primer_lista = true;
-		diccionarios* aux_dic = dic;
-		diccionarios* anterior_dic = dic;
-		while(aux_dic != NULL){
-			if(aux_dic->id == arg1){
-				lista* aux_lista = aux_dic->l;
-				lista* anterior_lista = aux_dic->l;
+		int posicion_dict = 0, posicion_list = 0;
+		bool primer_dict = true, primer_lista = true;
+		diccionarios* dict2 = dict;
+		diccionarios* anterior_dict = dict;
+		while(dict2 != NULL){
+			if(dict2->id == arg1){
+				lista* aux_lista = dict2->list;
+				lista* anterior_lista = dict2->list;
+
 				while(aux_lista != NULL){
-					if(strcmp (aux_lista->a.c,arg2)==0){
+					if(strcmp (aux_lista->a.key,arg2)==0){
 						if(primer_lista==true){
-							if(aux_lista->sig == NULL){
-								if(primer_dic==true){
-									if(aux_dic->sig == NULL){
-										printf("Vamos a elminar el unico diccionario ocn un elemento\n");
-										xdr_free ((xdrproc_t) xdr_diccionarios, (diccionarios *) dic);
-										dic = NULL;
-									}else{
-										printf("Existe otro detras\n");
-										dic = aux_dic->sig;//Asignamos el primero al siguiente del primero
-										xdr_free ((xdrproc_t) xdr_diccionarios, (diccionarios *) aux_dic);//Liberamos
+							if(aux_lista->next == NULL){
+								if(primer_dict==true){
+									if(dict2->next == NULL){
+										xdr_free ((xdrproc_t) xdr_diccionarios, (diccionarios *) dict);
+										dict = NULL;
+									}
+									else{
+										dict = dict2->next;
+										xdr_free ((xdrproc_t) xdr_diccionarios, (diccionarios *) dict2);
 									}
 								}
-								else if(aux_dic->sig == NULL){
-									printf("Ultimo elemento de un unico diccionario\n");
-									xdr_free ((xdrproc_t) xdr_diccionarios, (diccionarios *) aux_dic);//Liberamos
-									anterior_dic->sig = NULL;
+								else if(dict2->next == NULL){
+									xdr_free ((xdrproc_t) xdr_diccionarios, (diccionarios *) dict2);
+									anterior_dict->next = NULL;
 								}
 								else{
-									printf("Eliminamos un diccionario en mitad que tiene un solo elemento\n");
-									anterior_dic->sig = aux_dic->sig;//Asignamos el sig del anterior al sig del que vamos a borrar
-									aux_dic->sig = NULL;
-									xdr_free ((xdrproc_t) xdr_diccionarios, (diccionarios *) aux_dic);//Liberamos
+									anterior_dict->next = dict2->next;
+									dict2->next = NULL;
+									xdr_free ((xdrproc_t) xdr_diccionarios, (diccionarios *) dict2);
 								}
 							}
 							else{
-								printf("Eliminamos el primer elemento de la lista y hay mas\n");
-								aux_dic->l = aux_lista->sig;
-								aux_lista->sig = NULL;
-								xdr_free ((xdrproc_t) xdr_lista, (lista *) aux_lista);//Liberamos
+								dict2->list = aux_lista->next;
+								aux_lista->next = NULL;
+								xdr_free ((xdrproc_t) xdr_lista, (lista *) aux_lista);
 							}
 						}
-						else if(aux_lista->sig == NULL){
-							printf("Ultimo elemento de la lista\n");
-							anterior_lista->sig = NULL;
-							xdr_free ((xdrproc_t) xdr_lista, (lista *) aux_lista);//Liberamos
+						else if(aux_lista->next == NULL){
+							anterior_lista->next = NULL;
+							xdr_free ((xdrproc_t) xdr_lista, (lista *) aux_lista);
 						}
 						else{
-							printf("Un elemento en mitad de la lista\n");
-							anterior_lista->sig = aux_lista->sig;//Asignamos el sig del anterior al sig del que vamos a borrar
-							aux_lista->sig = NULL;
-							xdr_free ((xdrproc_t) xdr_lista, (lista *) aux_lista);//Liberamos
+							anterior_lista->next = aux_lista->next;
+							aux_lista->next = NULL;
+							xdr_free ((xdrproc_t) xdr_lista, (lista *) aux_lista);
 						}
 						result = Correcto;
 						return &result;
 					}
 					else{
 						anterior_lista = aux_lista;
-						aux_lista = aux_lista->sig;
+						aux_lista = aux_lista->next;
 						primer_lista = false;
 					}
 				}
@@ -176,9 +169,9 @@ borrarasociacion_1_svc(int arg1, clave arg2,  struct svc_req *rqstp)
 				return &result;	
 			}
 			else{
-				anterior_dic = aux_dic;//Para borrar uno de en medio
-				aux_dic = aux_dic->sig;
-				primer_dic = false;
+				anterior_dict = dict2;
+				dict2 = dict2->next;
+				primer_dict = false;
 			}
 		}
 		
@@ -187,37 +180,20 @@ borrarasociacion_1_svc(int arg1, clave arg2,  struct svc_req *rqstp)
 	}
 }
 
-void
-pintarLista()
-{
-	diccionarios* aux_dic = dic;
-	while(aux_dic != NULL){	
-		printf("\n---Lista %i---\n", aux_dic->id);
-		lista* aux_lista = aux_dic->l;
-
-		while(aux_lista != NULL){
-			printf("El valor es: %s ; \n",aux_lista->a.c);
-			aux_lista = aux_lista->sig;
-		}
-
-		aux_dic = aux_dic->sig;
-	}
-}
-
 resultado_enumerar *
 enumerar_1_svc(int arg1,  struct svc_req *rqstp)
 {
 	static resultado_enumerar  result;
-	diccionarios* aux_dic = dic;
+	diccionarios* dict2 = dict;
 
-	while(aux_dic != NULL){	
-		if(aux_dic->id == arg1){
-			result.resultado_enumerar_u.c = aux_dic;
+	while(dict2 != NULL){	
+		if(dict2->id == arg1){
+			result.resultado_enumerar_u.c = dict2;
 			result.e = Correcto;
 			return &result;
 		}
 		else
-			aux_dic = aux_dic->sig;
+			dict2 = dict2->next;
 	}
 	
 	result.e = NoEncontrado;

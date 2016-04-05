@@ -43,9 +43,9 @@ void PrintEnumerar(const resultado_enumerar *res){
 		printf("------Lista------\n");
 		diccionarios *d_aux = (*res).resultado_enumerar_u.c;
 
-		while(d_aux->l != NULL){
-			printf("%s: %s \n", d_aux->l->a.c, d_aux->l->a.v);
-			d_aux->l = d_aux->l->sig;
+		while(d_aux->list != NULL){
+			printf("%s: %s \n", d_aux->list->a.key, d_aux->list->a.value);
+			d_aux->list = d_aux->list->next;
 		}
 	}
 	else
@@ -131,7 +131,7 @@ void start(char *host)
 			printf("\nIntroduce el valor: ");
 			scanf("%10s",valor);
 			estado = ponerasociacion_1(id, clave, valor, clnt);
-			PrintInserccion(estado1);
+			PrintInserccion(estado);
 		}
 		else if(option == 1){
 			printf("\nID: ");
@@ -147,7 +147,7 @@ void start(char *host)
 			printf("\nClave: ");
 			scanf("%10s",clave);
 			estado = borrarasociacion_1(id, clave, clnt);
-			PrintBorrado(estado1);
+			PrintBorrado(estado);
 		}
 		else if(option == 3){
 			printf("\nID: ");

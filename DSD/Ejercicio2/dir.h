@@ -19,28 +19,28 @@ typedef char *clave;
 typedef char *valor;
 
 enum estado {
-	OK = 0,
-	Sustitucion = 1,
+	Correcto = 0,
+	Sustituido = 1,
 	NoEncontrado = 2,
 };
 typedef enum estado estado;
 
 struct asociacion {
-	clave c;
-	valor v;
+	clave key;
+	valor value;
 };
 typedef struct asociacion asociacion;
 
 struct lista {
 	asociacion a;
-	struct lista *sig;
+	struct lista *next;
 };
 typedef struct lista lista;
 
 struct diccionarios {
 	int id;
-	lista *l;
-	struct diccionarios *sig;
+	lista *list;
+	struct diccionarios *next;
 };
 typedef struct diccionarios diccionarios;
 
