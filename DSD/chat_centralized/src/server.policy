@@ -1,0 +1,3 @@
+grant codeBase "file:/Users/SergioPadilla/GitHub/Cuarto-Curso/DSD/chat_centralized/src/" {
+    permission java.security.AllPermission;
+};
