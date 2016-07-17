@@ -1,0 +1,1999 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     75489,       1990]
+NotebookOptionsPosition[     71635,       1886]
+NotebookOutlinePosition[     71990,       1902]
+CellTagsIndexPosition[     71947,       1899]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Pr\[AAcute]ctica 3: Superficies, plano tangente y orientaci\[OAcute]n local
+Nombre y apellidos: Sergio Padilla L\[OAcute]pez\
+\>", "Text",
+ CellChangeTimes->{{3.477568789593203*^9, 3.477568790976027*^9}, {
+   3.5088531767403517`*^9, 3.508853185888661*^9}, {3.5088539237386303`*^9, 
+   3.508853948472295*^9}, {3.535284157356146*^9, 3.535284166906899*^9}, 
+   3.535284239606587*^9, {3.535630301789466*^9, 3.535630302949041*^9}, 
+   3.669441136610084*^9, 3.669441184977298*^9, {3.669441831853702*^9, 
+   3.669441836253046*^9}, 3.6694419867299147`*^9, {3.6695490668209352`*^9, 
+   3.669549067947049*^9}, {3.6759263879721518`*^9, 3.67592639200136*^9}},
+ FontFamily->"Arial",
+ FontSize->36,
+ FontWeight->"Bold",
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell[TextData[StyleBox["\nPrimera parte",
+ FontFamily->"Arial",
+ FontSize->24,
+ FontWeight->"Bold",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{
+  3.477568787098489*^9, {3.5352842446854*^9, 3.535284246277028*^9}, 
+   3.6694419904805307`*^9}],
+
+Cell[TextData[{
+ StyleBox["Objetivo:",
+  FontFamily->"Book Antiqua",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox[" Aprender los comandos b\[AAcute]sicos para representar \
+gr\[AAcute]ficamente superficies con ",
+  FontFamily->"Book Antiqua"],
+ StyleBox["Mathematica", "Title",
+  FontFamily->"Book Antiqua",
+  FontSize->14,
+  FontSlant->"Italic",
+  FontColor->GrayLevel[0],
+  Background->GrayLevel[1]],
+ StyleBox[".\n",
+  FontFamily->"Book Antiqua"]
+}], "Text",
+ CellChangeTimes->{
+  3.535284248966318*^9, {3.669441191408678*^9, 3.669441194216642*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Comandos de representaci\[OAcute]n gr\[AAcute]fica de \
+superficies:\n", "Section",
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontSlant->"Italic",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{{3.535284262033064*^9, 3.535284292401986*^9}, 
+   3.535286416765626*^9, {3.6694411973768673`*^9, 3.6694412164651337`*^9}, {
+   3.6694420046743593`*^9, 3.669442023897264*^9}},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["Plot3D",
+  FontFamily->"Bookman Old Style",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["\nPlot3D[f[u,v],{u, u1, u2},{v, v1, v2},",
+  FontFamily->"Bookman Old Style"],
+ StyleBox["opciones",
+  FontFamily->"Bookman Old Style",
+  FontSlant->"Italic"],
+ StyleBox["] dibuja el grafo de la funci\[OAcute]n de dos variables f(u,v)",
+  FontFamily->"Bookman Old Style"],
+ StyleBox[" ",
+  FontFamily->"Bookman Old Style",
+  FontSlant->"Italic"],
+ StyleBox["en el rect\[AAcute]ngulo [u1,u2] x [v1,v2] con las opciones \
+indicadas.\n",
+  FontFamily->"Bookman Old Style"]
+}], "Text",
+ CellChangeTimes->{{3.508853215159013*^9, 3.5088532166276712`*^9}, {
+   3.508853265487136*^9, 3.508853381291004*^9}, {3.508854125063313*^9, 
+   3.508854131757587*^9}, {3.509104946942233*^9, 3.509104955532526*^9}, 
+   3.535284284343172*^9, {3.535286814023924*^9, 3.535286842317474*^9}, {
+   3.669549113814486*^9, 3.669549131101605*^9}},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["Ejemplos:\n",
+  FontFamily->"Book Antiqua",
+  FontColor->RGBColor[0, 0, 1]],
+ StyleBox["Definimos las funciones:",
+  FontFamily->"Book Antiqua"]
+}], "Text",
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ParaboloideEliptico", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"u", "^", "2"}], "+", 
+    RowBox[{"v", "^", "2"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.5352868458354483`*^9, 3.535286851390387*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ParaboloideHiperbolico", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"u", "^", "2"}], "-", 
+    RowBox[{"v", "^", "2"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.535286853794669*^9, 3.535286859405951*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Representamos ahora gr\[AAcute]ficamente el \
+paraboloide el\[IAcute]ptico:",
+ FontFamily->"Book Antiqua"]], "Text",
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"Plot3D", "[", 
+  RowBox[{
+   RowBox[{"ParaboloideEliptico", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.477568857419436*^9, {3.535286864447982*^9, 3.535286870143238*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["y el paraboloide hiperb\[OAcute]lico en un cuadrado \
+de lado 8 centrado en (0,0) (especifica t\[UAcute] el cuadrado, completando \
+las interrogaciones):",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.445069555328125*^9, 3.445069575265625*^9}, {
+  3.508854178614519*^9, 3.508854189228591*^9}, {3.535284356770336*^9, 
+  3.5352843569219103`*^9}, {3.535286440133408*^9, 3.535286487932679*^9}, {
+  3.669442050043232*^9, 3.6694420509380217`*^9}, {3.66954918027319*^9, 
+  3.669549199928082*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"Plot3D", "[", 
+  RowBox[{
+   RowBox[{"ParaboloideHiperbolico", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{"?", ",?},{v,?,?}]"}]}]}]}]}]], "Input",
+ CellChangeTimes->{{3.44506958*^9, 3.4450695885*^9}, {3.47756889454602*^9, 
+  3.477568905096448*^9}, {3.477570410682336*^9, 3.477570416589169*^9}, {
+  3.477574066620064*^9, 3.4775740840879374`*^9}, {3.477577002097917*^9, 
+  3.4775770144314623`*^9}, {3.5352868757656*^9, 3.535286882727676*^9}},
+ EmphasizeSyntaxErrors->True,
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["Al utilizar el comando Plot3D, ",
+  FontFamily->"Book Antiqua"],
+ StyleBox["Mathematica",
+  FontFamily->"Book Antiqua",
+  FontSlant->"Italic"],
+ StyleBox[" representa los grafos ajustando autom\[AAcute]ticamente el tama\
+\[NTilde]o de los ejes. Si queremos mantener la proporci\[OAcute]n, debemos \
+utilizar la opci\[OAcute]n ",
+  FontFamily->"Book Antiqua"],
+ StyleBox["BoxRatios->Automatic.",
+  FontFamily->"Courier New",
+  FontWeight->"Bold"]
+}], "Text",
+ CellChangeTimes->{{3.5352843866276197`*^9, 3.53528439173728*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"Plot3D", "[", 
+  RowBox[{
+   RowBox[{"ParaboloideEliptico", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"BoxRatios", "\[Rule]", "Automatic"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.477568941706023*^9, {3.535286887936911*^9, 3.535286893080003*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Podemos ver todas las opciones de Plot3D con el \
+comando Options:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.4775704527567987`*^9, 3.477570455451592*^9}, 
+   3.508854227534356*^9},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"Options", "[", "Plot3D", "]"}]], "Input",
+ FontSize->16],
+
+Cell[TextData[StyleBox["Observa el efecto de algunas opciones de Plot3D \
+mediante las siguientes \[OAcute]rdenes (puedes usar la ayuda del programa \
+para saber de forma precisa lo que hace una opci\[OAcute]n concreta):",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.4775704527567987`*^9, 3.477570455451592*^9}, 
+   3.508854227534356*^9, {3.535284548111718*^9, 3.535284660232566*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"Plot3D", "[", 
+  RowBox[{
+   RowBox[{"ParaboloideEliptico", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"BoxRatios", "\[Rule]", "Automatic"}], ",", " ", 
+   RowBox[{"PlotPoints", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"10", ",", "10"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "->", "\"\<Paraboloide\>\""}], ",", " ", 
+   RowBox[{"Boxed", "\[Rule]", "False"}], ",", " ", 
+   RowBox[{"Axes", "\[Rule]", "False"}], ",", " ", 
+   RowBox[{"Mesh", "\[Rule]", "False"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.477569079031188*^9, 3.477569205863409*^9}, {
+  3.4775693245435658`*^9, 3.477569335476762*^9}, {3.477569406851245*^9, 
+  3.477569449452113*^9}, {3.5088542745822906`*^9, 3.508854308710174*^9}, {
+  3.5092542206458187`*^9, 3.509254226045783*^9}, {3.535286899593359*^9, 
+  3.535286904729319*^9}, {3.6701550195378027`*^9, 3.670155047252194*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"Plot3D", "[", 
+  RowBox[{
+   RowBox[{"ParaboloideHiperbolico", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"BoxRatios", "\[Rule]", "Automatic"}], ",", 
+   RowBox[{"Mesh", "\[Rule]", "False"}], ",", " ", 
+   RowBox[{"Axes", "\[Rule]", "True"}], ",", 
+   RowBox[{"PlotLabel", "->", "\"\<Paraboloide hiperb\[OAcute]lico\>\""}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{
+  3.477569467396833*^9, {3.477569573222136*^9, 3.477569587513661*^9}, {
+   3.4775705135319567`*^9, 3.477570531087036*^9}, {3.509254209325333*^9, 
+   3.509254213461389*^9}, {3.535286908256867*^9, 3.535286913416582*^9}, {
+   3.535630482547206*^9, 3.535630497869987*^9}, {3.670155056003368*^9, 
+   3.670155057769499*^9}},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["\nEjercicio 1",
+  FontFamily->"Bookman Old Style",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["\nDibuja el grafo de la funcion f(u,v) = Log ( 1 / (u^2+v^2) ) \
+sobre el cuadrado [-1,1] x [-1,1], a escala real, sin ret\[IAcute]cula, con \
+ejes coordenados y sin la caja que bordea el dibujo.\n",
+  FontFamily->"Bookman Old Style"]
+}], "Text",
+ CellChangeTimes->{{3.477569608830217*^9, 3.4775696361332617`*^9}, {
+   3.477570560627747*^9, 3.477570570307063*^9}, {3.5088535115333643`*^9, 
+   3.5088535148912497`*^9}, {3.5088543549294443`*^9, 3.508854409021056*^9}, {
+   3.509105223205892*^9, 3.5091052248599863`*^9}, {3.509105311725878*^9, 
+   3.509105319366672*^9}, 3.5352844558197412`*^9, {3.535284702026052*^9, 
+   3.535284769099392*^9}, {3.5352848515908012`*^9, 3.5352849537528353`*^9}, {
+   3.535286517656287*^9, 3.535286517796328*^9}, {3.535286918287383*^9, 
+   3.535286924263699*^9}, {3.6695493019588127`*^9, 3.6695493034743233`*^9}, {
+   3.670155086961478*^9, 3.6701550886338167`*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"Log", "[", 
+    RowBox[{"1", "/", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"u", "^", "2"}], "+", 
+       RowBox[{"v", "^", "2"}]}], ")"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot3D", "[", 
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"BoxRatios", "\[Rule]", "Automatic"}], ",", " ", 
+   RowBox[{"PlotLabel", "->", "\"\<Funcion\>\""}], ",", " ", 
+   RowBox[{"Boxed", "\[Rule]", "False"}], ",", " ", 
+   RowBox[{"Axes", "\[Rule]", "True"}], ",", " ", 
+   RowBox[{"Mesh", "\[Rule]", "False"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.675926495960977*^9, 3.67592655013127*^9}, {
+  3.675926602449435*^9, 3.675926613764567*^9}, {3.675926722702003*^9, 
+  3.675926724044219*^9}, {3.675926806693626*^9, 3.675926824707285*^9}, {
+  3.675926855340858*^9, 3.675926862979048*^9}}],
+
+Cell[TextData[{
+ StyleBox["ParametricPlot3D",
+  FontFamily->"Bookman Old Style",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["\nParametricPlot3D[{x[u,v],y[u,v],z[u,v]},{u, u1, u2},{v, v1, v2},",
+  FontFamily->"Bookman Old Style"],
+ StyleBox["opciones",
+  FontFamily->"Bookman Old Style",
+  FontSlant->"Italic"],
+ StyleBox["] dibuja la imagen de la aplicaci\[OAcute]n dada por X(u,v) = ",
+  FontFamily->"Bookman Old Style"],
+ StyleBox["(x(u,v), y(u,v), z(u,v))  ",
+  FontFamily->"Bookman Old Style",
+  FontSlant->"Italic"],
+ StyleBox["con las opciones indicadas. Al igual que ocurr\[IAcute]a para \
+Plot3D, las opciones se pueden ver con la orden:",
+  FontFamily->"Bookman Old Style"]
+}], "Text",
+ CellChangeTimes->{{3.445069629171875*^9, 3.445069649*^9}, {
+  3.4775696514189453`*^9, 3.477569655370204*^9}, {3.5088535508300037`*^9, 
+  3.508853586204926*^9}, {3.508854430866534*^9, 3.508854452823299*^9}, {
+  3.509105346629078*^9, 3.509105353887671*^9}, {3.535285053548621*^9, 
+  3.5352850763404837`*^9}, {3.5352865297599783`*^9, 3.535286550781521*^9}, {
+  3.669549468522798*^9, 3.6695494724009867`*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"Options", "[", "ParametricPlot3D", "]"}]], "Input",
+ CellChangeTimes->{{3.509254271312256*^9, 3.509254273877989*^9}},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["\nEjemplos:\n",
+  FontFamily->"Book Antiqua",
+  FontColor->RGBColor[0, 0, 1]],
+ StyleBox["Consideremos las siguientes parametrizaciones de superficies \
+conocidas:",
+  FontFamily->"Book Antiqua"]
+}], "Text",
+ CellChangeTimes->{{3.477576641301402*^9, 3.477576641436694*^9}, 
+   3.5352851127425947`*^9, {3.67014102135464*^9, 3.67014102343468*^9}, {
+   3.670155114988625*^9, 3.670155120466262*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ToroRevolucion", "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"0.3", " ", 
+        RowBox[{"Cos", "[", "u", "]"}]}]}], ")"}], " ", 
+     RowBox[{"Cos", "[", "v", "]"}]}], ",", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"0.3", 
+        RowBox[{"Cos", "[", "u", "]"}]}]}], ")"}], " ", 
+     RowBox[{"Sin", "[", "v", "]"}]}], ",", 
+    RowBox[{"0.3", " ", 
+     RowBox[{"Sin", "[", "u", "]"}]}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.509105384092186*^9, 3.509105386410182*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Elipsoide", "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"2", " ", 
+     RowBox[{"Sin", "[", "u", "]"}], " ", 
+     RowBox[{"Cos", "[", "v", "]"}]}], ",", 
+    RowBox[{"2", " ", 
+     RowBox[{"Sin", "[", "u", "]"}], " ", 
+     RowBox[{"Sin", "[", "v", "]"}]}], ",", 
+    RowBox[{"3", " ", 
+     RowBox[{"Cos", "[", "u", "]"}]}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.47757394898704*^9, 3.4775739513221292`*^9}, {
+  3.509105376144854*^9, 3.509105390650038*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Helicoide", "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"v", " ", 
+     RowBox[{"Cos", "[", "u", "]"}]}], ",", 
+    RowBox[{"v", " ", 
+     RowBox[{"Sin", "[", "u", "]"}]}], ",", "u"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.47757394898704*^9, 3.4775739513221292`*^9}, {
+  3.5088545692815533`*^9, 3.508854572750712*^9}, {3.508854645584939*^9, 
+  3.508854671873399*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Catenoide", "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Cosh", "[", "u", "]"}], " ", 
+     RowBox[{"Cos", "[", "v", "]"}]}], ",", 
+    RowBox[{
+     RowBox[{"Cosh", "[", "u", "]"}], " ", 
+     RowBox[{"Sin", "[", "v", "]"}]}], ",", "u"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.47757396561065*^9, 3.4775739689303493`*^9}, {
+  3.50885451036749*^9, 3.508854538365776*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Cilindro", "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"Cos", "[", "v", "]"}], ",", 
+    RowBox[{"Sin", "[", "v", "]"}], ",", "u"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.477573972858384*^9, 3.477573975345748*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"BandaMoebius", "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"2", "-", 
+       RowBox[{"v", " ", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"u", "/", "2"}], "]"}]}]}], ")"}], " ", 
+     RowBox[{"Sin", "[", "u", "]"}]}], ",", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"2", "-", 
+       RowBox[{"v", " ", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"u", "/", "2"}], "]"}]}]}], ")"}], " ", 
+     RowBox[{"Cos", "[", "u", "]"}]}], ",", 
+    RowBox[{"v", " ", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"u", "/", "2"}], "]"}]}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.477573978205028*^9, 3.4775739804828873`*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Nudo", "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"Cos", "[", "u", "]"}], 
+      RowBox[{"Cos", "[", "v", "]"}]}], "+", 
+     RowBox[{"3", " ", 
+      RowBox[{"Cos", "[", "u", "]"}], 
+      RowBox[{"(", 
+       RowBox[{"1.5", "+", 
+        RowBox[{
+         RowBox[{"Sin", "[", 
+          RowBox[{"1.5", " ", "u"}], "]"}], "/", "2"}]}], ")"}]}]}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Sin", "[", "u", "]"}], " ", 
+      RowBox[{"Cos", "[", "v", "]"}]}], "+", 
+     RowBox[{"3", " ", 
+      RowBox[{"Sin", "[", "u", "]"}], 
+      RowBox[{"(", 
+       RowBox[{"1.5", "+", 
+        RowBox[{
+         RowBox[{"Sin", "[", 
+          RowBox[{"1.5", " ", "u"}], "]"}], "/", "2"}]}], ")"}]}]}], ",", 
+    RowBox[{
+     RowBox[{"Sin", "[", "v", "]"}], "+", 
+     RowBox[{"2", " ", 
+      RowBox[{"Cos", "[", 
+       RowBox[{"1.5", " ", "u"}], "]"}]}]}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.477573983132784*^9, 3.4775739871160393`*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["\nLas representaciones gr\[AAcute]ficas \
+correspondientes son:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{3.535286573480967*^9},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"ToroRevolucion", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", "0", ",", 
+     RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", "0", ",", 
+     RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+   RowBox[{"PlotPoints", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"25", ",", "45"}], "}"}]}], ",", 
+   RowBox[{"ViewPoint", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"2", ",", "2", ",", "2"}], "}"}]}], ",", " ", 
+   RowBox[{"PlotLabel", "->", "\"\<Toro de revoluci\[OAcute]n\>\""}], ",", 
+   RowBox[{"Axes", "\[Rule]", "False"}]}], "]"}]], "Input",
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"Elipsoide", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", "0", ",", 
+     RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", "0", ",", 
+     RowBox[{"2", " ", "Pi"}]}], "}"}], ",", " ", 
+   RowBox[{"PlotPoints", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"50", ",", "50"}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.477569728878111*^9, 3.4775697301672688`*^9}, {
+  3.4775741465410967`*^9, 3.47757414877666*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"Helicoide", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", "0", ",", 
+     RowBox[{"2", "Pi"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", 
+     RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", " ", 
+   RowBox[{"PlotPoints", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"20", ",", "30"}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.477574153741021*^9, 3.477574155952847*^9}, {
+  3.508854701996409*^9, 3.508854720595001*^9}, {3.508854752004651*^9, 
+  3.508854753283928*^9}, {3.6701551540186653`*^9, 3.670155156056225*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"Catenoide", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", "0", ",", 
+     RowBox[{"2", " ", "Pi"}]}], "}"}], ",", " ", 
+   RowBox[{"PlotPoints", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"20", ",", "30"}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.477574160165153*^9, 3.477574162304718*^9}, {
+  3.508854727564048*^9, 3.508854731675111*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"Cilindro", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", "0", ",", 
+     RowBox[{"2", " ", "Pi"}]}], "}"}], ",", " ", 
+   RowBox[{"PlotPoints", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"20", ",", "30"}], "}"}]}], ",", 
+   RowBox[{"Mesh", "\[Rule]", "False"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.4775741668368893`*^9, 3.477574168552774*^9}, {
+  3.670155184935454*^9, 3.670155190149893*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"BandaMoebius", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", "0", ",", 
+     RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", 
+     RowBox[{"-", "0.5"}], ",", "0.5"}], "}"}], ",", " ", 
+   RowBox[{"PlotPoints", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"35", ",", "8"}], "}"}]}], ",", 
+   RowBox[{"Axes", "\[Rule]", "False"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.477574171533115*^9, 3.477574173280801*^9}, {
+  3.6701551964466877`*^9, 3.670155203991901*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"Nudo", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{
+      RowBox[{"-", "2"}], " ", "Pi"}], ",", 
+     RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", 
+     RowBox[{"-", "Pi"}], ",", "Pi"}], "}"}], ",", " ", 
+   RowBox[{"PlotPoints", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"60", ",", "15"}], "}"}]}], ",", 
+   RowBox[{"Axes", "\[Rule]", "False"}], ",", 
+   RowBox[{"Boxed", "\[Rule]", "False"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.477574176564815*^9, 3.4775741781288233`*^9}, {
+  3.670155210799377*^9, 3.670155222112556*^9}},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["\nEjercicio 2",
+  FontFamily->"Bookman Old Style",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["\nRepresenta gr\[AAcute]ficamente haciendo uso de diferentes \
+opciones de visualizaci\[OAcute]n la superficie de Enneper, que est\[AAcute] \
+dada por: \nX(u,v) = (u-u^3/3+u v^2, v-v^3/3+u^2 v, u^2-v^2).\n",
+  FontFamily->"Bookman Old Style"]
+}], "Text",
+ CellChangeTimes->{{3.477569608830217*^9, 3.4775696361332617`*^9}, {
+   3.477570560627747*^9, 3.477570570307063*^9}, {3.5088535115333643`*^9, 
+   3.5088535148912497`*^9}, {3.5088543549294443`*^9, 3.508854409021056*^9}, {
+   3.509105223205892*^9, 3.5091052248599863`*^9}, {3.509105311725878*^9, 
+   3.509105319366672*^9}, 3.5352844558197412`*^9, {3.535284702026052*^9, 
+   3.535284769099392*^9}, {3.5352848515908012`*^9, 3.5352849537528353`*^9}, {
+   3.5352852991163816`*^9, 3.535285366228444*^9}, {3.535285414008111*^9, 
+   3.535285477135105*^9}, {3.6695495578247623`*^9, 3.669549578700055*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"enneper", "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"u", "-", 
+     RowBox[{
+      RowBox[{"u", "^", "3"}], "/", "3"}], "+", 
+     RowBox[{"u", "*", 
+      RowBox[{"v", "^", "2"}]}]}], ",", " ", 
+    RowBox[{"v", "-", 
+     RowBox[{
+      RowBox[{"v", "^", "3"}], "/", "3"}], "+", 
+     RowBox[{
+      RowBox[{"u", "^", "2"}], "*", "v"}]}], ",", " ", 
+    RowBox[{
+     RowBox[{"u", "^", "2"}], "-", 
+     RowBox[{"v", "^", "2"}]}]}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"enneper", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", "0", ",", "3"}], "}"}], ",", " ", 
+   RowBox[{"PlotPoints", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"20", ",", "30"}], "}"}]}], ",", 
+   RowBox[{"PlotLabel", "->", "\"\<Superficie de Enneper\>\""}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"enneper", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", " ", 
+   RowBox[{"PlotPoints", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"60", ",", "15"}], "}"}]}], ",", 
+   RowBox[{"PlotLabel", "->", "\"\<Superficie de Enneper\>\""}], ",", 
+   RowBox[{"Boxed", "\[Rule]", "False"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.675927036600713*^9, 3.675927164871907*^9}, {
+  3.6759272033126297`*^9, 3.6759272414684477`*^9}, {3.675927293864097*^9, 
+  3.675927317462188*^9}}],
+
+Cell[TextData[{
+ StyleBox["ContourPlot3D (para versiones de ",
+  FontFamily->"Bookman Old Style",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["Mathematica",
+  FontFamily->"Bookman Old Style",
+  FontSlant->"Italic",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox[" iguales o superiores a la 5.2)",
+  FontFamily->"Bookman Old Style",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["\nContourPlot3D[f[x,y,z]==a,{x,x_1,x_2},{y,y_1,y_2},{z,z_1,z_2},",
+  FontFamily->"Bookman Old Style"],
+ StyleBox["opciones",
+  FontFamily->"Bookman Old Style",
+  FontSlant->"Italic"],
+ StyleBox["] dibuja la superficie dada por la ecuaci\[OAcute]n \
+impl\[IAcute]cita f(x,y,z)=a con el rango de valores especificado para las \
+variables y con las opciones indicadas.\n",
+  FontFamily->"Bookman Old Style"]
+}], "Text",
+ CellChangeTimes->{{3.508853215159013*^9, 3.5088532166276712`*^9}, {
+   3.508853265487136*^9, 3.508853381291004*^9}, {3.508854125063313*^9, 
+   3.508854131757587*^9}, {3.509104946942233*^9, 3.509104955532526*^9}, 
+   3.535284284343172*^9, {3.535286814023924*^9, 3.535286842317474*^9}, {
+   3.669549113814486*^9, 3.669549131101605*^9}, {3.670140745561076*^9, 
+   3.670140751768302*^9}, {3.6701408319858503`*^9, 3.670141005058775*^9}, {
+   3.6701414714721413`*^9, 3.6701414793507566`*^9}, {3.670141656744152*^9, 
+   3.670141659864188*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Ejemplos:",
+ FontFamily->"Book Antiqua",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{{3.670141564536889*^9, 3.670141566503282*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ContourPlot3D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "^", "3"}], "+", 
+     RowBox[{"y", "^", "3"}], "+", 
+     RowBox[{"z", "^", "3"}]}], "\[Equal]", "1"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.5352868458354483`*^9, 3.535286851390387*^9}, {
+  3.670141569425041*^9, 3.670141632352453*^9}, {3.6701416675689487`*^9, 
+  3.6701418086498547`*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ContourPlot3D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Cos", "[", "x", "]"}], "+", 
+     RowBox[{"Cos", "[", "y", "]"}], "+", 
+     RowBox[{"Cos", "[", "z", "]"}]}], "\[Equal]", "0"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{
+      RowBox[{"-", "2"}], "Pi"}], ",", 
+     RowBox[{"2", "Pi"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{
+      RowBox[{"-", "2"}], "Pi"}], ",", 
+     RowBox[{"2", "Pi"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", 
+     RowBox[{
+      RowBox[{"-", "2"}], "Pi"}], ",", 
+     RowBox[{"2", "Pi"}]}], "}"}], ",", 
+   RowBox[{"Mesh", "\[Rule]", "False"}], ",", 
+   RowBox[{"Boxed", "\[Rule]", "False"}], ",", 
+   RowBox[{"Axes", "\[Rule]", "None"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.535286853794669*^9, 3.535286859405951*^9}, {
+  3.670141572176893*^9, 3.670141574128952*^9}, {3.6701418628047857`*^9, 
+  3.670141993444256*^9}, {3.6701536116825237`*^9, 3.670153690698881*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ContourPlot3D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Sin", "[", 
+      RowBox[{"x", "+", "y"}], "]"}], "+", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"x", "-", "y"}], "]"}], "+", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"y", "+", "z"}], "]"}], "+", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"y", "-", "z"}], "]"}], "+", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"x", "+", "z"}], "]"}], "-", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"x", "-", "z"}], "]"}]}], "\[Equal]", "0"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "Pi"}], ",", "Pi"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "Pi"}], ",", "Pi"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", 
+     RowBox[{"-", "Pi"}], ",", "Pi"}], "}"}], ",", 
+   RowBox[{"Mesh", "\[Rule]", "False"}], ",", 
+   RowBox[{"Boxed", "\[Rule]", "False"}], ",", 
+   RowBox[{"Axes", "\[Rule]", "None"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.535286853794669*^9, 3.535286859405951*^9}, {
+  3.670141572176893*^9, 3.670141574128952*^9}, {3.6701418628047857`*^9, 
+  3.670141993444256*^9}, {3.6701536116825237`*^9, 3.670153690698881*^9}, {
+  3.670153779319159*^9, 3.670153828463027*^9}, {3.670155312463078*^9, 
+  3.67015531908283*^9}},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["\nEjercicio 3",
+  FontFamily->"Bookman Old Style",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["\nEl cubo unidad C es la frontera del conjunto [-1,1] x [-1,1] x \
+[-1,1] y no es una superficie, pues tiene v\[EAcute]rtices y aristas donde no \
+hay un plano af\[IAcute]n tangente bien definido. No obstante, vamos a \
+mostrar gr\[AAcute]ficamente que C puede aproximarse por superficies \
+diferenciables. Para ello, dado un n\[UAcute]mero natural n, definimos S_n \
+como la superficie formada por los puntos (x,y,z) que cumplen ",
+  FontFamily->"Bookman Old Style"],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["x", 
+      RowBox[{"2", "n"}]], "+", 
+     SuperscriptBox["y", 
+      RowBox[{"2", "n"}]], "+", 
+     SuperscriptBox["z", 
+      RowBox[{"2", "n"}]]}], "=", "1."}], TraditionalForm]]],
+ " ",
+ StyleBox["Representa gr\[AAcute]ficamente las superficies S_2, S_3 y S_4 \
+para apreciar c\[OAcute]mo se aproximan a C. ",
+  FontFamily->"Bookman Old Style"]
+}], "Text",
+ CellChangeTimes->{{3.477569608830217*^9, 3.4775696361332617`*^9}, {
+   3.477570560627747*^9, 3.477570570307063*^9}, {3.5088535115333643`*^9, 
+   3.5088535148912497`*^9}, {3.5088543549294443`*^9, 3.508854409021056*^9}, {
+   3.509105223205892*^9, 3.5091052248599863`*^9}, {3.509105311725878*^9, 
+   3.509105319366672*^9}, 3.5352844558197412`*^9, {3.535284702026052*^9, 
+   3.535284769099392*^9}, {3.5352848515908012`*^9, 3.5352849537528353`*^9}, {
+   3.5352852991163816`*^9, 3.535285366228444*^9}, {3.535285414008111*^9, 
+   3.535285477135105*^9}, {3.6695495578247623`*^9, 3.669549578700055*^9}, {
+   3.670154019304534*^9, 3.67015442192896*^9}, 3.6701548764276037`*^9},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ContourPlot3D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "^", "4"}], "+", 
+     RowBox[{"y", "^", "4"}], "+", 
+     RowBox[{"z", "^", "4"}]}], "\[Equal]", "1"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"Mesh", "\[Rule]", "False"}], ",", 
+   RowBox[{"Boxed", "\[Rule]", "False"}], ",", 
+   RowBox[{"Axes", "\[Rule]", "None"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.675927593032778*^9, 3.675927636500272*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ContourPlot3D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "^", "6"}], "+", 
+     RowBox[{"y", "^", "6"}], "+", 
+     RowBox[{"z", "^", "6"}]}], "\[Equal]", "1"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"Mesh", "\[Rule]", "False"}], ",", 
+   RowBox[{"Boxed", "\[Rule]", "False"}], ",", 
+   RowBox[{"Axes", "\[Rule]", "None"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6759276467032747`*^9, 3.6759276546357203`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ContourPlot3D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "^", "8"}], "+", 
+     RowBox[{"y", "^", "8"}], "+", 
+     RowBox[{"z", "^", "8"}]}], "\[Equal]", "1"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"Mesh", "\[Rule]", "False"}], ",", 
+   RowBox[{"Boxed", "\[Rule]", "False"}], ",", 
+   RowBox[{"Axes", "\[Rule]", "None"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.675927661158634*^9, 3.67592766698722*^9}}],
+
+Cell[TextData[{
+ StyleBox["\nEjercicio 4",
+  FontFamily->"Bookman Old Style",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["\nEn el apartado c) del Ejercicio 13 de la relaci\[OAcute]n de \
+problemas del Tema 2 se define una superficie S_a y se pide probar que es \
+difeomorfa a la esfera unidad. Dibuja dos superficies S_a para valores \
+distintos de a. Gracias al dibujo obtenido podemos apreciar c\[OAcute]mo se \
+construye el difeomorfismo existente entre S_a y la esfera unidad. \n",
+  FontFamily->"Bookman Old Style"]
+}], "Text",
+ CellChangeTimes->{{3.477569608830217*^9, 3.4775696361332617`*^9}, {
+   3.477570560627747*^9, 3.477570570307063*^9}, {3.5088535115333643`*^9, 
+   3.5088535148912497`*^9}, {3.5088543549294443`*^9, 3.508854409021056*^9}, {
+   3.509105223205892*^9, 3.5091052248599863`*^9}, {3.509105311725878*^9, 
+   3.509105319366672*^9}, 3.5352844558197412`*^9, {3.535284702026052*^9, 
+   3.535284769099392*^9}, {3.5352848515908012`*^9, 3.5352849537528353`*^9}, {
+   3.5352852991163816`*^9, 3.535285366228444*^9}, {3.535285414008111*^9, 
+   3.535285477135105*^9}, {3.6695495578247623`*^9, 3.669549578700055*^9}, {
+   3.670154019304534*^9, 3.670154398763493*^9}, {3.6701544295131598`*^9, 
+   3.670154434652328*^9}, {3.670154473722213*^9, 3.67015459701007*^9}, {
+   3.670154809244425*^9, 3.670154843642074*^9}, 3.670154880011251*^9, {
+   3.6701553664776907`*^9, 3.670155367463065*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"ContourPlot3D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"E", "^", 
+      RowBox[{"(", 
+       RowBox[{"x", "^", "2"}], ")"}]}], "+", 
+     RowBox[{"E", "^", 
+      RowBox[{"(", 
+       RowBox[{"y", "^", "2"}], ")"}]}], "+", 
+     RowBox[{"E", "^", 
+      RowBox[{"(", 
+       RowBox[{"z", "^", "2"}], ")"}]}]}], "\[Equal]", "20"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.675927704101534*^9, {3.675927749539195*^9, 3.6759278294490337`*^9}, {
+   3.6759278940413437`*^9, 3.6759279112089663`*^9}, {3.675927960318358*^9, 
+   3.675928007948127*^9}, {3.6759280394790363`*^9, 3.675928065408133*^9}, {
+   3.676472173998333*^9, 3.676472233816793*^9}, {3.676472305258024*^9, 
+   3.676472314663043*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ContourPlot3D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"E", "^", 
+      RowBox[{"(", 
+       RowBox[{"x", "^", "2"}], ")"}]}], "+", 
+     RowBox[{"E", "^", 
+      RowBox[{"(", 
+       RowBox[{"y", "^", "2"}], ")"}]}], "+", 
+     RowBox[{"E", "^", 
+      RowBox[{"(", 
+       RowBox[{"z", "^", "2"}], ")"}]}]}], "\[Equal]", "5"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.676472274147113*^9, 3.676472278800001*^9}, {
+  3.676472316999845*^9, 3.676472317854951*^9}}],
+
+Cell[TextData[StyleBox["\nSegunda parte",
+ FontFamily->"Arial",
+ FontSize->24,
+ FontWeight->"Bold",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{{3.477570653355646*^9, 3.4775706727214518`*^9}, 
+   3.535285495553897*^9, 3.670141586239541*^9, {3.6701540040676937`*^9, 
+   3.6701540077922688`*^9}}],
+
+Cell[TextData[{
+ StyleBox["Objetivo:",
+  FontFamily->"Book Antiqua",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox[" Calcular el plano af\[IAcute]n tangente y una orientaci\[OAcute]n \
+local de una superficie con ",
+  FontFamily->"Book Antiqua"],
+ StyleBox["Mathematica", "Title",
+  FontFamily->"Book Antiqua",
+  FontSize->14,
+  FontSlant->"Italic",
+  FontColor->GrayLevel[0],
+  Background->GrayLevel[1]],
+ StyleBox[".\n",
+  FontFamily->"Book Antiqua"]
+}], "Text",
+ CellChangeTimes->{{3.4775698144027987`*^9, 3.47756981812217*^9}, {
+   3.477569945400631*^9, 3.477569956400378*^9}, {3.477570675474337*^9, 
+   3.477570680706135*^9}, {3.508853673876471*^9, 3.508853679815433*^9}, {
+   3.508854788391396*^9, 3.508854792507835*^9}, {3.535285198986877*^9, 
+   3.535285206848098*^9}, {3.5352855234442663`*^9, 3.535285524528895*^9}, 
+   3.669441435005034*^9, {3.669442140349231*^9, 3.669442142347776*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Lo haremos en primer lugar para el grafo de una funci\
+\[OAcute]n f(u,v). Calculamos dos vectores tangentes e independientes al \
+grafo: ambos determinar\[AAcute]n el plano tangente vectorial en cada punto:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.445067847078125*^9, 3.445067889875*^9}, {
+   3.4450680264375*^9, 3.44506805746875*^9}, {3.477569829730481*^9, 
+   3.477569849750505*^9}, {3.477569976008238*^9, 3.477569976728142*^9}, {
+   3.4775706841795073`*^9, 3.477570720298328*^9}, {3.4775707503161573`*^9, 
+   3.477570752666074*^9}, {3.4775729718935223`*^9, 3.477572972699094*^9}, {
+   3.47757672699999*^9, 3.477576729181314*^9}, {3.50885369438398*^9, 
+   3.50885369724023*^9}, {3.508854804598048*^9, 3.508854805148697*^9}, 
+   3.5352866059952087`*^9, {3.535286966128895*^9, 3.535286967649334*^9}, 
+   3.669441436765093*^9, {3.670155403702289*^9, 3.6701554083157377`*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"T1Grafo", "[", "f_", "]"}], "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", 
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"f", "[", 
+        RowBox[{"u", ",", "v"}], "]"}], ",", "u"}], "]"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"T2Grafo", "[", "f_", "]"}], "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1", ",", 
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"f", "[", 
+        RowBox[{"u", ",", "v"}], "]"}], ",", "v"}], "]"}]}], "}"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.47757163775778*^9, 3.477571675342054*^9}, {
+  3.477572568278212*^9, 3.4775725900765333`*^9}, {3.4775727468868628`*^9, 
+  3.47757274773833*^9}, {3.4775729427079277`*^9, 3.477572943204627*^9}, {
+  3.4775755952359962`*^9, 3.47757560678649*^9}, {3.4775756742597027`*^9, 
+  3.4775756768744993`*^9}, {3.477575743523604*^9, 3.477575744386791*^9}, {
+  3.5352869383552732`*^9, 3.5352869561141777`*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Con ayuda de los dos vectores anteriores calculamos \
+en ecuaciones param\[EAcute]tricas el plano af\[IAcute]n tangente al grafo de \
+f(u,v) en un punto arbitrario (u0,v0,f(u0,v0)). Los par\[AAcute]metros de \
+dicho plano son a y b:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.445068153203125*^9, 3.445068170046875*^9}, {
+  3.445068264265625*^9, 3.445068359390625*^9}, {3.477569903888694*^9, 
+  3.477569930847889*^9}, {3.477569970280581*^9, 3.477569970927823*^9}, {
+  3.4775712908339987`*^9, 3.477571297890071*^9}, {3.477572996002399*^9, 
+  3.4775730016740007`*^9}, {3.508853712330904*^9, 3.508853712704679*^9}, {
+  3.508853746110608*^9, 3.508853754854609*^9}, {3.508854824829018*^9, 
+  3.508854825028944*^9}, {3.509105476558516*^9, 3.5091054868113747`*^9}, {
+  3.535286640099279*^9, 3.535286649223838*^9}, {3.535286960689302*^9, 
+  3.535286978744985*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"TangAfinGrafo", "[", "f_", "]"}], "[", 
+    RowBox[{"u0_", ",", "v0_"}], "]"}], "[", 
+   RowBox[{"a_", ",", "b_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"u", ",", "v", ",", 
+      RowBox[{"f", "[", 
+       RowBox[{"u", ",", "v"}], "]"}]}], "}"}], "+", 
+    RowBox[{"a", " ", 
+     RowBox[{
+      RowBox[{"T1Grafo", "[", "f", "]"}], "[", 
+      RowBox[{"u", ",", "v"}], "]"}]}], "+", 
+    RowBox[{"b", " ", 
+     RowBox[{
+      RowBox[{"T2Grafo", "[", "f", "]"}], "[", 
+      RowBox[{"u", ",", "v"}], "]"}]}]}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"u", "\[Rule]", "u0"}], ",", 
+     RowBox[{"v", "\[Rule]", "v0"}]}], "}"}], " "}]}]], "Input",
+ CellChangeTimes->{{3.47757163775778*^9, 3.477571675342054*^9}, {
+  3.477572568278212*^9, 3.4775725900765333`*^9}, {3.4775727468868628`*^9, 
+  3.47757274773833*^9}, {3.4775729427079277`*^9, 3.477572943204627*^9}, {
+  3.4775755952359962`*^9, 3.477575705778804*^9}, {3.47757587895304*^9, 
+  3.477575904567895*^9}, {3.535286983659111*^9, 3.5352870082591343`*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Como caso particular, calculamos el plano \
+af\[IAcute]n tangente al paraboloide el\[IAcute]ptico en el punto (0,0,0): ",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.445068153203125*^9, 3.445068170046875*^9}, {
+  3.445068264265625*^9, 3.445068359390625*^9}, {3.477569903888694*^9, 
+  3.477569930847889*^9}, {3.477569970280581*^9, 3.477569970927823*^9}, {
+  3.4775712908339987`*^9, 3.477571297890071*^9}, {3.477572996002399*^9, 
+  3.4775730016740007`*^9}, {3.508853712330904*^9, 3.508853712704679*^9}, {
+  3.508853746110608*^9, 3.508853754854609*^9}, {3.508854824829018*^9, 
+  3.508854825028944*^9}, {3.509105476558516*^9, 3.5091054868113747`*^9}, {
+  3.535285608533537*^9, 3.535285652556265*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ParaboloideEliptico", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"u", "^", "2"}], "+", 
+    RowBox[{"v", "^", "2"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"TangAfinGrafo", "[", "ParaboloideEliptico", "]"}], "[", 
+   RowBox[{"0", ",", "0"}], "]"}], "[", 
+  RowBox[{"a", ",", "b"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.47757163775778*^9, 3.477571675342054*^9}, {
+  3.477572568278212*^9, 3.4775725900765333`*^9}, {3.4775727468868628`*^9, 
+  3.47757274773833*^9}, {3.4775729427079277`*^9, 3.477572943204627*^9}, {
+  3.4775755952359962`*^9, 3.477575705778804*^9}, {3.47757587895304*^9, 
+  3.477575949257887*^9}, {3.676472381791917*^9, 3.676472382406764*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["A continuaci\[OAcute]n, calcularemos una orientaci\
+\[OAcute]n del grafo mediante el producto vectorial normalizado de los \
+vectores tangentes que antes hemos definido:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.445067924328125*^9, 3.445068010171875*^9}, {
+  3.4450680813125*^9, 3.445068091796875*^9}, {3.445068193453125*^9, 
+  3.4450682575625*^9}, {3.445068867734375*^9, 3.445068879765625*^9}, {
+  3.4775698633026323`*^9, 3.47756989630431*^9}, {3.477569973360634*^9, 
+  3.477569973728016*^9}, {3.477571403757621*^9, 3.477571407906205*^9}, {
+  3.4775726769789333`*^9, 3.477572690423482*^9}, {3.50885376669499*^9, 
+  3.508853768926968*^9}, {3.535285669598431*^9, 3.535285691469214*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"NormalGrafo", "[", "f_", "]"}], "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"Cross", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"T1Grafo", "[", "f", "]"}], "[", 
+       RowBox[{"u", ",", "v"}], "]"}], ",", 
+      RowBox[{
+       RowBox[{"T2Grafo", "[", "f", "]"}], "[", 
+       RowBox[{"u", ",", "v"}], "]"}]}], "]"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"\[Sqrt]", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Cross", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"T1Grafo", "[", "f", "]"}], "[", 
+           RowBox[{"u", ",", "v"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{"T2Grafo", "[", "f", "]"}], "[", 
+           RowBox[{"u", ",", "v"}], "]"}]}], "]"}], ".", 
+        RowBox[{"Cross", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"T1Grafo", "[", "f", "]"}], "[", 
+           RowBox[{"u", ",", "v"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{"T2Grafo", "[", "f", "]"}], "[", 
+           RowBox[{"u", ",", "v"}], "]"}]}], "]"}]}], ")"}]}], ")"}]}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.47757163775778*^9, 3.477571675342054*^9}, {
+   3.477572568278212*^9, 3.4775725900765333`*^9}, {3.4775727468868628`*^9, 
+   3.47757274773833*^9}, {3.4775729427079277`*^9, 3.477572943204627*^9}, {
+   3.4775755952359962`*^9, 3.477575705778804*^9}, {3.47757587895304*^9, 
+   3.477575978764661*^9}, {3.4775760317566423`*^9, 3.4775760399247847`*^9}, 
+   3.477576768434716*^9, {3.535287014703216*^9, 3.535287038556508*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"NormalGrafo", "[", "f", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "Simplify"}]], "Input",
+ CellChangeTimes->{{3.47757163775778*^9, 3.477571675342054*^9}, {
+   3.477572568278212*^9, 3.4775725900765333`*^9}, {3.4775727468868628`*^9, 
+   3.47757274773833*^9}, {3.4775729427079277`*^9, 3.477572943204627*^9}, {
+   3.4775755952359962`*^9, 3.477575705778804*^9}, {3.47757587895304*^9, 
+   3.477575978764661*^9}, {3.477576009462843*^9, 3.477576013273727*^9}, {
+   3.477576074622066*^9, 3.477576077505869*^9}, 3.477576774236823*^9, {
+   3.5352870444814177`*^9, 3.535287045995841*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Como caso particular, podemos calcular una orientaci\
+\[OAcute]n para el paraboloide hiperb\[OAcute]lico:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.44506845109375*^9, 3.445068491140625*^9}, {
+  3.445068534078125*^9, 3.445068571015625*^9}, {3.477573255230021*^9, 
+  3.4775732592993317`*^9}, {3.508854862296139*^9, 3.5088548687181063`*^9}, {
+  3.5091055468952312`*^9, 3.50910554810916*^9}, {3.535285713655201*^9, 
+  3.53528573128654*^9}, {3.5352859122143784`*^9, 3.535285921603792*^9}, {
+  3.535286679500031*^9, 3.535286683129014*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ParaboloideHiperbolico", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"u", "^", "2"}], "-", 
+    RowBox[{"v", "^", "2"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NormalGrafo", "[", "ParaboloideHiperbolico", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "Simplify"}]}], "Input",
+ CellChangeTimes->{{3.47757163775778*^9, 3.477571675342054*^9}, {
+  3.477572568278212*^9, 3.4775725900765333`*^9}, {3.4775727468868628`*^9, 
+  3.47757274773833*^9}, {3.4775729427079277`*^9, 3.477572943204627*^9}, {
+  3.4775760559921923`*^9, 3.4775760895541477`*^9}, {3.535287050341815*^9, 
+  3.535287051742041*^9}, {3.669549644553891*^9, 3.6695496453108788`*^9}, {
+  3.676472425414845*^9, 3.676472426237638*^9}},
+ FontSize->16],
+
+Cell[TextData[{
+ StyleBox["\nEjercicio 5",
+  FontFamily->"Bookman Old Style",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["\nUtiliza los comandos anteriores para calcular una orientaci\
+\[OAcute]n del paraboloide el\[IAcute]ptico. \[DownQuestion]Est\[AAcute]n los \
+vectores (0,0,1) y (1,0,0) en la imagen de dicha orientaci\[OAcute]n? ",
+  FontFamily->"Bookman Old Style"]
+}], "Text",
+ CellChangeTimes->{{3.477569608830217*^9, 3.4775696361332617`*^9}, {
+   3.477570560627747*^9, 3.477570570307063*^9}, {3.5088535115333643`*^9, 
+   3.5088535148912497`*^9}, {3.5088543549294443`*^9, 3.508854409021056*^9}, {
+   3.509105223205892*^9, 3.5091052248599863`*^9}, {3.509105311725878*^9, 
+   3.509105319366672*^9}, 3.5352844558197412`*^9, {3.535284702026052*^9, 
+   3.535284769099392*^9}, {3.5352848515908012`*^9, 3.5352849537528353`*^9}, {
+   3.5352852991163816`*^9, 3.535285366228444*^9}, {3.535285414008111*^9, 
+   3.535285477135105*^9}, {3.535285943749711*^9, 3.535286061311883*^9}, {
+   3.670154024672633*^9, 3.67015402495068*^9}, {3.670154751418159*^9, 
+   3.6701547517830343`*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ParaboloideEliptico", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"u", "^", "2"}], "+", 
+    RowBox[{"v", "^", "2"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"T1Grafo", "[", "f_", "]"}], "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", 
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"f", "[", 
+        RowBox[{"u", ",", "v"}], "]"}], ",", "u"}], "]"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"T2Grafo", "[", "f_", "]"}], "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1", ",", 
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"f", "[", 
+        RowBox[{"u", ",", "v"}], "]"}], ",", "v"}], "]"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"TangAfinGrafo", "[", "f_", "]"}], "[", 
+     RowBox[{"u0_", ",", "v0_"}], "]"}], "[", 
+    RowBox[{"a_", ",", "b_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"u", ",", "v", ",", 
+       RowBox[{"f", "[", 
+        RowBox[{"u", ",", "v"}], "]"}]}], "}"}], "+", 
+     RowBox[{"a", " ", 
+      RowBox[{
+       RowBox[{"T1Grafo", "[", "f", "]"}], "[", 
+       RowBox[{"u", ",", "v"}], "]"}]}], "+", 
+     RowBox[{"b", " ", 
+      RowBox[{
+       RowBox[{"T2Grafo", "[", "f", "]"}], "[", 
+       RowBox[{"u", ",", "v"}], "]"}]}]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"u", "\[Rule]", "u0"}], ",", 
+      RowBox[{"v", "\[Rule]", "v0"}]}], "}"}]}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"NormalGrafo", "[", "f_", "]"}], "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"Cross", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"T1Grafo", "[", "f", "]"}], "[", 
+       RowBox[{"u", ",", "v"}], "]"}], ",", 
+      RowBox[{
+       RowBox[{"T2Grafo", "[", "f", "]"}], "[", 
+       RowBox[{"u", ",", "v"}], "]"}]}], "]"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"\[Sqrt]", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Cross", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"T1Grafo", "[", "f", "]"}], "[", 
+           RowBox[{"u", ",", "v"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{"T2Grafo", "[", "f", "]"}], "[", 
+           RowBox[{"u", ",", "v"}], "]"}]}], "]"}], ".", 
+        RowBox[{"Cross", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"T1Grafo", "[", "f", "]"}], "[", 
+           RowBox[{"u", ",", "v"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{"T2Grafo", "[", "f", "]"}], "[", 
+           RowBox[{"u", ",", "v"}], "]"}]}], "]"}]}], ")"}]}], ")"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NormalGrafo", "[", "ParaboloideEliptico", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], " ", "//", " ", "Simplify"}]}], "Input",
+ CellChangeTimes->{{3.675928617525144*^9, 3.675928619548686*^9}, {
+  3.6759289490694733`*^9, 3.6759289878062973`*^9}, {3.675929257512282*^9, 
+  3.675929259006898*^9}, {3.675929359820636*^9, 3.6759293604188833`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"NormalGrafo", "[", "ParaboloideEliptico", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], " ", "/.", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"u", "\[Rule]", "0"}], ",", " ", 
+    RowBox[{"v", "\[Rule]", "0"}]}], "}"}], " "}]], "Input",
+ CellChangeTimes->{{3.6764734746650352`*^9, 3.676473505261653*^9}}],
+
+Cell["\<\
+El vector (1,0,0) no puede estar ya que la tercera coordenada nunca puede ser \
+0.\
+\>", "Text",
+ CellChangeTimes->{{3.676473532684374*^9, 3.676473548491748*^9}}],
+
+Cell[TextData[StyleBox["\nAhora t\[UAcute] vas a extender la idea que hemos \
+visto en grafos, para calcular el plano af\[IAcute]n tangente y una orientaci\
+\[OAcute]n en un entorno coordenado de una parametrizaci\[OAcute]n dada por \
+X(u,v) = (x(u,v), y(u,v), z(u,v)). Introduce en primer lugar los dos comandos \
+que proporcionan las dos parciales de X(u,v):",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.445068712234375*^9, 3.44506873609375*^9}, {
+   3.445068921890625*^9, 3.44506904075*^9}, {3.477570001113727*^9, 
+   3.477570050384893*^9}, {3.477573270136182*^9, 3.477573295834413*^9}, {
+   3.477573414699703*^9, 3.477573443027343*^9}, {3.477574443025453*^9, 
+   3.477574462183675*^9}, {3.477576814707486*^9, 3.47757682471035*^9}, {
+   3.5088537957918*^9, 3.508853842426084*^9}, {3.508854885794857*^9, 
+   3.508855060638875*^9}, 3.535285757754117*^9, {3.535285790961018*^9, 
+   3.5352857930879803`*^9}, {3.535286069803893*^9, 3.5352861028024883`*^9}, {
+   3.535286143078292*^9, 3.535286156122607*^9}, {3.5352867251411133`*^9, 
+   3.535286725683331*^9}, {3.535630811512473*^9, 3.5356308143843203`*^9}, {
+   3.535630889060791*^9, 3.5356309238380632`*^9}, 3.5356309829700336`*^9, 
+   3.5356310203687887`*^9, {3.535631131917802*^9, 3.5356311331131983`*^9}, {
+   3.535631249365903*^9, 3.535631260101408*^9}, {3.669441718554904*^9, 
+   3.669441725403017*^9}, {3.669549747208744*^9, 3.669549768217371*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"parcialU", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"D", "[", 
+   RowBox[{
+    RowBox[{"X", "[", 
+     RowBox[{"u", ",", "v"}], "]"}], ",", "u"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"parcialV", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"D", "[", 
+   RowBox[{
+    RowBox[{"X", "[", 
+     RowBox[{"u", ",", "v"}], "]"}], ",", "v"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.445068742296875*^9, 3.44506885778125*^9}, 
+   3.445069072234375*^9, {3.477573608745865*^9, 3.477573659846342*^9}, {
+   3.47757392864682*^9, 3.477573937786598*^9}, {3.477574474026503*^9, 
+   3.4775744823942347`*^9}, 3.477574598582921*^9, {3.477575218433373*^9, 
+   3.4775752214643507`*^9}, {3.477576100940097*^9, 3.477576102267591*^9}, 
+   3.4775770408829803`*^9, {3.6759295388873158`*^9, 3.675929560573208*^9}, {
+   3.675929789531281*^9, 3.675929818601102*^9}, {3.676472577400197*^9, 
+   3.676472591375774*^9}, {3.676473324118184*^9, 3.676473346713776*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Ahora debes recordar c\[OAcute]mo se calcula el plano \
+tangente (vectorial) en funci\[OAcute]n de las parciales de X. Utilizando \
+este hecho debes definir un comando que proporcione en cada punto X(u0,v0) de \
+la parametrizaci\[OAcute]n el correspondiente plano af\[IAcute]n tangente. \
+Llama a esta orden TangAfinSuper[X][u0,v0][a,b]:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.445068712234375*^9, 3.44506873609375*^9}, {
+   3.445068921890625*^9, 3.44506904075*^9}, {3.477570001113727*^9, 
+   3.477570050384893*^9}, {3.477573270136182*^9, 3.477573295834413*^9}, {
+   3.477573414699703*^9, 3.477573443027343*^9}, {3.477574443025453*^9, 
+   3.477574462183675*^9}, {3.477576814707486*^9, 3.47757682471035*^9}, {
+   3.5088537957918*^9, 3.508853842426084*^9}, {3.508854885794857*^9, 
+   3.508855060638875*^9}, 3.535285757754117*^9, {3.535285790961018*^9, 
+   3.5352857930879803`*^9}, {3.535286069803893*^9, 3.5352861028024883`*^9}, {
+   3.535286143078292*^9, 3.535286156122607*^9}, {3.5352867251411133`*^9, 
+   3.535286725683331*^9}, {3.535630811512473*^9, 3.5356308143843203`*^9}, {
+   3.535630889060791*^9, 3.5356309238380632`*^9}, {3.5356309829700336`*^9, 
+   3.535631112481544*^9}, {3.5356311464901867`*^9, 3.535631150986157*^9}, {
+   3.535631276295821*^9, 3.5356312769036007`*^9}, {3.6695497973458014`*^9, 
+   3.669549840540182*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"TangAfinSuper", "[", "X_", "]"}], "[", 
+    RowBox[{"u0_", ",", "v0_"}], "]"}], "[", 
+   RowBox[{"a_", ",", "b_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"X", "[", 
+     RowBox[{"u0", ",", "v0"}], "]"}], "+", 
+    RowBox[{"a", "*", 
+     RowBox[{
+      RowBox[{"parcialU", "[", "X", "]"}], "[", 
+      RowBox[{"u", ",", "v"}], "]"}]}], " ", "+", 
+    RowBox[{"b", "*", 
+     RowBox[{
+      RowBox[{"parcialV", "[", "X", "]"}], "[", 
+      RowBox[{"u", ",", "v"}], "]"}]}]}], "/.", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"u", "\[Rule]", "u0"}], ",", 
+     RowBox[{"v", "\[Rule]", "v0"}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.445068742296875*^9, 3.44506885778125*^9}, 
+   3.445069072234375*^9, {3.477573608745865*^9, 3.477573659846342*^9}, {
+   3.47757392864682*^9, 3.477573937786598*^9}, {3.477574474026503*^9, 
+   3.4775744823942347`*^9}, 3.477574598582921*^9, {3.477575218433373*^9, 
+   3.4775752214643507`*^9}, {3.477576100940097*^9, 3.4775761425323057`*^9}, {
+   3.4775770461499863`*^9, 3.477577046830964*^9}, {3.676472467522667*^9, 
+   3.676472566999807*^9}, {3.676472598616321*^9, 3.676472647215344*^9}, {
+   3.676473008765855*^9, 3.6764730837248297`*^9}, {3.6764731790181913`*^9, 
+   3.676473186257183*^9}, {3.6764732499988956`*^9, 3.676473269020206*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Por \[UAcute]ltimo, hay que calcular la orientaci\
+\[OAcute]n obtenida al normalizar el producto vectorial de las parciales de \
+X. Llama a esta orden NormalSuper[X][u,v]:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.445068712234375*^9, 3.44506873609375*^9}, {
+   3.445068921890625*^9, 3.44506904075*^9}, {3.477570001113727*^9, 
+   3.477570050384893*^9}, {3.477573270136182*^9, 3.477573295834413*^9}, {
+   3.477573414699703*^9, 3.477573443027343*^9}, {3.477574443025453*^9, 
+   3.477574462183675*^9}, {3.477576814707486*^9, 3.47757682471035*^9}, {
+   3.5088537957918*^9, 3.508853842426084*^9}, {3.508854885794857*^9, 
+   3.508855060638875*^9}, 3.535285757754117*^9, {3.535285790961018*^9, 
+   3.5352857930879803`*^9}, {3.535286069803893*^9, 3.5352861028024883`*^9}, {
+   3.535286143078292*^9, 3.535286156122607*^9}, {3.5352867251411133`*^9, 
+   3.535286725683331*^9}, {3.535630811512473*^9, 3.5356308143843203`*^9}, {
+   3.535630889060791*^9, 3.5356309238380632`*^9}, {3.5356309829700336`*^9, 
+   3.5356311238031816`*^9}, {3.669549852207981*^9, 3.669549867131995*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"NormalSuper", "[", "f_", "]"}], "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"Cross", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"parcialU", "[", "f", "]"}], "[", 
+       RowBox[{"u", ",", "v"}], "]"}], ",", 
+      RowBox[{
+       RowBox[{"parcialV", "[", "f", "]"}], "[", 
+       RowBox[{"u", ",", "v"}], "]"}]}], "]"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"\[Sqrt]", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Cross", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"parcialU", "[", "f", "]"}], "[", 
+           RowBox[{"u", ",", "v"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{"parcialV", "[", "f", "]"}], "[", 
+           RowBox[{"u", ",", "v"}], "]"}]}], "]"}], ".", 
+        RowBox[{"Cross", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"parcialU", "[", "f", "]"}], "[", 
+           RowBox[{"u", ",", "v"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{"parcialV", "[", "f", "]"}], "[", 
+           RowBox[{"u", ",", "v"}], "]"}]}], "]"}]}], ")"}]}], ")"}]}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.445068742296875*^9, 3.44506885778125*^9}, 
+   3.445069072234375*^9, {3.477573608745865*^9, 3.477573659846342*^9}, {
+   3.47757392864682*^9, 3.477573937786598*^9}, {3.477574474026503*^9, 
+   3.4775744823942347`*^9}, 3.477574598582921*^9, {3.477575218433373*^9, 
+   3.4775752214643507`*^9}, {3.477576100940097*^9, 3.477576192789728*^9}, 
+   3.477577052569289*^9, {3.676472662422863*^9, 3.676472713021572*^9}, {
+   3.6764727470350122`*^9, 3.6764728033562107`*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Como resultado de todo lo anterior, deberemos poder \
+evaluar lo siguiente:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.44506910825*^9, 3.445069138609375*^9}, {
+  3.5356311595497303`*^9, 3.535631169193553*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"TangAfinSuper", "[", "X", "]"}], "[", 
+   RowBox[{"u0", ",", "v0"}], "]"}], "[", 
+  RowBox[{"a", ",", "b"}], "]"}]], "Input",
+ CellChangeTimes->{{3.477573316036083*^9, 3.477573344715664*^9}, {
+  3.477573389926034*^9, 3.477573402789639*^9}, {3.477573737333514*^9, 
+  3.477573739069471*^9}, {3.477574586620871*^9, 3.477574587273402*^9}, {
+  3.477574810770328*^9, 3.477574811671545*^9}, {3.477576205194141*^9, 
+  3.477576205834622*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{" ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"NormalSuper", "[", "X", "]"}], "[", 
+    RowBox[{"u", ",", "v"}], "]"}], "//", "Simplify", " "}]}]], "Input",
+ CellChangeTimes->{{3.4775733566857023`*^9, 3.477573404421348*^9}, {
+  3.477573743373402*^9, 3.4775737456852627`*^9}, {3.477574589697526*^9, 
+  3.477574590345373*^9}, {3.477575561156908*^9, 3.4775755629355507`*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Aplicamos lo anterior a algunas de las superficies \
+que hemos visto antes. Calculamos el plano af\[IAcute]n tangente en X(0,0) y \
+la orientaci\[OAcute]n correspondiente:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.445069156078125*^9, 3.4450691945625*^9}, {
+  3.477574726483161*^9, 3.477574738287196*^9}, {3.477575285221513*^9, 
+  3.4775753026849957`*^9}, {3.4775753418581953`*^9, 3.477575354486834*^9}, {
+  3.5091056011371593`*^9, 3.5091056087589808`*^9}, {3.53528618294007*^9, 
+  3.535286194252953*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Cilindro", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Cos", "[", "v", "]"}], ",", 
+     RowBox[{"Sin", "[", "v", "]"}], ",", "u"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"TangAfinSuper", "[", "Cilindro", "]"}], "[", 
+    RowBox[{"0", ",", "0"}], "]"}], "[", 
+   RowBox[{"a", ",", "b"}], "]"}], "//", "Simplify"}]}], "Input",
+ CellChangeTimes->{{3.477573464170891*^9, 3.477573475876329*^9}, {
+  3.477574703224813*^9, 3.477574703940398*^9}, {3.477575313850774*^9, 
+  3.477575321262663*^9}, {3.477575509820332*^9, 3.477575528728546*^9}, {
+  3.477576214467327*^9, 3.477576215370891*^9}, {3.676472840993622*^9, 
+  3.6764728625676317`*^9}, {3.6764729495275497`*^9, 3.67647296496495*^9}, {
+  3.6764730336290073`*^9, 3.6764730344428473`*^9}, {3.676473096011188*^9, 
+  3.676473096481127*^9}, {3.6764731283047113`*^9, 3.676473140783736*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"NormalSuper", "[", "Cilindro", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "Simplify"}]], "Input",
+ CellChangeTimes->{{3.477573464170891*^9, 3.477573475876329*^9}, {
+  3.477574703224813*^9, 3.477574703940398*^9}, {3.477575313850774*^9, 
+  3.477575321262663*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"TangAfinSuper", "[", "Helicoide", "]"}], "[", 
+    RowBox[{"0", ",", "0"}], "]"}], "[", 
+   RowBox[{"a", ",", "b"}], "]"}], "//", "Simplify"}]], "Input",
+ CellChangeTimes->{{3.4775753695909367`*^9, 3.47757542224818*^9}, {
+  3.4775755343648577`*^9, 3.477575536304555*^9}, {3.477576221610547*^9, 
+  3.4775762223228807`*^9}, {3.508855079701144*^9, 3.508855083372896*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Helicoide", "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"v", " ", 
+     RowBox[{"Cos", "[", "u", "]"}]}], ",", 
+    RowBox[{"v", " ", 
+     RowBox[{"Sin", "[", "u", "]"}]}], ",", "u"}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NormalSuper", "[", "Helicoide", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "Simplify", " "}]}], "Input",
+ CellChangeTimes->{{3.4775753773021297`*^9, 3.477575387666707*^9}, {
+  3.477575427975716*^9, 3.477575439039872*^9}, {3.508855088533717*^9, 
+  3.508855091805232*^9}, {3.676473378436283*^9, 3.676473379410655*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"BandaMoebius", "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"2", "-", 
+       RowBox[{"v", " ", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"u", "/", "2"}], "]"}]}]}], ")"}], " ", 
+     RowBox[{"Sin", "[", "u", "]"}]}], ",", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"2", "-", 
+       RowBox[{"v", " ", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"u", "/", "2"}], "]"}]}]}], ")"}], " ", 
+     RowBox[{"Cos", "[", "u", "]"}]}], ",", 
+    RowBox[{"v", " ", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"u", "/", "2"}], "]"}]}]}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"TangAfinSuper", "[", "BandaMoebius", "]"}], "[", 
+    RowBox[{"0", ",", "0"}], "]"}], "[", 
+   RowBox[{"a", ",", "b"}], "]"}], "//", "Simplify"}]}], "Input",
+ CellChangeTimes->{{3.477575448588416*^9, 3.477575461656139*^9}, {
+  3.477575541009412*^9, 3.4775755429845133`*^9}, {3.477576228750502*^9, 
+  3.4775762296269407`*^9}, {3.676473396507317*^9, 3.676473397177175*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"NormalSuper", "[", "BandaMoebius", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "Simplify"}]], "Input",
+ CellChangeTimes->{{3.477575467432012*^9, 3.477575479015976*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["\nEjercicio 6",
+ FontFamily->"Bookman Old Style",
+ FontColor->RGBColor[1, 0, 0]]], "Text",
+ CellChangeTimes->{{3.445069315265625*^9, 3.445069319921875*^9}, {
+  3.53528622983641*^9, 3.535286256572897*^9}, {3.670154032390975*^9, 
+  3.6701540358011007`*^9}, {3.670154754782946*^9, 3.670154755688484*^9}},
+ FontSize->16],
+
+Cell[TextData[StyleBox["Representa en un mismo gr\[AAcute]fico el toro de \
+revoluci\[OAcute]n y el plano af\[IAcute]n tangente a dicho toro en un punto \
+elegido por ti mismo. Calcula tambi\[EAcute]n una orientaci\[OAcute]n local \
+del toro.",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{{3.445069222484375*^9, 3.445069286*^9}, {
+   3.445069324484375*^9, 3.44506934625*^9}, {3.44506946415625*^9, 
+   3.445069464765625*^9}, 3.445069830265625*^9, {3.445069920078125*^9, 
+   3.445069924140625*^9}, {3.477570083511355*^9, 3.477570101007156*^9}, {
+   3.4775734995476513`*^9, 3.47757352693153*^9}, 3.477576880401247*^9, {
+   3.508855120098878*^9, 3.508855151618668*^9}, {3.5091056446241426`*^9, 
+   3.509105698705456*^9}, {3.535286259757091*^9, 3.535286384544612*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ToroRevolucion", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"0.3", " ", 
+         RowBox[{"Cos", "[", "u", "]"}]}]}], ")"}], " ", 
+      RowBox[{"Cos", "[", "v", "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"0.3", 
+         RowBox[{"Cos", "[", "u", "]"}]}]}], ")"}], " ", 
+      RowBox[{"Sin", "[", "v", "]"}]}], ",", 
+     RowBox[{"0.3", " ", 
+      RowBox[{"Sin", "[", "u", "]"}]}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"TangAfinSuper", "[", "ToroRevolucion", "]"}], "[", 
+    RowBox[{"2", ",", "3"}], "]"}], "[", 
+   RowBox[{"a", ",", "b"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"plano", "=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"TangAfinSuper", "[", "ToroRevolucion", "]"}], "[", 
+       RowBox[{"1", ",", "0"}], "]"}], "[", 
+      RowBox[{"a", ",", "b"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", 
+       RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"b", ",", 
+       RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", " ", 
+     RowBox[{"PlotStyle", "\[Rule]", "Green"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"toro", "=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"ToroRevolucion", "[", 
+      RowBox[{"u", ",", "v"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"u", ",", "0", ",", 
+       RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"v", ",", "0", ",", 
+       RowBox[{"2", " ", "Pi"}]}], "}"}], ",", " ", 
+     RowBox[{"PlotStyle", "\[Rule]", "Red"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"toro", ",", " ", "plano"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.676473643812714*^9, 3.676473839976945*^9}, {
+  3.676473921171393*^9, 3.676473956719832*^9}, {3.676473993625798*^9, 
+  3.67647401875016*^9}, {3.6764741636602087`*^9, 3.676474251348366*^9}, {
+  3.676474293668538*^9, 3.6764743098095837`*^9}, {3.6764745212434053`*^9, 
+  3.676474521599916*^9}}],
+
+Cell[TextData[StyleBox["\nInstrucciones al terminar la pr\[AAcute]ctica:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{
+  3.472449885779574*^9, {3.530272458081758*^9, 3.530272525109302*^9}},
+ FontSize->16,
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell["\<\
+1. Graba la pr\[AAcute]ctica y no olvides escribir tu nombre en el espacio \
+reservado para ello al principio de la pr\[AAcute]ctica.
+2. Aseg\[UAcute]rate de que has realizado todos los ejercicios y de que todas \
+las celdas se evaluan sin problemas.
+3. Borra las celdas de salida: busca el comando Delete All Output en alguna \
+de las pesta\[NTilde]as del men\[UAcute] superior (Cell o Notebook). Graba.\t\
+\>", "Text",
+ CellChangeTimes->{{3.47239974269524*^9, 3.4723998009258413`*^9}, 
+   3.472399929999411*^9, {3.47244990128399*^9, 3.472449909995002*^9}, {
+   3.504270274165771*^9, 3.5042703108204803`*^9}, {3.504288378100219*^9, 
+   3.504288384699988*^9}, 3.504336835982481*^9, {3.530257429230844*^9, 
+   3.530257429621622*^9}, {3.530257492156003*^9, 3.530257505273522*^9}, {
+   3.530272543780018*^9, 3.530272605843875*^9}, {3.5302726447231417`*^9, 
+   3.5302728872423887`*^9}, {3.6670432422235928`*^9, 3.667043268005351*^9}, {
+   3.6670433892331123`*^9, 3.667043441385969*^9}, 3.667043475722834*^9, 
+   3.667043533844707*^9, {3.669441957056625*^9, 3.669441958295784*^9}},
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontWeight->"Plain",
+ FontVariations->{"CompatibilityType"->0}]
+},
+WindowSize->{808, 708},
+WindowMargins->{{151, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (July 6, \
+2015)",
+StyleDefinitions->"Classroom.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 746, 14, 107, "Text"],
+Cell[1294, 36, 257, 7, 81, "Text"],
+Cell[1554, 45, 565, 18, 65, "Text"],
+Cell[2122, 65, 423, 9, 69, "Text"],
+Cell[2548, 76, 947, 23, 100, "Text"],
+Cell[3498, 101, 198, 7, 65, "Text"],
+Cell[3699, 110, 299, 9, 50, "Input"],
+Cell[4001, 121, 300, 9, 50, "Input"],
+Cell[4304, 132, 155, 3, 30, "Text"],
+Cell[4462, 137, 430, 13, 49, "Input"],
+Cell[4895, 152, 544, 9, 30, "Text"],
+Cell[5442, 163, 567, 13, 49, "Input"],
+Cell[6012, 178, 566, 15, 52, "Text"],
+Cell[6581, 195, 486, 14, 49, "Input"],
+Cell[7070, 211, 240, 5, 30, "Text"],
+Cell[7313, 218, 80, 2, 49, "Input"],
+Cell[7396, 222, 416, 6, 30, "Text"],
+Cell[7815, 230, 1087, 24, 70, "Input"],
+Cell[8905, 256, 919, 22, 70, "Input"],
+Cell[9827, 280, 1031, 18, 135, "Text"],
+Cell[10861, 300, 1133, 30, 62, "Input"],
+Cell[11997, 332, 1116, 24, 88, "Text"],
+Cell[13116, 358, 156, 3, 49, "Input"],
+Cell[13275, 363, 437, 11, 100, "Text"],
+Cell[13715, 376, 664, 21, 50, "Input"],
+Cell[14382, 399, 560, 16, 50, "Input"],
+Cell[14945, 417, 467, 13, 50, "Input"],
+Cell[15415, 432, 483, 14, 50, "Input"],
+Cell[15901, 448, 313, 9, 50, "Input"],
+Cell[16217, 459, 750, 24, 50, "Input"],
+Cell[16970, 485, 1070, 34, 50, "Input"],
+Cell[18043, 521, 185, 4, 65, "Text"],
+Cell[18231, 527, 695, 19, 70, "Input"],
+Cell[18929, 548, 576, 16, 49, "Input"],
+Cell[19508, 566, 659, 17, 49, "Input"],
+Cell[20170, 585, 567, 16, 49, "Input"],
+Cell[20740, 603, 615, 17, 49, "Input"],
+Cell[21358, 622, 622, 17, 49, "Input"],
+Cell[21983, 641, 710, 20, 49, "Input"],
+Cell[22696, 663, 987, 17, 170, "Text"],
+Cell[23686, 682, 1738, 50, 78, "Input"],
+Cell[25427, 734, 1340, 29, 123, "Text"],
+Cell[26770, 765, 186, 4, 30, "Text"],
+Cell[26959, 771, 678, 20, 49, "Input"],
+Cell[27640, 793, 1019, 29, 70, "Input"],
+Cell[28662, 824, 1278, 34, 70, "Input"],
+Cell[29943, 860, 1708, 35, 146, "Text"],
+Cell[31654, 897, 700, 20, 46, "Input"],
+Cell[32357, 919, 704, 20, 46, "Input"],
+Cell[33064, 941, 699, 20, 46, "Input"],
+Cell[33766, 963, 1414, 23, 158, "Text"],
+Cell[35183, 988, 1004, 28, 46, "Input"],
+Cell[36190, 1018, 773, 24, 46, "Input"],
+Cell[36966, 1044, 310, 7, 81, "Text"],
+Cell[37279, 1053, 909, 22, 65, "Text"],
+Cell[38191, 1077, 935, 13, 30, "Text"],
+Cell[39129, 1092, 1120, 31, 71, "Input"],
+Cell[40252, 1125, 914, 14, 53, "Text"],
+Cell[41169, 1141, 1122, 30, 50, "Input"],
+Cell[42294, 1173, 752, 11, 30, "Text"],
+Cell[43049, 1186, 781, 18, 71, "Input"],
+Cell[43833, 1206, 745, 11, 30, "Text"],
+Cell[44581, 1219, 1591, 42, 81, "Input"],
+Cell[46175, 1263, 650, 12, 49, "Input"],
+Cell[46828, 1277, 593, 9, 30, "Text"],
+Cell[47424, 1288, 819, 18, 71, "Input"],
+Cell[48246, 1308, 1094, 19, 100, "Text"],
+Cell[49343, 1329, 3228, 99, 130, "Input"],
+Cell[52574, 1430, 356, 9, 46, "Input"],
+Cell[52933, 1441, 172, 4, 22, "Text"],
+Cell[53108, 1447, 1436, 20, 88, "Text"],
+Cell[54547, 1469, 1100, 26, 71, "Input"],
+Cell[55650, 1497, 1395, 20, 53, "Text"],
+Cell[57048, 1519, 1365, 32, 50, "Input"],
+Cell[58416, 1553, 1125, 16, 30, "Text"],
+Cell[59544, 1571, 1642, 43, 81, "Input"],
+Cell[61189, 1616, 268, 5, 30, "Text"],
+Cell[61460, 1623, 495, 11, 49, "Input"],
+Cell[61958, 1636, 405, 9, 49, "Input"],
+Cell[62366, 1647, 564, 9, 30, "Text"],
+Cell[62933, 1658, 996, 23, 71, "Input"],
+Cell[63932, 1683, 334, 8, 49, "Input"],
+Cell[64269, 1693, 443, 10, 49, "Input"],
+Cell[64715, 1705, 680, 18, 71, "Input"],
+Cell[65398, 1725, 1115, 32, 91, "Input"],
+Cell[66516, 1759, 240, 6, 49, "Input"],
+Cell[66759, 1767, 340, 6, 65, "Text"],
+Cell[67102, 1775, 792, 12, 53, "Text"],
+Cell[67897, 1789, 2283, 66, 142, "Input"],
+Cell[70183, 1857, 250, 5, 65, "Text"],
+Cell[70436, 1864, 1195, 20, 146, "Text"]
+}
+]
+*)
+
+(* End of internal cache information *)

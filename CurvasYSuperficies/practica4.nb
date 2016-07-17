@@ -1,0 +1,1816 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     62780,       1807]
+NotebookOptionsPosition[     58994,       1704]
+NotebookOutlinePosition[     59349,       1720]
+CellTagsIndexPosition[     59306,       1717]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Pr\[AAcute]ctica 4: Curvaturas de una superficie
+Nombre y apellidos: Sergio Padilla L\[OAcute]pez\
+\>", "Text",
+ CellChangeTimes->{{3.511594596778283*^9, 3.511594607063361*^9}, {
+  3.541745037486758*^9, 3.541745048629651*^9}, {3.672657861479212*^9, 
+  3.672657865589623*^9}, {3.676486560020636*^9, 3.676486576825391*^9}},
+ FontFamily->"Arial",
+ FontSize->36,
+ FontWeight->"Bold",
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell[TextData[{
+ StyleBox["Objetivo:",
+  FontFamily->"Book Antiqua",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["  Calcular la primera y la segunda forma fundamental, as\[IAcute] \
+como la curvatura de Gauss y la curvatura media de una superficie en el \
+entorno coordenado cubierto por una parametrizaci\[OAcute]n.",
+  FontFamily->"Book Antiqua"]
+}], "Text",
+ CellChangeTimes->{{3.481366591364937*^9, 3.481366642586204*^9}, {
+  3.4813671638289003`*^9, 3.481367191169373*^9}, {3.511525049268276*^9, 
+  3.511525076006516*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.481369044804978*^9, 3.481369056636627*^9}}],
+
+Cell[TextData[StyleBox["Coeficientes y matriz de la primera forma \
+fundamental", "Section",
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontSlant->"Italic",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{{3.481366648227216*^9, 3.4813666622181263`*^9}, {
+  3.481366869721012*^9, 3.481366872140957*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"EE", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     SubscriptBox["\[PartialD]", "u"], 
+     RowBox[{"X", "[", 
+      RowBox[{"u", ",", "v"}], "]"}]}], ".", 
+    RowBox[{
+     SubscriptBox["\[PartialD]", "u"], 
+     RowBox[{"X", "[", 
+      RowBox[{"u", ",", "v"}], "]"}]}]}], "//", 
+   "FullSimplify"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FF", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     SubscriptBox["\[PartialD]", "u"], 
+     RowBox[{"X", "[", 
+      RowBox[{"u", ",", "v"}], "]"}]}], ".", 
+    RowBox[{
+     SubscriptBox["\[PartialD]", "v"], 
+     RowBox[{"X", "[", 
+      RowBox[{"u", ",", "v"}], "]"}]}]}], "//", 
+   "FullSimplify"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"GG", "[", "X_", "]"}], "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox["\[PartialD]", "v"], 
+      RowBox[{"X", "[", 
+       RowBox[{"u", ",", "v"}], "]"}]}], ".", 
+     RowBox[{
+      SubscriptBox["\[PartialD]", "v"], 
+      RowBox[{"X", "[", 
+       RowBox[{"u", ",", "v"}], "]"}]}]}], "//", "FullSimplify"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"pff", "[", "X_", "]"}], "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"EE", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"FF", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"FF", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"GG", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}]}], "}"}]}], "}"}]}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"detpff", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"EE", "[", "X", "]"}], "[", 
+      RowBox[{"u", ",", "v"}], "]"}], " ", 
+     RowBox[{
+      RowBox[{"GG", "[", "X", "]"}], "[", 
+      RowBox[{"u", ",", "v"}], "]"}]}], "-", 
+    SuperscriptBox[
+     RowBox[{
+      RowBox[{"FF", "[", "X", "]"}], "[", 
+      RowBox[{"u", ",", "v"}], "]"}], "2"]}], "//", 
+   "FullSimplify"}]}]}], "Input",
+ CellChangeTimes->{{3.481366745950781*^9, 3.481366797578638*^9}, {
+  3.481367238879216*^9, 3.48136723918256*^9}, {3.481368782805109*^9, 
+  3.481368784171281*^9}, {3.48137243893019*^9, 3.4813724408822317`*^9}}],
+
+Cell[TextData[StyleBox["Coeficientes y matriz de la segunda forma \
+fundamental", "Section",
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontSlant->"Italic",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{{3.4813666767889347`*^9, 3.4813666864420557`*^9}, {
+  3.4813668750289707`*^9, 3.481366876500956*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ee", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    FractionBox["1", 
+     SqrtBox[
+      RowBox[{
+       RowBox[{"detpff", "[", "X", "]"}], "[", 
+       RowBox[{"u", ",", "v"}], "]"}]]], " ", 
+    RowBox[{"Det", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["\[PartialD]", "u"], 
+        RowBox[{"X", "[", 
+         RowBox[{"u", ",", "v"}], "]"}]}], ",", 
+       RowBox[{
+        SubscriptBox["\[PartialD]", "v"], 
+        RowBox[{"X", "[", 
+         RowBox[{"u", ",", "v"}], "]"}]}], ",", 
+       RowBox[{
+        SubscriptBox["\[PartialD]", 
+         RowBox[{"u", ",", "u"}]], 
+        RowBox[{"X", "[", 
+         RowBox[{"u", ",", "v"}], "]"}]}]}], "}"}], "]"}]}], "//", 
+   "FullSimplify"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ff", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    FractionBox["1", 
+     SqrtBox[
+      RowBox[{
+       RowBox[{"detpff", "[", "X", "]"}], "[", 
+       RowBox[{"u", ",", "v"}], "]"}]]], " ", 
+    RowBox[{"Det", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["\[PartialD]", "u"], 
+        RowBox[{"X", "[", 
+         RowBox[{"u", ",", "v"}], "]"}]}], ",", 
+       RowBox[{
+        SubscriptBox["\[PartialD]", "v"], 
+        RowBox[{"X", "[", 
+         RowBox[{"u", ",", "v"}], "]"}]}], ",", 
+       RowBox[{
+        SubscriptBox["\[PartialD]", 
+         RowBox[{"u", ",", "v"}]], 
+        RowBox[{"X", "[", 
+         RowBox[{"u", ",", "v"}], "]"}]}]}], "}"}], "]"}]}], "//", 
+   "FullSimplify"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"gg", "[", "X_", "]"}], "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", 
+      SqrtBox[
+       RowBox[{
+        RowBox[{"detpff", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}]]], " ", 
+     RowBox[{"Det", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         SubscriptBox["\[PartialD]", "u"], 
+         RowBox[{"X", "[", 
+          RowBox[{"u", ",", "v"}], "]"}]}], ",", 
+        RowBox[{
+         SubscriptBox["\[PartialD]", "v"], 
+         RowBox[{"X", "[", 
+          RowBox[{"u", ",", "v"}], "]"}]}], ",", 
+        RowBox[{
+         SubscriptBox["\[PartialD]", 
+          RowBox[{"v", ",", "v"}]], 
+         RowBox[{"X", "[", 
+          RowBox[{"u", ",", "v"}], "]"}]}]}], "}"}], "]"}]}], "//", 
+    "FullSimplify"}]}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"sff", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"ee", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"ff", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"ff", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"gg", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}]}], "}"}]}], "}"}], "//", 
+   "FullSimplify"}]}]}], "Input",
+ CellChangeTimes->{{3.481366884447255*^9, 3.481366916362216*^9}, {
+  3.4813672285079727`*^9, 3.481367231461895*^9}}],
+
+Cell[TextData[StyleBox["Matriz del endomorfismo de Weingarten", "Section",
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontSlant->"Italic",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{{3.481366951973693*^9, 3.481366961090991*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"A", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Inverse", "[", 
+    RowBox[{
+     RowBox[{"pff", "[", "X", "]"}], "[", 
+     RowBox[{"u", ",", "v"}], "]"}], "]"}], ".", 
+   RowBox[{
+    RowBox[{"sff", "[", "X", "]"}], "[", 
+    RowBox[{"u", ",", "v"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.481366968149465*^9, 3.481366998719303*^9}, {
+  3.5115251871065493`*^9, 3.511525188864709*^9}}],
+
+Cell[TextData[StyleBox["Curvatura de Gauss en un entorno coordenado", \
+"Section",
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontSlant->"Italic",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{{3.48136692736697*^9, 3.481366936634714*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"K", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"ee", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}], " ", 
+       RowBox[{
+        RowBox[{"gg", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}]}], "-", 
+      SuperscriptBox[
+       RowBox[{
+        RowBox[{"ff", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}], "2"]}], ")"}], "/", 
+    RowBox[{
+     RowBox[{"detpff", "[", "X", "]"}], "[", 
+     RowBox[{"u", ",", "v"}], "]"}]}], "//", "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.4813672222270107`*^9, 3.481367235027135*^9}, {
+  3.481368637122232*^9, 3.481368640657069*^9}}],
+
+Cell[TextData[StyleBox["Curvatura media en un entorno coordenado", "Section",
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontSlant->"Italic",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{{3.481366940955215*^9, 3.4813669475709553`*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"H", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"ee", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}], " ", 
+       RowBox[{
+        RowBox[{"GG", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}]}], "-", 
+      RowBox[{"2", 
+       RowBox[{
+        RowBox[{"ff", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}], " ", 
+       RowBox[{
+        RowBox[{"FF", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}]}], "+", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"gg", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}], " ", 
+       RowBox[{
+        RowBox[{"EE", "[", "X", "]"}], "[", 
+        RowBox[{"u", ",", "v"}], "]"}]}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"2", 
+      RowBox[{
+       RowBox[{"detpff", "[", "X", "]"}], "[", 
+       RowBox[{"u", ",", "v"}], "]"}]}], ")"}]}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.4813672510119057`*^9, 3.4813672521878977`*^9}, {
+  3.4813686441386147`*^9, 3.481368647665771*^9}}],
+
+Cell[TextData[StyleBox["Curvaturas y direcciones principales en un entorno \
+coordenado. C\[AAcute]lculo de la curvatura de Gauss y de la curvatura media \
+a partir de la matriz del endomorfismo de Weingarten", "Section",
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontSlant->"Italic",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{{3.481367007936843*^9, 3.48136702326118*^9}, {
+  3.481372605694199*^9, 3.481372623139636*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"curvprin", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Eigenvalues", "[", 
+    RowBox[{
+     RowBox[{"A", "[", "X", "]"}], "[", 
+     RowBox[{"u", ",", "v"}], "]"}], "]"}], "//", "FullSimplify"}]}]], "Input",\
+
+ CellChangeTimes->{{3.481367030662423*^9, 3.4813670365823603`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"dirprin", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Eigenvectors", "[", 
+    RowBox[{
+     RowBox[{"A", "[", "X", "]"}], "[", 
+     RowBox[{"u", ",", "v"}], "]"}], "]"}], "//", "FullSimplify"}]}]], "Input",\
+
+ CellChangeTimes->{{3.4813670403264427`*^9, 3.481367044446239*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"K2", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Det", "[", 
+    RowBox[{
+     RowBox[{"A", "[", "X", "]"}], "[", 
+     RowBox[{"u", ",", "v"}], "]"}], "]"}], "//", "FullSimplify"}]}]], "Input",\
+
+ CellChangeTimes->{{3.48136879169903*^9, 3.481368797887038*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"H2", "[", "X_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"A", "[", "X", "]"}], "[", 
+         RowBox[{"u", ",", "v"}], "]"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "+", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"A", "[", "X", "]"}], "[", 
+         RowBox[{"u", ",", "v"}], "]"}], "[", 
+        RowBox[{"[", "2", "]"}], "]"}], "[", 
+       RowBox[{"[", "2", "]"}], "]"}]}], ")"}], "/", "2"}], "//", 
+   "FullSimplify"}]}]], "Input",
+ CellChangeTimes->{{3.481368800074524*^9, 3.481368803354373*^9}}],
+
+Cell[TextData[StyleBox["Ejemplo: grafos diferenciables", "Section",
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontSlant->"Italic",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{
+  3.481367082762288*^9, 3.48137264580585*^9, {3.481372804154955*^9, 
+   3.4813728190766563`*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"grafo", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", "v", ",", 
+     RowBox[{"f", "[", 
+      RowBox[{"u", ",", "v"}], "]"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.481372849073172*^9, 3.4813728639264793`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"pff", "[", "grafo", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.481367109417861*^9, 3.481367110633885*^9}, {
+  3.4813728711106052`*^9, 3.481372874750146*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"sff", "[", "grafo", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.481367112882208*^9, 3.481367114114205*^9}, {
+  3.481372877950712*^9, 3.481372881406252*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"A", "[", "grafo", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.481368815337997*^9, 3.481368816457601*^9}, {
+  3.4813726734801817`*^9, 3.48137267678878*^9}, {3.48137289734268*^9, 
+  3.481372900478396*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"K", "[", "grafo", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.481368616762241*^9, 3.4813686215118437`*^9}, {
+  3.481368806730076*^9, 3.4813688080491056`*^9}, {3.481372884830521*^9, 
+  3.4813728880697613`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"H", "[", "grafo", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.481368809450054*^9, 3.481368813074819*^9}, {
+  3.481372890742559*^9, 3.4813728941818113`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"K2", "[", "grafo", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.4813688261060553`*^9, 3.4813688278000107`*^9}, {
+  3.481372905462532*^9, 3.481372908533783*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"H2", "[", "grafo", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.4813688308420553`*^9, 3.4813688333166122`*^9}, {
+  3.48137291160672*^9, 3.481372914613784*^9}}],
+
+Cell[TextData[StyleBox["Caso particular: el paraboloide el\[IAcute]ptico", \
+"Section",
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontSlant->"Italic",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{
+  3.481367082762288*^9, 3.48137264580585*^9, {3.481372804154955*^9, 
+   3.4813728190766563`*^9}, {3.48137308385568*^9, 3.481373101770103*^9}, {
+   3.541744740183679*^9, 3.5417447453894587`*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"paraboloideEliptico", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", "v", ",", 
+     RowBox[{
+      RowBox[{"u", "^", "2"}], "+", 
+      RowBox[{"v", "^", "2"}]}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.481373441180293*^9, 3.481373441379752*^9}, {
+  3.541744748358542*^9, 3.541744763933567*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"paraboloideEliptico", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.4813733039981737`*^9, 3.481373337171857*^9}, {
+  3.4813749568549423`*^9, 3.481374980330843*^9}, {3.541744766270302*^9, 
+  3.5417447748771*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"pff", "[", "paraboloideEliptico", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.481367109417861*^9, 3.481367110633885*^9}, {
+  3.481373443507949*^9, 3.4813734436427794`*^9}, {3.5417447816782103`*^9, 
+  3.541744787036193*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"sff", "[", "paraboloideEliptico", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.481367112882208*^9, 3.481367114114205*^9}, {
+  3.4813734455881433`*^9, 3.481373445739422*^9}, {3.541744789132327*^9, 
+  3.5417447938678617`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"A", "[", "paraboloideEliptico", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.481368815337997*^9, 3.481368816457601*^9}, {
+  3.4813726734801817`*^9, 3.48137267678878*^9}, {3.481373452812078*^9, 
+  3.481373452987422*^9}, {3.5417447956596937`*^9, 3.541744799683546*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"K", "[", "paraboloideEliptico", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.481368616762241*^9, 3.4813686215118437`*^9}, {
+  3.481368806730076*^9, 3.4813688080491056`*^9}, {3.481373448939477*^9, 
+  3.4813734490913982`*^9}, {3.511525388354088*^9, 3.511525389608143*^9}, {
+  3.541744801891556*^9, 3.5417448061711407`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"H", "[", "paraboloideEliptico", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.481368809450054*^9, 3.481368813074819*^9}, {
+  3.481373450964098*^9, 3.4813734511314507`*^9}, {3.541744809851157*^9, 
+  3.541744814098724*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"curvprin", "[", "paraboloideEliptico", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.48136712111401*^9, 3.481367125745723*^9}, {
+  3.481368818561528*^9, 3.481368819889165*^9}, {3.481373455139473*^9, 
+  3.4813734552996817`*^9}, {3.541744816258812*^9, 3.541744820314269*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"dirprin", "[", "paraboloideEliptico", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.4813679177497396`*^9, 3.481367927660179*^9}, {
+  3.4813688218979816`*^9, 3.481368823705351*^9}, {3.481373457443862*^9, 
+  3.481373457611493*^9}, {3.541744822954454*^9, 3.541744827242056*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"K2", "[", "paraboloideEliptico", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.4813688261060553`*^9, 3.4813688278000107`*^9}, {
+  3.4813734608674793`*^9, 3.481373461051559*^9}, {3.5417448296981373`*^9, 
+  3.541744836793528*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"H2", "[", "paraboloideEliptico", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.4813688308420553`*^9, 3.4813688333166122`*^9}, {
+  3.4813734629474154`*^9, 3.4813734631712723`*^9}, {3.541744839041621*^9, 
+  3.541744843521112*^9}}],
+
+Cell[TextData[StyleBox["Ejemplo: superficies de revoluci\[OAcute]n", "Section",
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontSlant->"Italic",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{
+  3.481367082762288*^9, 3.48137264580585*^9, {3.481372804154955*^9, 
+   3.4813728190766563`*^9}, {3.4813730195915337`*^9, 3.481373027116783*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"srev", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"x", "[", "u", "]"}], " ", 
+      RowBox[{"Cos", "[", "v", "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"x", "[", "u", "]"}], " ", 
+      RowBox[{"Sin", "[", "v", "]"}]}], ",", 
+     RowBox[{"z", "[", "u", "]"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.481372849073172*^9, 3.4813728639264793`*^9}, {
+  3.481373131513254*^9, 3.481373154964216*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"pff", "[", "srev", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.481367109417861*^9, 3.481367110633885*^9}, {
+  3.4813728711106052`*^9, 3.481372874750146*^9}, {3.481373159540044*^9, 
+  3.481373161595252*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"sff", "[", "srev", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.481367112882208*^9, 3.481367114114205*^9}, {
+  3.481372877950712*^9, 3.481372881406252*^9}, {3.4813731640359707`*^9, 
+  3.481373166211627*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"A", "[", "srev", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.481368815337997*^9, 3.481368816457601*^9}, {
+  3.4813726734801817`*^9, 3.48137267678878*^9}, {3.48137289734268*^9, 
+  3.481372900478396*^9}, {3.481373176635972*^9, 3.481373178507318*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"K", "[", "srev", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.481368616762241*^9, 3.4813686215118437`*^9}, {
+  3.481368806730076*^9, 3.4813688080491056`*^9}, {3.481372884830521*^9, 
+  3.4813728880697613`*^9}, {3.4813731686606283`*^9, 3.481373170763385*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"H", "[", "srev", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.481368809450054*^9, 3.481368813074819*^9}, {
+  3.481372890742559*^9, 3.4813728941818113`*^9}, {3.481373172553484*^9, 
+  3.481373174571157*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"K2", "[", "srev", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.4813688261060553`*^9, 3.4813688278000107`*^9}, {
+  3.481372905462532*^9, 3.481372908533783*^9}, {3.481373180417655*^9, 
+  3.481373182523168*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"H2", "[", "srev", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.4813688308420553`*^9, 3.4813688333166122`*^9}, {
+  3.48137291160672*^9, 3.481372914613784*^9}, {3.4813731862857637`*^9, 
+  3.4813731883238277`*^9}}],
+
+Cell[TextData[StyleBox["Caso particular: el catenoide", "Section",
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontSlant->"Italic",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{
+  3.481367082762288*^9, 3.48137264580585*^9, {3.481372804154955*^9, 
+   3.4813728190766563`*^9}, {3.4813730195915337`*^9, 3.481373027116783*^9}, {
+   3.48137326173871*^9, 3.4813732735302887`*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"catenoide", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Cosh", "[", "u", "]"}], " ", 
+      RowBox[{"Cos", "[", "v", "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"Cosh", "[", "u", "]"}], " ", 
+      RowBox[{"Sin", "[", "v", "]"}]}], ",", "u"}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.481372849073172*^9, 3.4813728639264793`*^9}, {
+  3.481373131513254*^9, 3.481373154964216*^9}, {3.4813732768446493`*^9, 
+  3.481373300731997*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"catenoide", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", "0", ",", 
+     RowBox[{"2", "Pi"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.4813733039981737`*^9, 3.481373337171857*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"pff", "[", "catenoide", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.481367109417861*^9, 3.481367110633885*^9}, {
+  3.4813728711106052`*^9, 3.481372874750146*^9}, {3.481373159540044*^9, 
+  3.481373161595252*^9}, {3.481373349100073*^9, 3.481373352043008*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"sff", "[", "catenoide", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.481367112882208*^9, 3.481367114114205*^9}, {
+  3.481372877950712*^9, 3.481372881406252*^9}, {3.4813731640359707`*^9, 
+  3.481373166211627*^9}, {3.48137335583862*^9, 3.481373358587615*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"A", "[", "catenoide", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "//", "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.481368815337997*^9, 3.481368816457601*^9}, {
+  3.4813726734801817`*^9, 3.48137267678878*^9}, {3.48137289734268*^9, 
+  3.481372900478396*^9}, {3.481373176635972*^9, 3.481373178507318*^9}, {
+  3.481373370829261*^9, 3.481373373571409*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"K", "[", "catenoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.481368616762241*^9, 3.4813686215118437`*^9}, {
+  3.481368806730076*^9, 3.4813688080491056`*^9}, {3.481372884830521*^9, 
+  3.4813728880697613`*^9}, {3.4813731686606283`*^9, 3.481373170763385*^9}, {
+  3.481373361137233*^9, 3.48137336405165*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"H", "[", "catenoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.481368809450054*^9, 3.481368813074819*^9}, {
+  3.481372890742559*^9, 3.4813728941818113`*^9}, {3.481373172553484*^9, 
+  3.481373174571157*^9}, {3.481373366120035*^9, 3.481373368755246*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"K2", "[", "catenoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.4813688261060553`*^9, 3.4813688278000107`*^9}, {
+  3.481372905462532*^9, 3.481372908533783*^9}, {3.481373180417655*^9, 
+  3.481373182523168*^9}, {3.481373377826212*^9, 3.481373380483279*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"H2", "[", "catenoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.4813688308420553`*^9, 3.4813688333166122`*^9}, {
+  3.48137291160672*^9, 3.481372914613784*^9}, {3.4813731862857637`*^9, 
+  3.4813731883238277`*^9}, {3.4813734086279087`*^9, 3.481373411427586*^9}}],
+
+Cell[TextData[StyleBox["Ejemplos de parametrizaciones de superficies", \
+"Section",
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontSlant->"Italic",
+ FontColor->RGBColor[0, 0, 1]]], "Text",
+ CellChangeTimes->{{3.481367143833041*^9, 3.481367151376837*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"esfera", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Cos", "[", "u", "]"}], " ", 
+      RowBox[{"Cos", "[", "v", "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"Cos", "[", "u", "]"}], " ", 
+      RowBox[{"Sin", "[", "v", "]"}]}], ",", 
+     RowBox[{"Sin", "[", "u", "]"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.481373497499969*^9, 3.481373528219945*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"cilindro", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Cos", "[", "v", "]"}], ",", 
+     RowBox[{"Sin", "[", "v", "]"}], ",", "u"}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.481367662894815*^9, 3.48136766553516*^9}, {
+   3.481369466501628*^9, 3.481369467811385*^9}, {3.4813694999558496`*^9, 
+   3.481369506843494*^9}, {3.4813734826916313`*^9, 3.481373482891694*^9}, 
+   3.481373812429166*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"toro", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"c", "+", 
+        RowBox[{"r", " ", 
+         RowBox[{"Cos", "[", "u", "]"}]}]}], ")"}], " ", 
+      RowBox[{"Cos", "[", "v", "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"c", "+", 
+        RowBox[{"r", " ", 
+         RowBox[{"Cos", "[", "u", "]"}]}]}], ")"}], " ", 
+      RowBox[{"Sin", "[", "v", "]"}]}], ",", " ", 
+     RowBox[{"r", " ", 
+      RowBox[{"Sin", "[", "u", "]"}]}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.481373475180778*^9, 3.48137347539647*^9}, 
+   3.481373660325605*^9, {3.481374559490439*^9, 3.4813745606412153`*^9}, {
+   3.481374670106607*^9, 3.481374684185997*^9}, 3.511525540016385*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"elipsoide", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"2", " ", 
+      RowBox[{"Sin", "[", "u", "]"}], " ", 
+      RowBox[{"Cos", "[", "v", "]"}]}], ",", 
+     RowBox[{"2", " ", 
+      RowBox[{"Sin", "[", "u", "]"}], " ", 
+      RowBox[{"Sin", "[", "v", "]"}]}], ",", 
+     RowBox[{"3", " ", 
+      RowBox[{"Cos", "[", "u", "]"}]}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.48136763254356*^9, 3.481367636063717*^9}, {
+   3.48137347706019*^9, 3.481373478364151*^9}, 3.481373815293921*^9, {
+   3.5115255501773233`*^9, 3.511525551745509*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"seudoesfera", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"E", "^", "u"}], " ", 
+      RowBox[{"Cos", "[", "v", "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"E", "^", "u"}], " ", 
+      RowBox[{"Sin", "[", "v", "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", 
+       RowBox[{"1", "-", 
+        RowBox[{"E", "^", 
+         RowBox[{"(", 
+          RowBox[{"2", " ", "u"}], ")"}]}]}], "]"}], "-", 
+      RowBox[{"ArcTanh", "[", 
+       RowBox[{"Sqrt", "[", 
+        RowBox[{"1", "-", 
+         RowBox[{"E", "^", 
+          RowBox[{"(", 
+           RowBox[{"2", "u"}], ")"}]}]}], "]"}], "]"}]}]}], "}"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.511526854010035*^9, 3.511526911907641*^9}, {
+  3.51152695165567*^9, 3.5115269741304502`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"bandaMoebius", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"2", "-", 
+        RowBox[{"v", " ", 
+         RowBox[{"Sin", "[", 
+          RowBox[{"u", "/", "2"}], "]"}]}]}], ")"}], " ", 
+      RowBox[{"Sin", "[", "u", "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"2", "-", 
+        RowBox[{"v", " ", 
+         RowBox[{"Sin", "[", 
+          RowBox[{"u", "/", "2"}], "]"}]}]}], ")"}], " ", 
+      RowBox[{"Cos", "[", "u", "]"}]}], ",", 
+     RowBox[{"v", " ", 
+      RowBox[{"Cos", "[", 
+       RowBox[{"u", "/", "2"}], "]"}]}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.4813676692077637`*^9, 3.481367671639982*^9}, {
+   3.481373484301527*^9, 3.4813734845963373`*^9}, 3.4813738207317533`*^9}],
+
+Cell[TextData[{
+ StyleBox["Ejercicios:\n",
+  FontFamily->"Bookman Old Style",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["1. Elige tres superficies de la lista de arriba y \
+dib\[UAcute]jalas en dominios adecuados. Para cada una de ellas calcula la \
+matriz de la primera y de la segunda forma fundamental, la matriz del \
+endormorfismo de Weingarten, la curvatura de Gauss, la curvatura media y las \
+curvaturas principales. \nNota: Si eliges el toro realiza primero los c\
+\[AAcute]lculos en general (sin especificar los par\[AAcute]metros c y r) y \
+luego dibuja el toro que se obtiene para los par\[AAcute]metros c = 2 y r = \
+1.",
+  FontFamily->"Bookman Old Style"]
+}], "Text",
+ CellChangeTimes->{{3.481367964247466*^9, 3.481368228688594*^9}, {
+   3.481368382146854*^9, 3.481368414576827*^9}, {3.481368559975606*^9, 
+   3.481368567249672*^9}, {3.4813737162358294`*^9, 3.481373725729766*^9}, {
+   3.481373907663597*^9, 3.4813740360229597`*^9}, {3.4813747218670187`*^9, 
+   3.481374753576564*^9}, {3.481374797943275*^9, 3.481374839274405*^9}, {
+   3.481375157835619*^9, 3.481375221097959*^9}, {3.481375331168456*^9, 
+   3.4813753456777153`*^9}, {3.481375626103581*^9, 3.481375704911669*^9}, {
+   3.481429174030676*^9, 3.481429198460902*^9}, {3.481518629960277*^9, 
+   3.481518633662833*^9}, {3.4820306301269083`*^9, 3.482030707137684*^9}, {
+   3.511525593390044*^9, 3.511525594003935*^9}, {3.511525695904889*^9, 
+   3.511525824748209*^9}, {3.5115258806427383`*^9, 3.511526067636278*^9}, {
+   3.5115261637537413`*^9, 3.5115261737113533`*^9}, {3.511526749205117*^9, 
+   3.5115268342667503`*^9}, {3.511527218789481*^9, 3.511527342363304*^9}, {
+   3.511527381666314*^9, 3.51152752258177*^9}, 3.511527591836956*^9, {
+   3.511527771273312*^9, 3.5115277936652117`*^9}, {3.511527882884001*^9, 
+   3.511527892292153*^9}, {3.511528127118339*^9, 3.511528155838011*^9}, {
+   3.511595096073509*^9, 3.511595100967656*^9}, {3.511595151939973*^9, 
+   3.511595264020767*^9}, 3.511595357403636*^9, {3.541745069639826*^9, 
+   3.541745099827323*^9}, {3.5417451970227137`*^9, 3.541745197959446*^9}, {
+   3.541745239852086*^9, 3.541745242747897*^9}, {3.541745312925*^9, 
+   3.541745362149313*^9}, {3.54182781390163*^9, 3.5418278157340508`*^9}, {
+   3.541827964238361*^9, 3.541828087879663*^9}, {3.5418285297872868`*^9, 
+   3.541828533112232*^9}, {3.5418286704747353`*^9, 3.541828782650545*^9}, {
+   3.541828952523991*^9, 3.5418290460767937`*^9}, {3.541829081971154*^9, 
+   3.541829112105576*^9}, {3.541829414379921*^9, 3.5418294151612587`*^9}, {
+   3.541829481432012*^9, 3.5418294902812138`*^9}, {3.54182953929906*^9, 
+   3.5418295624497147`*^9}, 3.541829998413471*^9, {3.672658210631544*^9, 
+   3.672658218951893*^9}, {3.6726583423095293`*^9, 3.6726584768716373`*^9}, 
+   3.672658524836335*^9, {3.676486774521645*^9, 3.676486817189589*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"esfera", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Cos", "[", "u", "]"}], " ", 
+      RowBox[{"Cos", "[", "v", "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"Cos", "[", "u", "]"}], " ", 
+      RowBox[{"Sin", "[", "v", "]"}]}], ",", 
+     RowBox[{"Sin", "[", "u", "]"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"esfera", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", "0", ",", 
+     RowBox[{"2", "Pi"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", "0", ",", 
+     RowBox[{"2", "Pi"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"EE", "[", "esfera", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FF", "[", "esfera", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"GG", "[", "esfera", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pff", "[", "esfera", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], " ", "//", " ", 
+  "MatrixForm"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ee", "[", "esfera", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ff", "[", "esfera", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"gg", "[", "esfera", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"sff", "[", "esfera", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], " ", "//", " ", 
+  "MatrixForm"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"A", "[", "esfera", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], " ", "//", " ", 
+  "MatrixForm"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"K", "[", "esfera", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"H", "[", "esfera", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"curvprin", "[", "esfera", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.676486838192278*^9, 3.676486945180889*^9}, {
+  3.676486988837469*^9, 3.676487102856616*^9}, {3.676487167538252*^9, 
+  3.676487217039703*^9}, {3.676487247424823*^9, 3.6764872576239777`*^9}, {
+  3.676487299248312*^9, 3.676487305464774*^9}, {3.676487349248961*^9, 
+  3.676487411480661*^9}, {3.676487473045066*^9, 3.676487511347809*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"cilindro", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Cos", "[", "v", "]"}], ",", 
+     RowBox[{"Sin", "[", "v", "]"}], ",", "u"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"cilindro", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", "0", ",", 
+     RowBox[{"2", "Pi"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"EE", "[", "cilindro", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FF", "[", "cilindro", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"GG", "[", "cilindro", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pff", "[", "cilindro", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], " ", "//", " ", 
+  "MatrixForm"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ee", "[", "cilindro", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ff", "[", "cilindro", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"gg", "[", "cilindro", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"sff", "[", "cilindro", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], " ", "//", " ", 
+  "MatrixForm"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"A", "[", "cilindro", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], " ", "//", " ", 
+  "MatrixForm"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"K", "[", "cilindro", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"H", "[", "cilindro", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"curvprin", "[", "cilindro", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]}], "Input",
+ CellChangeTimes->{
+  3.676487000165447*^9, {3.6764875960181093`*^9, 3.676487660585659*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"elipsoide", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"2", " ", 
+      RowBox[{"Sin", "[", "u", "]"}], " ", 
+      RowBox[{"Cos", "[", "v", "]"}]}], ",", 
+     RowBox[{"2", " ", 
+      RowBox[{"Sin", "[", "u", "]"}], " ", 
+      RowBox[{"Sin", "[", "v", "]"}]}], ",", 
+     RowBox[{"3", " ", 
+      RowBox[{"Cos", "[", "u", "]"}]}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{"elipsoide", "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", "0", ",", 
+     RowBox[{"2", "Pi"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", "0", ",", 
+     RowBox[{"2", "Pi"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"EE", "[", "elipsoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FF", "[", "elipsoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"GG", "[", "elipsoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pff", "[", "elipsoide", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], " ", "//", " ", 
+  "MatrixForm"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ee", "[", "elipsoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ff", "[", "elipsoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"gg", "[", "elipsoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"sff", "[", "elipsoide", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], " ", "//", " ", 
+  "MatrixForm"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"A", "[", "elipsoide", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], " ", "//", " ", 
+  "MatrixForm"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"K", "[", "elipsoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"H", "[", "elipsoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"curvprin", "[", "elipsoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6764876691943893`*^9, 3.676487708833804*^9}}],
+
+Cell[TextData[StyleBox["2. Se considera el grafo de la funci\[OAcute]n f(u,v) \
+= u^3+v^3 y el punto p = (0,0,0). Decidir, en funci\[OAcute]n de sus \
+curvaturas, que tipo de punto es p. Estudiar la posici\[OAcute]n local entre \
+el grafo y su plano af\[IAcute]n tangente en p (dibujar a la vez el grafo y \
+el plano, y observar lo que ocurre en un entorno de p). ",
+ FontFamily->"Bookman Old Style"]], "Text",
+ CellChangeTimes->{
+  3.6764868107718678`*^9, {3.676487835863739*^9, 3.676487839822104*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"u", "^", "3"}], "+", 
+    RowBox[{"v", "^", "3"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"K", "[", "grafo", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"H", "[", "grafo", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"K", "[", "grafo", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], " ", "/.", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"u", "\[Rule]", "0"}], ",", 
+    RowBox[{"v", "\[Rule]", "0"}]}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H", "[", "grafo", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "/.", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"u", "\[Rule]", "0"}], ",", 
+    RowBox[{"v", "\[Rule]", "0"}]}], "}"}]}]}], "Input",
+ CellChangeTimes->{{3.676487849668141*^9, 3.676487876347714*^9}, {
+  3.6764879578186827`*^9, 3.6764880023778276`*^9}, {3.676488041996217*^9, 
+  3.676488056624929*^9}, {3.676488187991803*^9, 3.676488188590888*^9}, {
+  3.6764884454436293`*^9, 3.676488445707897*^9}, {3.676518698361073*^9, 
+  3.676518754766884*^9}, {3.6765188089275513`*^9, 3.676518850040357*^9}, {
+  3.6765191046669064`*^9, 3.676519105101142*^9}}],
+
+Cell["El punto p es un punto plano.", "Text",
+ CellChangeTimes->{{3.6765188808781567`*^9, 3.6765188926838217`*^9}, 
+   3.6765189243072987`*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"u", "^", "3"}], "+", 
+    RowBox[{"v", "^", "3"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"T1Grafo", "[", "f_", "]"}], "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", 
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"f", "[", 
+        RowBox[{"u", ",", "v"}], "]"}], ",", "u"}], "]"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"T2Grafo", "[", "f_", "]"}], "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1", ",", 
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"f", "[", 
+        RowBox[{"u", ",", "v"}], "]"}], ",", "v"}], "]"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"TangAfinGrafo", "[", "f_", "]"}], "[", 
+     RowBox[{"u0_", ",", "v0_"}], "]"}], "[", 
+    RowBox[{"a_", ",", "b_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"u", ",", "v", ",", 
+       RowBox[{"f", "[", 
+        RowBox[{"u", ",", "v"}], "]"}]}], "}"}], "+", 
+     RowBox[{"a", " ", 
+      RowBox[{
+       RowBox[{"T1Grafo", "[", "f", "]"}], "[", 
+       RowBox[{"u", ",", "v"}], "]"}]}], "+", 
+     RowBox[{"b", " ", 
+      RowBox[{
+       RowBox[{"T2Grafo", "[", "f", "]"}], "[", 
+       RowBox[{"u", ",", "v"}], "]"}]}]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"u", "\[Rule]", "u0"}], ",", 
+      RowBox[{"v", "\[Rule]", "v0"}]}], "}"}]}]}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"plano", "=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"TangAfinGrafo", "[", "f", "]"}], "[", 
+       RowBox[{"0", ",", "0"}], "]"}], "[", 
+      RowBox[{"a", ",", "b"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"b", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", " ", 
+     RowBox[{"PlotStyle", "\[Rule]", "Green"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"grafo1", "=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"grafo", "[", 
+      RowBox[{"u", ",", "v"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"u", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"v", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", " ", 
+     RowBox[{"PlotStyle", "\[Rule]", "Red"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"plano", ",", "grafo1"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.676519059053114*^9, 3.676519239033517*^9}, 
+   3.676519318031866*^9, {3.676519351144697*^9, 3.676519351805162*^9}, {
+   3.6765194116543293`*^9, 3.676519454454039*^9}}],
+
+Cell[TextData[StyleBox["3. Se considera el grafo de la funci\[OAcute]n f(u,v) \
+= u^4+v^4 y el punto p = (0,0,0). Decidir, en funci\[OAcute]n de sus \
+curvaturas, que tipo de punto es p. Estudiar la posici\[OAcute]n local entre \
+el grafo y su plano af\[IAcute]n tangente en p (dibujar a la vez el grafo y \
+el plano, y observar lo que ocurre en un entorno de p). ",
+ FontFamily->"Bookman Old Style"]], "Text",
+ CellChangeTimes->{
+  3.676487837903928*^9, {3.676488153194249*^9, 3.67648815471284*^9}},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"f", "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"u", "^", "4"}], "+", 
+   RowBox[{"v", "^", "4"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"K", "[", "grafo", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"H", "[", "grafo", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"K", "[", "grafo", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], " ", "/.", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"u", "\[Rule]", "0"}], ",", 
+    RowBox[{"v", "\[Rule]", "0"}]}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"H", "[", "grafo", "]"}], "[", 
+   RowBox[{"u", ",", "v"}], "]"}], "/.", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"u", "\[Rule]", "0"}], ",", 
+    RowBox[{"v", "\[Rule]", "0"}]}], "}"}]}]}], "Input",
+ CellChangeTimes->{{3.6764881958469*^9, 3.676488201598352*^9}, {
+  3.676488265829814*^9, 3.676488358187975*^9}, {3.6765194708153954`*^9, 
+  3.6765194886427927`*^9}, {3.676519531372027*^9, 3.676519540115885*^9}}],
+
+Cell["Punto plano", "Text",
+ CellChangeTimes->{{3.676519551354843*^9, 3.676519553696686*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"plano2", "=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"TangAfinGrafo", "[", "f", "]"}], "[", 
+       RowBox[{"0", ",", "0"}], "]"}], "[", 
+      RowBox[{"a", ",", "b"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"b", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", " ", 
+     RowBox[{"PlotStyle", "\[Rule]", "Green"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"grafo2", "=", 
+   RowBox[{"ParametricPlot3D", "[", 
+    RowBox[{
+     RowBox[{"grafo", "[", 
+      RowBox[{"u", ",", "v"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"u", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"v", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", " ", 
+     RowBox[{"PlotStyle", "\[Rule]", "Red"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"plano2", ",", "grafo2"}], "]"}]}], "Input",
+ CellChangeTimes->{3.6765195432931356`*^9}],
+
+Cell[TextData[StyleBox["4. Calcular la curvatura media de las superficies de \
+revoluci\[OAcute]n generadas por un grafo sobre el eje de giro (la curva \
+generatriz ser\[IAcute]a de la forma (x(t),0,t)). Utilizar el comando DSolve \
+(puedes encontrar informaci\[OAcute]n sobre \[EAcute]l en la ayuda del \
+programa) para obtener una expresi\[OAcute]n para todas las superficies de \
+este tipo que sean minimales. Dibujar alguna de ellas que no sea un plano.",
+ FontFamily->"Bookman Old Style"]], "Text",
+ CellChangeTimes->{{3.6764881574320593`*^9, 3.676488172910568*^9}},
+ FontSize->16],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Revol", "[", "f_", "]"}], "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"f", "[", "u", "]"}], "*", 
+     RowBox[{"Cos", "[", "v", "]"}]}], ",", " ", 
+    RowBox[{
+     RowBox[{"f", "[", "u", "]"}], "*", 
+     RowBox[{"Sin", "[", "v", "]"}]}], ",", " ", "u"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.6765198413024197`*^9, 3.6765199330512857`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"H", "[", 
+   RowBox[{"Revol", "[", "f", "]"}], "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}]], "Input",
+ CellChangeTimes->{{3.676519944948728*^9, 3.6765200266576138`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"H", "[", 
+      RowBox[{"Revol", "[", "f", "]"}], "]"}], "[", 
+     RowBox[{"u", ",", "v"}], "]"}], "\[Equal]", "0"}], ",", 
+   RowBox[{"f", "[", "u", "]"}], ",", "u"}], "]"}]], "Input",
+ CellChangeTimes->{{3.676520042027278*^9, 3.676520124983824*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"g", "[", 
+    RowBox[{"c1_", ",", "c2_"}], "]"}], "[", "u_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"1", "/", "2"}], "*", 
+   RowBox[{"E", "^", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"-", 
+         RowBox[{"E", "^", "c1"}]}], ")"}], "*", "u"}], "-", 
+      RowBox[{"2", "c1"}], "-", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"E", "^", "c1"}], ")"}], "*", "c2"}]}], ")"}]}], "*", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"E", "^", "2"}], "c1"}], "+", 
+     RowBox[{"E", "^", 
+      RowBox[{"(", 
+       RowBox[{"2", "*", 
+        RowBox[{"E", "^", "c1"}], "*", 
+        RowBox[{"(", 
+         RowBox[{"u", "+", "c2"}], ")"}]}], ")"}]}]}], ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.6765202377659397`*^9, 3.6765203896356916`*^9}, {
+  3.6765205405460978`*^9, 3.6765205922757607`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"g", "[", 
+   RowBox[{"2", ",", "3"}], "]"}], "[", "u", "]"}]], "Input",
+ CellChangeTimes->{{3.6765204982755613`*^9, 3.676520503097822*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ParametricPlot3D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Revol", "[", 
+     RowBox[{"g", "[", 
+      RowBox[{"0.3", ",", "0.5"}], "]"}], "]"}], "[", 
+    RowBox[{"u", ",", "v"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"u", ",", 
+     RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"v", ",", "0", ",", 
+     RowBox[{"2", "Pi"}]}], "}"}], ",", " ", 
+   RowBox[{"PlotStyle", "\[Rule]", "Blue"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.676520404329361*^9, 3.676520452426724*^9}, {
+  3.6765206191628532`*^9, 3.676520621832079*^9}, {3.6765206562424707`*^9, 
+  3.6765206982477283`*^9}}],
+
+Cell[TextData[StyleBox["5. Dibujar el helicoide, la superficie de Scherk y la \
+superficie de Enneper (ver abajo sus parametrizaciones). Demostrar que son \
+minimales. Calcular la curvatura de Gauss en todos los casos.",
+ FontFamily->"Bookman Old Style"]], "Text",
+ CellChangeTimes->{3.6764881753675203`*^9},
+ FontSize->16],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"helicoide", "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"v", " ", 
+     RowBox[{"Cos", "[", "u", "]"}]}], ",", 
+    RowBox[{"v", " ", 
+     RowBox[{"Sin", "[", "u", "]"}]}], ",", "u"}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"K", "[", "helicoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"H", "[", "helicoide", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"grafo2", "=", 
+  RowBox[{"ParametricPlot3D", "[", 
+   RowBox[{
+    RowBox[{"helicoide", "[", 
+     RowBox[{"u", ",", "v"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"u", ",", 
+      RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"v", ",", 
+      RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", " ", 
+    RowBox[{"PlotStyle", "\[Rule]", "Orange"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.51152751434803*^9, 3.5115275778920317`*^9}, {
+  3.6765196423361998`*^9, 3.676519660090617*^9}, {3.676519720216753*^9, 
+  3.6765197491368628`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Scherk", "[", 
+   RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{"u", ",", "v", ",", 
+    RowBox[{"Log", "[", 
+     FractionBox[
+      RowBox[{"Cos", "[", 
+       RowBox[{"v", "+", "1"}], "]"}], 
+      RowBox[{"Cos", "[", 
+       RowBox[{"u", "+", "2"}], "]"}]], "]"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"K", "[", "Scherk", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"H", "[", "Scherk", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"grafo2", "=", 
+  RowBox[{"ParametricPlot3D", "[", 
+   RowBox[{
+    RowBox[{"Scherk", "[", 
+     RowBox[{"u", ",", "v"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"u", ",", 
+      RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"v", ",", 
+      RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", " ", 
+    RowBox[{"PlotStyle", "\[Rule]", "Orange"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.511527584797193*^9, 3.511527604718997*^9}, {
+   3.511527652205883*^9, 3.51152766494108*^9}, 3.511595361449512*^9, {
+   3.676519671192422*^9, 3.676519682186812*^9}, {3.6765197357766943`*^9, 
+   3.676519760168038*^9}, {3.676520758633655*^9, 3.676520798558696*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"enneper", "[", 
+    RowBox[{"u_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"u", "-", 
+      RowBox[{
+       RowBox[{"u", "^", "3"}], "/", "3"}], "+", 
+      RowBox[{"u", " ", 
+       RowBox[{"v", "^", "2"}]}]}], ",", 
+     RowBox[{"v", "-", 
+      RowBox[{
+       RowBox[{"v", "^", "3"}], "/", "3"}], "+", 
+      RowBox[{
+       RowBox[{"u", "^", "2"}], " ", "v"}]}], ",", 
+     RowBox[{
+      RowBox[{"u", "^", "2"}], "-", 
+      RowBox[{"v", "^", "2"}]}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"K", "[", "enneper", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"H", "[", "enneper", "]"}], "[", 
+  RowBox[{"u", ",", "v"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"grafo2", "=", 
+  RowBox[{"ParametricPlot3D", "[", 
+   RowBox[{
+    RowBox[{"enneper", "[", 
+     RowBox[{"u", ",", "v"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"u", ",", 
+      RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"v", ",", 
+      RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", " ", 
+    RowBox[{"PlotStyle", "\[Rule]", "Orange"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.481373559604104*^9, 3.481373618884251*^9}, {
+  3.676519686958901*^9, 3.6765196916802473`*^9}, {3.676519742099208*^9, 
+  3.676519762428823*^9}}],
+
+Cell[TextData[StyleBox["\nInstrucciones al terminar la pr\[AAcute]ctica:",
+ FontFamily->"Book Antiqua"]], "Text",
+ CellChangeTimes->{
+  3.472449885779574*^9, {3.530272458081758*^9, 3.530272525109302*^9}},
+ FontSize->16,
+ FontColor->RGBColor[1, 0, 0]],
+
+Cell["\<\
+1. Graba la pr\[AAcute]ctica y no olvides escribir tu nombre en el espacio \
+reservado para ello al principio de la pr\[AAcute]ctica.
+2. Aseg\[UAcute]rate de que has realizado todos los ejercicios y de que todas \
+las celdas se evaluan sin problemas.
+3. Borra las celdas de salida: busca el comando Delete All Output en alguna \
+de las pesta\[NTilde]as del men\[UAcute] superior (Cell o Notebook). Graba.\t\
+\
+\>", "Text",
+ CellChangeTimes->{{3.47239974269524*^9, 3.4723998009258413`*^9}, 
+   3.472399929999411*^9, {3.47244990128399*^9, 3.472449909995002*^9}, {
+   3.504270274165771*^9, 3.5042703108204803`*^9}, {3.504288378100219*^9, 
+   3.504288384699988*^9}, 3.504336835982481*^9, {3.530257429230844*^9, 
+   3.530257429621622*^9}, {3.530257492156003*^9, 3.530257505273522*^9}, {
+   3.530272543780018*^9, 3.530272605843875*^9}, {3.5302726447231417`*^9, 
+   3.5302728872423887`*^9}, {3.6670432422235928`*^9, 3.667043268005351*^9}, {
+   3.6670433892331123`*^9, 3.667043441385969*^9}, 3.667043475722834*^9, 
+   3.667043533844707*^9, {3.669441957056625*^9, 3.669441958295784*^9}},
+ FontFamily->"Book Antiqua",
+ FontSize->16,
+ FontWeight->"Plain",
+ FontVariations->{"CompatibilityType"->0}]
+},
+WindowSize->{808, 708},
+WindowMargins->{{157, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (July 6, \
+2015)",
+StyleDefinitions->"Classroom.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 420, 10, 107, "Text"],
+Cell[968, 32, 540, 12, 30, "Text"],
+Cell[1511, 46, 139, 2, 45, "Input"],
+Cell[1653, 50, 331, 8, 30, "Text"],
+Cell[1987, 60, 2766, 91, 144, "Input"],
+Cell[4756, 153, 335, 8, 30, "Text"],
+Cell[5094, 163, 3405, 111, 187, "Input"],
+Cell[8502, 276, 262, 6, 30, "Text"],
+Cell[8767, 284, 484, 14, 46, "Input"],
+Cell[9254, 300, 269, 7, 30, "Text"],
+Cell[9526, 309, 799, 24, 50, "Input"],
+Cell[10328, 335, 267, 6, 30, "Text"],
+Cell[10598, 343, 1191, 37, 46, "Input"],
+Cell[11792, 382, 457, 9, 30, "Text"],
+Cell[12252, 393, 372, 11, 46, "Input"],
+Cell[12627, 406, 372, 11, 46, "Input"],
+Cell[13002, 419, 355, 11, 46, "Input"],
+Cell[13360, 432, 757, 24, 46, "Input"],
+Cell[14120, 458, 307, 8, 30, "Text"],
+Cell[14430, 468, 313, 9, 46, "Input"],
+Cell[14746, 479, 263, 6, 46, "Input"],
+Cell[15012, 487, 261, 6, 46, "Input"],
+Cell[15276, 495, 308, 7, 46, "Input"],
+Cell[15587, 504, 279, 6, 46, "Input"],
+Cell[15869, 512, 226, 5, 46, "Input"],
+Cell[16098, 519, 229, 5, 46, "Input"],
+Cell[16330, 526, 228, 5, 46, "Input"],
+Cell[16561, 533, 424, 10, 30, "Text"],
+Cell[16988, 545, 396, 11, 46, "Input"],
+Cell[17387, 558, 500, 13, 46, "Input"],
+Cell[17890, 573, 328, 7, 46, "Input"],
+Cell[18221, 582, 328, 7, 46, "Input"],
+Cell[18552, 591, 371, 7, 46, "Input"],
+Cell[18926, 600, 390, 7, 46, "Input"],
+Cell[19319, 609, 289, 6, 46, "Input"],
+Cell[19611, 617, 341, 6, 46, "Input"],
+Cell[19955, 625, 343, 6, 46, "Input"],
+Cell[20301, 633, 296, 6, 46, "Input"],
+Cell[20600, 641, 296, 6, 46, "Input"],
+Cell[20899, 649, 367, 8, 30, "Text"],
+Cell[21269, 659, 518, 15, 46, "Input"],
+Cell[21790, 676, 311, 7, 46, "Input"],
+Cell[22104, 685, 311, 7, 45, "Input"],
+Cell[22418, 694, 353, 7, 45, "Input"],
+Cell[22774, 703, 326, 6, 45, "Input"],
+Cell[23103, 711, 274, 6, 45, "Input"],
+Cell[23380, 719, 277, 6, 45, "Input"],
+Cell[23660, 727, 280, 6, 45, "Input"],
+Cell[23943, 735, 405, 9, 30, "Text"],
+Cell[24351, 746, 549, 15, 46, "Input"],
+Cell[24903, 763, 393, 11, 45, "Input"],
+Cell[25299, 776, 362, 7, 46, "Input"],
+Cell[25664, 785, 361, 7, 45, "Input"],
+Cell[26028, 794, 407, 8, 45, "Input"],
+Cell[26438, 804, 379, 7, 45, "Input"],
+Cell[26820, 813, 325, 6, 45, "Input"],
+Cell[27148, 821, 328, 6, 45, "Input"],
+Cell[27479, 829, 333, 6, 45, "Input"],
+Cell[27815, 837, 271, 7, 30, "Text"],
+Cell[28089, 846, 475, 14, 46, "Input"],
+Cell[28567, 862, 497, 12, 46, "Input"],
+Cell[29067, 876, 824, 23, 46, "Input"],
+Cell[29894, 901, 647, 17, 46, "Input"],
+Cell[30544, 920, 856, 27, 46, "Input"],
+Cell[31403, 949, 850, 25, 46, "Input"],
+Cell[32256, 976, 2837, 43, 123, "Text"],
+Cell[35096, 1021, 2610, 71, 263, "Input"],
+Cell[37709, 1094, 2196, 63, 247, "Input"],
+Cell[39908, 1159, 2388, 68, 254, "Input"],
+Cell[42299, 1229, 518, 8, 53, "Text"],
+Cell[42820, 1239, 1338, 35, 110, "Input"],
+Cell[44161, 1276, 143, 2, 22, "Text"],
+Cell[44307, 1280, 2948, 93, 142, "Input"],
+Cell[47258, 1375, 515, 8, 53, "Text"],
+Cell[47776, 1385, 1114, 31, 110, "Input"],
+Cell[48893, 1418, 93, 1, 22, "Text"],
+Cell[48989, 1421, 1131, 34, 78, "Input"],
+Cell[50123, 1457, 586, 8, 76, "Text"],
+Cell[50712, 1467, 453, 13, 46, "Input"],
+Cell[51168, 1482, 206, 5, 45, "Input"],
+Cell[51377, 1489, 341, 9, 45, "Input"],
+Cell[51721, 1500, 900, 29, 46, "Input"],
+Cell[52624, 1531, 174, 4, 46, "Input"],
+Cell[52801, 1537, 639, 17, 46, "Input"],
+Cell[53443, 1556, 323, 5, 53, "Text"],
+Cell[53769, 1563, 1109, 31, 93, "Input"],
+Cell[54881, 1596, 1281, 34, 115, "Input"],
+Cell[56165, 1632, 1372, 40, 94, "Input"],
+Cell[57540, 1674, 250, 5, 65, "Text"],
+Cell[57793, 1681, 1197, 21, 146, "Text"]
+}
+]
+*)
+
+(* End of internal cache information *)

@@ -1,0 +1,3 @@
+grant codeBase "file:/Users/SergioPadilla/Desktop/simple" {
+    permission java.security.AllPermission;
+};
